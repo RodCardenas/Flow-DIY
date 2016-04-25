@@ -21,105 +21,128 @@ Flow-DIY is a web application influenced by Instructables built on Ruby-on-Rails
  - Completed production readme
  - Downloadable project files
 
-##Product Goals and Priorities (pending)
+##Product Goals
 
-##FresherNote will allow users to do the following:
+Flow-DIY will provide site visitors an interface to manage projects online and give them the opportunity to share their ideas with others! To achieve this, the website will:
 
- Create an account (MVP)
- Log in / Log out, including as a Guest/Demo User (MVP)
- Create, read, edit, and delete notes (MVP)
- Organize notes within Notebooks (MVP)
- Tag notes with multiple tags (expected feature, but not MVP)
- Apply complex styling to notes while editing (expected feature, but not MVP)
- 
+ - Provide users the opporunity to **create an account** (MVP)
+  - Through **authentication**, users will be able to store their projects and visit the projects of others (MVP)
+ - Registered visitors will be able to create, read, edit, and delete projects. The projects will be detailed in steps that may include pictures (MVP)
+ - Projects' videos can be stored on the project page
+ - Visitors can comment on others' projects
+ - Visitors will be able to track their favorite projects
+
 ##Design Docs
-- [API](http://flow-diy.herokuapp.com/)
-- [Components](http://flow-diy.herokuapp.com/)
-- [Flux Cycles](http://flow-diy.herokuapp.com/)
-- [Schema](http://flow-diy.herokuapp.com/)
-- [Wireframes](http://flow-diy.herokuapp.com/)
+- [API](https://github.com/RodCardenas/Flow-DIY/blob/master/docs/API.md)
+- [Components]()
+- [Flux Cycles]()
+- [Schema](https://github.com/RodCardenas/Flow-DIY/blob/master/docs/schema.md)
+- [Wireframes](https://github.com/RodCardenas/Flow-DIY/blob/master/docs/Wireframes/layouts.md)
 
 ##Implementation Timeline
 
-###Phase 1: Backend setup and User Authentication (0.5 days)
-**Objective:** Functioning rails project with Authentication
+###Phase 1
 
- create new project
- create User model
- authentication
- user signup/signin pages
- blank landing page after signin
+####1: Backend setup and User Authentication (1.0 days)
+**Objective:** Rails backend with Authentication is implemented.
+
+ - Setup new project and its backend
+ - Implement User model/controller
+ - Implement Authentication
+  - User signup page
+  - User signing page
  
-###Phase 2: Notes Model, API, and basic APIUtil (1.5 days)
-**Objective:** Notes can be created, read, edited and destroyed through the API.
-
- create Note model
- seed the database with a small amount of test data
- CRUD API for notes (NotesController)
- jBuilder views for notes
- setup Webpack & Flux scaffold
- setup APIUtil to interact with the API
- test out API interaction in the console.
+####2: Projects Models, API, and APIUtil (1.5 days)
+**Objective:** Projects can be created, read, edited, and destroyed through the API.
  
-###Phase 3: Flux Architecture and Router (1.5 days)
-**Objective:** Notes can be created, read, edited and destroyed with the user interface.
-
- setup the flux loop with skeleton files
- setup React Router
-implement each note component, building out the flux loop as needed.
- NotesIndex
- NoteIndexItem
- NoteForm
- save Notes to the DB when the form loses focus or is left idle after editing.
+ - Create Project Index Component
+ - Create Project Index Item Component
+ - Setup Project Store
+ - Setup Dispatcher
+ - Setup Action Creators
+  - Client Actions
+  - Server Actions
+ - Implement API Util
+ - Implement Project model
+ - Create Project controller and implement the Project's CRUD
+ - Generate jSON responses with jBuilder
+ - Seed data samples
+ - Test Projects CRUD through API
  
-###Phase 4: Start Styling (0.5 days)
-**Objective:** Existing pages (including singup/signin) will look good.
-
- create a basic style guide
- position elements on the page
- add basic colors & styles
+####3: Steps Models, API, and APIUtil (1.5 days)
+**Objective:** Steps can be created, read, edited, and destroyed through the API.
  
-###Phase 5: Notebooks (1 day)
-**Objective:** Notes belong to Notebooks, and can be viewed by notebook.
-
- create Notebook model
-build out API, Flux loop, and components for:
- Notebook CRUD
- adding notes requires a notebook
- moving notes to a different notebook
- viewing notes by notebook
-Use CSS to style new views
-Phase 3 adds organization to the Notes. Notes belong to a Notebook, which has its own Index view.
-
-###Phase 6: Tags (1.5 days)
-**Objective:** Notes can be tagged with multiple tags, and tags are searchable.
-
- create Tag model and join table
-build out API, Flux loop, and components for:
- fetching tags for notebook
- adding tags to notebook
- creating tags while adding to notebooks
- searching notebooks by tag
- Style new elements
+ - Create Step Component
+ - Modify Action Creators to include Step functionality
+  - Client Actions
+  - Server Actions
+ - Expand API Util to include step functionality
+ - Implement Step model
+ - Create Step controller and implement the Step's CRUD
+ - Generate jSON responses with jBuilder
+ - Modify Project's implementation to include steps
+ - Seed data samples
+ - Test Step and Projects CRUD through API
  
-###Phase 7: Allow Complex Styling in Notes (0.5 days)
-**Objective:** Enable complex styling of notes.
+####4: Flux Architecture and Router (2.0 days)
+**Objective:** Projects and Steps can be created, read, edited, and destroyed through the user interface. URL will respond to actions on the user interface.
 
- Integrate react-quill (based on Quill.js).
- Use Rails helpers to sanitize HTML before rendering.
- Style the new Quill elements.
+ - Setup the React Router
+ - Modify implementation to have pages and URLs corresponding to page interactions
+ 
+ 
+####5: Start Styling (2.0 days)
+**Objective:** Color scheme, locations, and shapes will be finalized.
 
-###Phase 8: Styling Cleanup and Seeding (1 day)
-**Objective:** Make the site feel more cohesive and awesome.
+ - Website's style guide will be defined and implemented
+  - Color scheme
+  - Elements' shapes and dimensions
+  - Website's logo
+ - Element's positioning will be finalized
 
- Get feedback on my UI from others
- Refactor HTML classes & CSS rules
- Add modals, transitions, and other styling flourishes.
+####6: Polish Basic functionality (1.0 day)
+**Objective:** Finalize styling and define standard seed data.
 
-##Bonus Features (TBD)
+ - Complete transitions and animations
+ - Populate database with immersive data
+ - Do test to verify site's fluidity
 
- Search through notes for blocks of text
- Pagination / infinite scroll for Notes Index
- Set reminders on notes
- Changelogs for Notes
- Multiple sessions
+### Phase 2
+
+####1: Video Player Integration (2.0 days)
+**Objective:** Allow projects to include videos in conjuction with pictures.
+ 
+ - Modify component implementation to permit videos in the website
+ - Alter backend to handle the storing of videos/video links
+
+####2: Comment Interface Implementation (1.5 days)
+**Objective:** Users can create, edit, delete, and update comments on projects.
+
+ - Create Comment Index Component
+ - Create Comment Index Item Component
+ - Modify Action Creators to include Comment functionality
+  - Client Actions
+  - Server Actions
+ - Expand API Util to include Comment functionality
+ - Implement Comment model
+ - Create Comment controller and implement the Comment's CRUD
+ - Generate jSON responses with jBuilder
+ - Modify layouts to include Comments
+ - Seed data samples
+ - Test Comment's CRUD through API
+ - Test Comment's CRUD through user interface
+
+####3: Favorite Projects Implementation (1.5 days)
+**Objective:** Users can mark projects as favorite projects.
+
+ - Modify Action Creators to include Favorite functionality
+  - Client Actions
+  - Server Actions
+ - Expand API Util to include Favorite functionality
+ - Implement Favorite model
+ - Create Favorite controller and implement the Favorite's CRUD
+ - Generate jSON responses with jBuilder
+ - Modify layouts to include Favorite
+ - Seed data samples
+ - Test Favorite's CRUD through API
+ - Test Favorite's CRUD through user interface
