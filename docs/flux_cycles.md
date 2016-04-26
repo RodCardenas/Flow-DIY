@@ -34,3 +34,22 @@ store listeners are listed at the end.
     - invoked from confirmation prompt's confirm button `onClick`
   0. `DELETE /api/projects/:id` is called.
   0. `removeProject` is set as the callback.
+  
+### Projects API Response Actions
+
+* `receiveAllProjects`
+  0. invoked from an API callback.
+  0. `Project` store updates `_projects` and emits change.
+
+* `receiveSingleProject`
+  0. invoked from an API callback.
+  0. `Project` store updates `_projects` and emits change.
+
+* `removeProject`
+  0. invoked from an API callback.
+  0. `Project` store updates `_projects` and emits change.
+
+### Store Listeners
+
+* `ProjectsIndex` component listens to `Project` store.
+* `ProjectDetail` component listens to `Project` store.
