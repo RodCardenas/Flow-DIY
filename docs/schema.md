@@ -30,4 +30,5 @@ column name    | data type | details
 id             | integer   | not null, primary key
 imageable_id   | integer   | not null, foreign key(can reference project/steps/users)
 imageable_type | string    | not null
+picture_url      | string    | not null
 
