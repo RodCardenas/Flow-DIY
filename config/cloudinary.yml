@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: flow-diy
+  api_key: '838255772545316'
+  api_secret: NZWYT0r3l8qyPYn7ymE-OKolgcM
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: flow-diy
+  api_key: '838255772545316'
+  api_secret: NZWYT0r3l8qyPYn7ymE-OKolgcM
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: flow-diy
+  api_key: '838255772545316'
+  api_secret: NZWYT0r3l8qyPYn7ymE-OKolgcM
+  enhance_image_tag: true
+  static_image_support: false
