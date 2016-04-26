@@ -30,8 +30,8 @@ Flow-DIY will provide site visitors an interface to manage projects online and g
 
 ##Design Docs
 - [API](https://github.com/RodCardenas/Flow-DIY/blob/master/docs/API.md)
-- [Components]()
-- [Flux Cycles]()
+- [Components](https://github.com/RodCardenas/Flow-DIY/blob/master/docs/components.md)
+- [Flux Cycles](https://github.com/RodCardenas/Flow-DIY/blob/master/docs/flux_cycles.md)
 - [Schema](https://github.com/RodCardenas/Flow-DIY/blob/master/docs/schema.md)
 - [Wireframes](https://github.com/RodCardenas/Flow-DIY/blob/master/docs/Wireframes/layouts.md)
 
