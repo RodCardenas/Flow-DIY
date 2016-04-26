@@ -2,20 +2,16 @@
 
 ##Minimum Viable Product
 
-Flow-DIY is a web application influenced by Instructables built on Ruby-on-Rails and React. The app will be divided into two major development phases. The first focus will be to comply with a list of features that will generate a viable product, while the second phase will aim to add more features to make the website truly shine.
+Flow-DIY is a web application influenced by Instructables built on Ruby-on-Rails and React that will focus on hosting electronics projects. The basic functionality of the application includes:
 
-### Phase 1
  - New account creation, login, and a website demo login
- - Bug-free navigation
  - Projects Interface
   * Project Creation
   * Project Editing
   * Project Navigation/Index
- - Deployment of the website (completed)
  - Attractive visual design
- - Completed production readme
- 
-### Phase 2
+
+### Bonus Features
  - Favorite projects
  - User Comments
  - Completed production readme
@@ -41,8 +37,6 @@ Flow-DIY will provide site visitors an interface to manage projects online and g
 
 ##Implementation Timeline
 
-###Phase 1
-
 ####1: Backend setup and User Authentication (1.0 days)
 **Objective:** Rails backend with Authentication is implemented.
 
@@ -52,7 +46,7 @@ Flow-DIY will provide site visitors an interface to manage projects online and g
   - User signup page
   - User signing page
  
-####2: Projects Models, API, and APIUtil (1.5 days)
+####2: Projects Models, API, and APIUtil (2.0 days)
 **Objective:** Projects can be created, read, edited, and destroyed through the API.
  
  - Create Project Index Component
@@ -69,7 +63,7 @@ Flow-DIY will provide site visitors an interface to manage projects online and g
  - Seed data samples
  - Test Projects CRUD through API
  
-####3: Steps Models, API, and APIUtil (1.5 days)
+####3: Steps Models, API, and APIUtil (2.0 days)
 **Objective:** Steps can be created, read, edited, and destroyed through the API.
  
  - Create Step Component
@@ -91,7 +85,7 @@ Flow-DIY will provide site visitors an interface to manage projects online and g
  - Modify implementation to have pages and URLs corresponding to page interactions
  
  
-####5: Start Styling (2.0 days)
+####5: Page Layouts (1.0 days)
 **Objective:** Color scheme, locations, and shapes will be finalized.
 
  - Website's style guide will be defined and implemented
@@ -107,7 +101,7 @@ Flow-DIY will provide site visitors an interface to manage projects online and g
  - Populate database with immersive data
  - Do test to verify site's fluidity
 
-### Phase 2
+### Bonus
 
 ####1: Video Player Integration (2.0 days)
 **Objective:** Allow projects to include videos in conjuction with pictures.
