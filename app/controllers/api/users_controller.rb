@@ -1,14 +1,19 @@
+# == Schema Information
+#
+# Table name: api_users
+#
+#  id              :integer          not null, primary key
+#  email           :string           not null
+#  password_digest :string           not null
+#  session_token   :string           not null
+#  created_at      :datetime
+#  updated_at      :datetime
+#
+
 class Api::UsersController < ApplicationController
   before_action :set_api_user, only: [:show, :edit, :update, :destroy]
 
-  # GET /api/users
-  # GET /api/users.json
-  def index
-    @api_users = Api::User.all
-  end
-
   # GET /api/users/1
-  # GET /api/users/1.json
   def show
   end
 
@@ -22,53 +27,37 @@ class Api::UsersController < ApplicationController
   end
 
   # POST /api/users
-  # POST /api/users.json
   def create
     @api_user = Api::User.new(api_user_params)
 
-    respond_to do |format|
-      if @api_user.save
-        format.html { redirect_to @api_user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @api_user }
-      else
-        format.html { render :new }
-        format.json { render json: @api_user.errors, status: :unprocessable_entity }
-      end
+    if @api_user.save
+      render :show, status: :created, location: @api_user
+    else
+      render json: @api_user.errors, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /api/users/1
-  # PATCH/PUT /api/users/1.json
   def update
-    respond_to do |format|
-      if @api_user.update(api_user_params)
-        format.html { redirect_to @api_user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @api_user }
-      else
-        format.html { render :edit }
-        format.json { render json: @api_user.errors, status: :unprocessable_entity }
-      end
+    if @api_user.update(api_user_params)
+      render :show, status: :ok, location: @api_user
+    else
+      render json: @api_user.errors, status: :unprocessable_entity
     end
   end
 
   # DELETE /api/users/1
-  # DELETE /api/users/1.json
   def destroy
     @api_user.destroy
-    respond_to do |format|
-      format.html { redirect_to api_users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    render json: @api_user #TODO: What is this?
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_api_user
       @api_user = Api::User.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def api_user_params
-      params.fetch(:api_user, {})
+      params.require(:user).permit(:email, :password)
     end
 end
