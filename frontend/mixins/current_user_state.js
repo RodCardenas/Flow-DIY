@@ -12,6 +12,10 @@ module.exports = {
   //Add a UserStore listener that will updateUser fetchCurrentUser if the UserStore.currentUser is undefined.
   componentDidMount: function(){
     this.listenerToken = UserStore.addListener(this.updateUser);
+    console.log(this.state.currentUser );
+    if(typeof this.state.currentUser === 'undefined'){
+      UserApiUtil.fetchCurrentUser();
+    }
   },
 
   // update the state of currentUser and authErrors.
