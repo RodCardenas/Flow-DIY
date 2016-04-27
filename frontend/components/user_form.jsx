@@ -7,27 +7,16 @@ var UserForm = React.createClass({
   mixins: [CurrentUserStateMixin],
 
   getInitialState: function(){
-    return ({email: "", password: "", errors: [] });
-  },
-
-  componentDidMount: function(){
-    this.listenerToken = UserStore.addListener(this._onChange);
-  },
-
-  componentWillUnmount: function(){
-    this.listenerToken.remove();
-  },
-
-  _onChange: function(){
-    this.setState({ errors: UserStore.authErrors() });
+    return ({email: "", password: "" });
   },
 
   logout: function() {
-    // var currentUser = UserStore.currentUser();
     UserApiUtil.logoutUser(this.state.currentUser);
   },
 
-  login: function() {
+  login: function(e) {
+    e.preventDefault();
+
     UserApiUtil.loginUser({
       email: this.state.email,
       password: this.state.password,
@@ -57,7 +46,7 @@ var UserForm = React.createClass({
       content =
         <div>
           <div id="errors">
-            {this.state.errors}
+            {this.state.authErrors}
           </div>
 
           <form onSubmit={this.login}>

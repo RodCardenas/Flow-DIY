@@ -14,12 +14,11 @@ class Api::User < ActiveRecord::Base
   after_initialize :ensure_session_token
 
   validates :email, :session_token, uniqueness: true
-  validates(
-    :email,
-    :password_digest,
-    :session_token,
-    presence: true
-  )
+  validates :email, :password_digest, :session_token, presence: true
+
+  has_many :projects,
+    foreign_key: :author_id
+
 
   def self.generate_token
     SecureRandom.base64(16)

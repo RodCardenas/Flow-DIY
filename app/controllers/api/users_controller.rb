@@ -32,7 +32,7 @@ class Api::UsersController < ApplicationController
 
     if @api_user.save
       login_user(@api_user)
-			render "api/users/show"
+			render "api/projects/index"
     else
       @errors = @api_user.errors.full_messages
 			render "api/shared/error", status: :unprocessable_entity
