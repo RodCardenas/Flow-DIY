@@ -1,7 +1,11 @@
-class Api::SessionController < ApplicationController
+class Api::SessionsController < ApplicationController
   def new
   end
-  
+
+  def show
+    render json: current_user if current_user
+  end
+
   def create
     user = Api::User.find_by_credentials(
       params[:user][:email],

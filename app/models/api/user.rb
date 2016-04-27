@@ -13,9 +13,8 @@
 class Api::User < ActiveRecord::Base
   after_initialize :ensure_session_token
 
-  validates :activation_token, :email, :session_token, uniqueness: true
+  validates :email, :session_token, uniqueness: true
   validates(
-    :activation_token,
     :email,
     :password_digest,
     :session_token,
