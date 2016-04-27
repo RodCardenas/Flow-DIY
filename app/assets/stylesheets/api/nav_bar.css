@@ -2,3 +2,8 @@
   background-color: grey;
   color: white;
 }
+
+.NavBar #errors{
+  background-color: red;
+  color: white;
+}

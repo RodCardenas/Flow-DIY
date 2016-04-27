@@ -10,7 +10,7 @@
 #  updated_at      :datetime
 #
 
-class Api::UsersController < ApplicationController
+class Api::UserController < ApplicationController
   before_action :set_api_user, only: [:show, :edit, :update, :destroy]
 
   # GET /api/users/1
@@ -29,10 +29,10 @@ class Api::UsersController < ApplicationController
   # POST /api/users
   def create
     @api_user = Api::User.new(api_user_params)
-
+    puts api_user_params
     if @api_user.save
-      login_user(@api_user)
-			render "api/projects/index"
+      login_user!(@api_user)
+			render "api/users/show"
     else
       @errors = @api_user.errors.full_messages
 			render "api/shared/error", status: :unprocessable_entity

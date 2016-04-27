@@ -6,7 +6,6 @@ var Route = ReactRouter.Route;
 var IndexRoute = ReactRouter.IndexRoute;
 var hashHistory = ReactRouter.hashHistory;
 
-var UserForm = require('./components/user_form');
 var ProjectIndex = require('./components/project_index');
 var NavBar = require('./components/nav_bar');
 

@@ -3,7 +3,7 @@ var UserStore = require('../stores/user_store');
 var UserApiUtil = require('../util/user_api_util');
 var CurrentUserStateMixin = require('../mixins/current_user_state');
 
-var UserForm = React.createClass({
+var UserSignUpForm = React.createClass({
   mixins: [CurrentUserStateMixin],
 
   getInitialState: function(){
@@ -12,12 +12,13 @@ var UserForm = React.createClass({
 
   logout: function() {
     UserApiUtil.logoutUser(this.state.currentUser);
+    this.loggedOut = true;
   },
 
-  login: function(e) {
+  signUp: function(e) {
     e.preventDefault();
 
-    UserApiUtil.loginUser({
+    UserApiUtil.createUser({
       email: this.state.email,
       password: this.state.password,
     });
@@ -31,12 +32,12 @@ var UserForm = React.createClass({
     this.setState({password: event.target.value});
   },
 
-
   render: function(){
     var user = this.state.currentUser;
     var content;
 
     if(user){
+      this.loggedOut = false;
       content =
         <div>
           Welcome back, {user.email}
@@ -49,7 +50,7 @@ var UserForm = React.createClass({
             {this.state.authErrors}
           </div>
 
-          <form onSubmit={this.login}>
+          <form onSubmit={this.signUp}>
             <label htmlFor="email">Email</label>
             <input
               type="text"
@@ -64,7 +65,7 @@ var UserForm = React.createClass({
               onChange={this.pChange}
               value={this.state.password} />
 
-            <input type="submit" value="Login" />
+            <input type="submit" value="SignUp" />
           </form>
         </div>;
     }
@@ -77,4 +78,4 @@ var UserForm = React.createClass({
   }
 });
 
-module.exports = UserForm;
+module.exports = UserSignUpForm;

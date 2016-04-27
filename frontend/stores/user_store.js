@@ -35,6 +35,11 @@ UserStore.__onDispatch = function (payload) {
       UserStore.__emitChange();
       break;
 
+    case UserConstants.USER_CREATED :
+      resetCurrentUser(payload.user);
+      UserStore.__emitChange();
+      break;
+
     case UserConstants.USER_LOGOUT:
       resetCurrentUser(null);
       UserStore.__emitChange();

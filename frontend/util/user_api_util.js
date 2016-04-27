@@ -42,6 +42,8 @@ module.exports =  {
   },
 
   createUser: function(credentials){
+    console.log(credentials);
+    console.log({user: credentials});
     $.ajax({
       method: 'POST',
       url: '/api/user',
