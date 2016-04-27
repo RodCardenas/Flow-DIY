@@ -9,7 +9,7 @@ module.exports =  {
         UserActions.receiveCurrentUser(currentUser);
       },
       error: function(error){
-        // TODO Issues with server
+        UserActions.handleError(error);
       }
     });
   },
@@ -23,22 +23,20 @@ module.exports =  {
         UserActions.loggedInUser(currentUser);
       },
       error: function(error){
-        // TODO Issues with server or invalid credentials?
+        UserActions.handleError(error);
       }
     });
   },
 
   logoutUser: function(){
-    // TODO if someone is logged in
     $.ajax({
       method: 'DELETE',
       url: 'api/session',
-
       success: function(currentUser){
         UserActions.loggedOutUser(currentUser);
       },
       error: function(error){
-        // TODO Issues with server
+        UserActions.handleError(error);
       }
     });
   },
@@ -52,7 +50,7 @@ module.exports =  {
         UserActions.createdUser(user);
       },
       error: function(error){
-        // TODO Issues with server
+        UserActions.handleError(error);
       }
     });
   },
@@ -65,7 +63,7 @@ module.exports =  {
         UserActions.deletedUser(currentUser);
       },
       error: function(error){
-        // TODO Issues with server or invalid credentials?
+        UserActions.handleError(error);
       }
     });
   },

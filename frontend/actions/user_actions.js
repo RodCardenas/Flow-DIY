@@ -35,6 +35,14 @@ module.exports = {
       actionType: UserConstants.USER_DESTROYED,
       user: user
     });
+  },
+
+  handleError: function(error) {
+    console.log(error);
+    AppDispatcher.dispatch({
+      actionType: UserConstants.ERROR,
+      errors: error.responseJSON.errors
+    });
   }
 
 };

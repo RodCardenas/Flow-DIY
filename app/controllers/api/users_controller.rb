@@ -31,18 +31,21 @@ class Api::UsersController < ApplicationController
     @api_user = Api::User.new(api_user_params)
 
     if @api_user.save
-      render :show, status: :created, location: @api_user
+      login_user(@api_user)
+			render "api/users/show"
     else
-      render json: @api_user.errors, status: :unprocessable_entity
+      @errors = @api_user.errors.full_messages
+			render "api/shared/error", status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /api/users/1
   def update
     if @api_user.update(api_user_params)
-      render :show, status: :ok, location: @api_user
+      render "api/users/show", status: :ok
     else
-      render json: @api_user.errors, status: :unprocessable_entity
+      @errors = @api_user.errors.full_messages
+      render "api/shared/error", status: :unprocessable_entity
     end
   end
 

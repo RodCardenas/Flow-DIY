@@ -8,11 +8,15 @@ var _authErrors = [];
 var UserStore = new Store(AppDispatcher);
 
 UserStore.currentUser = function(){
-  return _currentUser;
+  if (_currentUser) {
+   return $.extend({}, _currentUser);
+  }
 };
 
 UserStore.authErrors = function(){
-  return _authErrors;
+  if (_authErrors){
+    return [].slice.call(_authErrors);
+  }
 };
 
 var resetCurrentUser = function(user){
@@ -38,6 +42,11 @@ UserStore.__onDispatch = function (payload) {
 
     case UserConstants.USER_LOGIN:
       resetCurrentUser(payload.user);
+      UserStore.__emitChange();
+      break;
+
+    case UserConstants.ERROR:
+      resetAuthErrors(payload.errors);
       UserStore.__emitChange();
       break;
   }

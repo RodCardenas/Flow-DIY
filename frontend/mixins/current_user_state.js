@@ -1,4 +1,4 @@
-var UserApiUtil = require('../util/user_api_util');
+var UserActions = require('../actions/user_actions');
 var UserStore = require('../stores/user_store');
 
 module.exports = {
@@ -12,9 +12,8 @@ module.exports = {
   //Add a UserStore listener that will updateUser fetchCurrentUser if the UserStore.currentUser is undefined.
   componentDidMount: function(){
     this.listenerToken = UserStore.addListener(this.updateUser);
-    console.log(this.state.currentUser );
     if(typeof this.state.currentUser === 'undefined'){
-      UserApiUtil.fetchCurrentUser();
+      UserActions.receiveCurrentUser();
     }
   },
 
