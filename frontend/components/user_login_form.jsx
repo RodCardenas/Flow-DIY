@@ -41,8 +41,25 @@ var UserLoginForm = React.createClass({
     this.setState({password: event.target.value});
   },
 
+  getErrors: function() {
+    if (this.state.authErrors){
+      return(
+        <div id="errors">
+          {this.state.authErrors}
+        </div>
+      );
+    } else {
+      return (
+        <div>
+        </div>
+      );
+    }
+  },
+
   render: function(){
     var user = this.state.currentUser;
+    console.log("user login");
+    console.log(user);
     var content;
 
     if(user){
@@ -55,9 +72,8 @@ var UserLoginForm = React.createClass({
     } else {
       content =
         <div>
-          <div id="errors">
-            {this.state.authErrors}
-          </div>
+
+          {this.getErrors()}
 
           <form>
             <label htmlFor="email">Email</label>

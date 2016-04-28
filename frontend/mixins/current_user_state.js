@@ -1,4 +1,4 @@
-var UserActions = require('../actions/user_actions');
+var UserApiUtil = require('../util/user_api_util');
 var UserStore = require('../stores/user_store');
 
 module.exports = {
@@ -13,7 +13,7 @@ module.exports = {
   componentDidMount: function(){
     this.listenerToken = UserStore.addListener(this.updateUser);
     if(typeof this.state.currentUser === 'undefined'){
-      UserActions.receiveCurrentUser();
+      UserApiUtil.fetchCurrentUser();
     }
   },
 

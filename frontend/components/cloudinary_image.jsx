@@ -1,6 +1,4 @@
 var React = require('react');
-var UserLoginForm = require ('./user_login_form');
-var UserSignUpForm = require('./user_sign_up_form');
 var CurrentUserStateMixin = require('../mixins/current_user_state');
 var Cloudinary = require('cloudinary');
 

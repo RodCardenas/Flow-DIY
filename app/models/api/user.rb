@@ -17,7 +17,8 @@ class Api::User < ActiveRecord::Base
   validates :email, :password_digest, :session_token, presence: true
 
   has_many :projects,
-    foreign_key: :author_id
+    foreign_key: :author_id,
+    dependent: :destroy
 
 
   def self.generate_token
