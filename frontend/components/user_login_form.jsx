@@ -24,6 +24,18 @@ var UserLoginForm = React.createClass({
     });
   },
 
+  loginGuest: function(e) {
+    e.preventDefault();
+
+    document.getElementById("email").value = "guest@flow-diy.com";
+    document.getElementById("password").value = "password";
+
+    UserApiUtil.loginUser({
+      email: "guest@flow-diy.com",
+      password: "password",
+    });
+  },
+
   signUp: function(e) {
     e.preventDefault();
 
@@ -50,7 +62,7 @@ var UserLoginForm = React.createClass({
       );
     } else {
       return (
-        <div>
+        <div id="errors">
         </div>
       );
     }
@@ -58,48 +70,49 @@ var UserLoginForm = React.createClass({
 
   render: function(){
     var user = this.state.currentUser;
-    console.log("user login");
-    console.log(user);
     var content;
 
     if(user){
       this.loggedOut = false;
       content =
-        <div>
+        <div id="logout-form-container">
           Welcome back, {user.email}
           <button onClick={this.logout}>Logout</button>
         </div>;
     } else {
       content =
-        <div>
+        <div id="login-form-and-errors-container">
+          <form id="login-form">
+            <label>
+              <input
+                type="text"
+                id="email"
+                onChange={this.uChange}
+                value={this.state.email} />
+              <div className="label-text">Email</div>
+            </label>
 
-          {this.getErrors()}
+            <label>
+              <input
+                type="password"
+                id="password"
+                onChange={this.pChange}
+                value={this.state.password} />
+              <div className="label-text">Password</div>
+            </label>
 
-          <form>
-            <label htmlFor="email">Email</label>
-            <input
-              type="text"
-              id="email"
-              onChange={this.uChange}
-              value={this.state.email} />
-
-            <label htmlFor="email">Password</label>
-            <input
-              type="password"
-              id="password"
-              onChange={this.pChange}
-              value={this.state.password} />
-
-            <button onClick={this.login}>Login</button>
-            <button onClick={this.signUp}>SignUp</button>
+            <div className="buttons">
+              <button onClick={this.login}>Login</button>
+              <button onClick={this.signUp}>SignUp</button>
+              <button onClick={this.loginGuest}>demo</button>
+            </div>
           </form>
+          {this.getErrors()}
         </div>;
     }
 
     return (
-      <div>
-        {content}
-      </div>
+        content
     );
   }
 });

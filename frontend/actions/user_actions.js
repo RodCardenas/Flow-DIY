@@ -16,6 +16,10 @@ module.exports = {
     });
   },
 
+  guestLogin: function(){
+		this.loggedInUser({username: "guest", password: "password"});
+	},
+
   loggedOutUser: function(currentUser){
     AppDispatcher.dispatch({
       actionType: UserConstants.USER_LOGOUT,

@@ -21,8 +21,8 @@ var NavBar = React.createClass({
 
   showButtons: function(){
     return (
-      <div id="userInteractions">
-        <button onClick={this.login}>login/signup</button>
+      <div id="user-interations">
+        <button id="login-signup" onClick={this.login}>login/signup</button>
       </div>
     );
   },
@@ -31,13 +31,11 @@ var NavBar = React.createClass({
     var content;
     var lForm = this.refs.UserLoginForm;
 
-    console.log( this.state.currentUser);
-
     if(typeof this.state.currentUser === 'undefined'){
       content = this.showButtons();
     } else {
       content =
-        <div>
+        <div id="nav-form-container">
           Welcome back, {this.state.currentUser.email}
           <button onClick={this.logout}>Logout</button>
         </div>;
@@ -46,7 +44,7 @@ var NavBar = React.createClass({
     if(this.state.loginForm)
     {
       content = (
-                  <div>
+                  <div id="nav-form-container">
                     <UserLoginForm ref="UserLoginForm"/>
                   </div>
       );
@@ -63,7 +61,7 @@ var NavBar = React.createClass({
         <a id="logo" href="/">
           <CloudinaryImage
             imageName="logo.png"
-            format={{width: 50, crop: "scale"}} />
+            format={{height: 100, crop: "scale"}} />
         </a>
 
         {content}
