@@ -1,6 +1,7 @@
 var React = require('react');
 var UserLoginForm = require ('./user_login_form');
 var UserSignUpForm = require('./user_sign_up_form');
+var CloudinaryImage = require('./cloudinary_image');
 var CurrentUserStateMixin = require('../mixins/current_user_state');
 
 var NavBar = React.createClass({
@@ -46,7 +47,7 @@ var NavBar = React.createClass({
       );
 
       if(typeof lForm !== 'undefined'){
-        if(lForm.loggedOut){
+          if(lForm.loggedOut){
           content = this.showButtons();
         }
       }
@@ -66,6 +67,12 @@ var NavBar = React.createClass({
 
     return (
       <div className="NavBar">
+        <a href="/">
+          <CloudinaryImage
+            imageName="logo.png"
+            format={{width: 50, crop: "scale"}} />
+        </a>
+
         {content}
       </div>
     );

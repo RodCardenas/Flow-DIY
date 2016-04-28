@@ -24,6 +24,15 @@ var UserLoginForm = React.createClass({
     });
   },
 
+  signUp: function(e) {
+    e.preventDefault();
+
+    UserApiUtil.createUser({
+      email: this.state.email,
+      password: this.state.password,
+    });
+  },
+
   uChange: function(event) {
     this.setState({email: event.target.value});
   },
@@ -41,7 +50,7 @@ var UserLoginForm = React.createClass({
       content =
         <div>
           Welcome back, {user.email}
-          <button onClick={this.logout}>LogOut</button>
+          <button onClick={this.logout}>Logout</button>
         </div>;
     } else {
       content =
@@ -50,7 +59,7 @@ var UserLoginForm = React.createClass({
             {this.state.authErrors}
           </div>
 
-          <form onSubmit={this.login}>
+          <form>
             <label htmlFor="email">Email</label>
             <input
               type="text"
@@ -65,7 +74,8 @@ var UserLoginForm = React.createClass({
               onChange={this.pChange}
               value={this.state.password} />
 
-            <input type="submit" value="Login" />
+            <button onClick={this.login}>Login</button>
+            <button onClick={this.signUp}>SignUp</button>
           </form>
         </div>;
     }

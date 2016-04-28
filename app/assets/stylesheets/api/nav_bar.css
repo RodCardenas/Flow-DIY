@@ -1,6 +1,8 @@
 .NavBar{
   background-color: grey;
   color: white;
+  display: inline-flex;
+  width: auto;
 }
 
 .NavBar #errors{

@@ -15,6 +15,15 @@ var UserSignUpForm = React.createClass({
     this.loggedOut = true;
   },
 
+  login: function(e) {
+    e.preventDefault();
+
+    UserApiUtil.loginUser({
+      email: this.state.email,
+      password: this.state.password,
+    });
+  },
+
   signUp: function(e) {
     e.preventDefault();
 
@@ -50,7 +59,7 @@ var UserSignUpForm = React.createClass({
             {this.state.authErrors}
           </div>
 
-          <form onSubmit={this.signUp}>
+          <form>
             <label htmlFor="email">Email</label>
             <input
               type="text"
@@ -65,7 +74,8 @@ var UserSignUpForm = React.createClass({
               onChange={this.pChange}
               value={this.state.password} />
 
-            <input type="submit" value="SignUp" />
+            <button onClick={this.signUp}>SignUp</button>
+            <button onClick={this.login}>Login</button>
           </form>
         </div>;
     }
