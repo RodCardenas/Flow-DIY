@@ -55,7 +55,7 @@ class Api::ProjectsController < ApplicationController
   # DELETE /api/projects/1.json
   def destroy
     @api_project.destroy
-    format.json { head :no_content }
+    format.json { head :no_content } #TODO
   end
 
   private

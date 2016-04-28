@@ -20,6 +20,8 @@ class Api::User < ActiveRecord::Base
     foreign_key: :author_id,
     dependent: :destroy
 
+  has_one :picture, :as => :imageable
+
 
   def self.generate_token
     SecureRandom.base64(16)

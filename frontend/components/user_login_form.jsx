@@ -74,6 +74,7 @@ var UserLoginForm = React.createClass({
 
     if(user){
       this.loggedOut = false;
+      // TODO push into url root/ refresh page
       content =
         <div id="logout-form-container">
           Welcome back, {user.email}

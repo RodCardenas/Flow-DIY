@@ -17,6 +17,10 @@ module.exports = {
     }
   },
 
+  componentWillUnmount: function(){
+    this.listenerToken.remove();
+  },
+
   // update the state of currentUser and authErrors.
   updateUser: function(){
     this.setState({

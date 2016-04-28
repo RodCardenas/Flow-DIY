@@ -21,14 +21,14 @@ column name | data type | details
 id          | integer   | not null, primary key
 order       | integer   | not null
 title       | string    | not null
-body        | string    | not null
+body        | text      | not null
 project_id  | integer   | not null, foreign key (references projects), indexed
 
-## pictures 
+## pictures
 column name    | data type | details
 ---------------|-----------|-----------------------
 id             | integer   | not null, primary key
 imageable_id   | integer   | not null, foreign key(can reference project/steps/users)
 imageable_type | string    | not null
-picture_url      | string    | not null
-
+picture_url    | string    | not null
+caption        | string    | not null

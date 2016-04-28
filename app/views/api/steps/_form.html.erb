@@ -1,0 +1,33 @@
+<%= form_for(@api_step) do |f| %>
+  <% if @api_step.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@api_step.errors.count, "error") %> prohibited this api_step from being saved:</h2>
+
+      <ul>
+      <% @api_step.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :order %><br>
+    <%= f.number_field :order %>
+  </div>
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :body %><br>
+    <%= f.text_field :body %>
+  </div>
+  <div class="field">
+    <%= f.label :project_id %><br>
+    <%= f.number_field :project_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

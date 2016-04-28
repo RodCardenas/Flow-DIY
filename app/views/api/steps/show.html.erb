@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Order:</strong>
+  <%= @api_step.order %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @api_step.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @api_step.body %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @api_step.project_id %>
+</p>
+
+<%= link_to 'Edit', edit_api_step_path(@api_step) %> |
+<%= link_to 'Back', api_steps_path %>

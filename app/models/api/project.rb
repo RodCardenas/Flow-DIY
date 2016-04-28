@@ -16,4 +16,7 @@ class Api::Project < ActiveRecord::Base
     foreign_key: :author_id,
     primary_key: :id,
     class_name: :User
+
+  has_many :steps
+  has_many :pictures, :as => :imageable
 end
