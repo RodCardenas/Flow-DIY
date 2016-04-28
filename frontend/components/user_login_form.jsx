@@ -28,7 +28,7 @@ var UserLoginForm = React.createClass({
     e.preventDefault();
 
     document.getElementById("email").value = "guest@flow-diy.com";
-    document.getElementById("password").value = "password";
+    document.getElementById("password").value = "flow-diy";
 
     UserApiUtil.loginUser({
       email: "guest@flow-diy.com",
