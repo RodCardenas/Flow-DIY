@@ -16,7 +16,7 @@ class Api::StepsController < ApplicationController
 
   # GET /api/steps.json
   def index
-    @api_steps = Api::Step.all
+    @api_steps = Api::Step.all.includes(:pictures)
   end
 
   # GET /api/steps/1.json
@@ -64,7 +64,7 @@ class Api::StepsController < ApplicationController
 
   private
     def set_api_step
-      @api_step = Api::Step.find(params[:id])
+      @api_step = Api::Step.includes(:pictures).find(params[:id])
     end
 
     def api_step_params

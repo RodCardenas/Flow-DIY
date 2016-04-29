@@ -11,11 +11,12 @@ var CloudinaryImage = React.createClass({
   },
 
   render: function(){
-    var img = Cloudinary.image(this.props.imageName, this.props.format);
+    var imageName = this.props.imageUrl.substr(this.props.imageUrl.lastIndexOf('/') + 1);
+    var img = Cloudinary.image(imageName, this.props.format);
     var imgSrc = $(img)[0].src;
 
     return (
-      <div className="cloudinaryImg" id={this.props.imageName} >
+      <div className="cloudinaryImg" id={imageName} >
           <img src={imgSrc}/>
       </div>
     );

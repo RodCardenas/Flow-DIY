@@ -6,6 +6,10 @@ var CurrentUserStateMixin = require('../mixins/current_user_state');
 var UserLoginForm = React.createClass({
   mixins: [CurrentUserStateMixin],
 
+  contextTypes: {
+    router: React.PropTypes.object.isRequired
+  },
+
   getInitialState: function(){
     return ({email: "", password: "" });
   },
@@ -32,8 +36,9 @@ var UserLoginForm = React.createClass({
 
     UserApiUtil.loginUser({
       email: "guest@flow-diy.com",
-      password: "password",
+      password: "flow-diy",
     });
+    this.context.router.push("/");
   },
 
   signUp: function(e) {
@@ -43,6 +48,7 @@ var UserLoginForm = React.createClass({
       email: this.state.email,
       password: this.state.password,
     });
+    this.context.router.push("/");
   },
 
   uChange: function(event) {
@@ -74,7 +80,6 @@ var UserLoginForm = React.createClass({
 
     if(user){
       this.loggedOut = false;
-      // TODO push into url root/ refresh page
       content =
         <div id="logout-form-container">
           Welcome back, {user.email}

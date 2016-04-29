@@ -60,7 +60,7 @@ var NavBar = React.createClass({
       <div className="NavBar">
         <a id="logo" href="/">
           <CloudinaryImage
-            imageName="logo.png"
+            imageUrl="http://res.cloudinary.com/flow-diy/image/upload/v1461796717/logo.png"
             format={{height: 100, crop: "scale"}} />
         </a>
 

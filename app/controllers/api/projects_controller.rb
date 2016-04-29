@@ -14,7 +14,8 @@ class Api::ProjectsController < ApplicationController
 
   # GET /api/projects.json
   def index
-    @api_projects = Api::Project.all
+    @api_projects = Api::Project.all.includes(:author, :pictures, steps: [:pictures])
+    puts @api_projects
   end
 
   # GET /api/projects/1.json
@@ -61,7 +62,7 @@ class Api::ProjectsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_api_project
-      @api_project = Api::Project.find(params[:id])
+      @api_project = Api::Project.includes(:author, :pictures, steps: [:pictures]).find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
