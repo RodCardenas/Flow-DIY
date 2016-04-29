@@ -47,12 +47,11 @@ class Api::StepsController < ApplicationController
 
   # PATCH/PUT /api/steps/1.json
   def update
-      if @api_step.update(api_step_params)
-        format.json { render :show, status: :ok, location: @api_step }
-      else
-        @errors = @api_step.errors.full_messages
-        render "api/shared/error", status: 401
-      end
+    if @api_step.update(api_step_params)
+      format.json { render :show, status: :ok, location: @api_step }
+    else
+      @errors = @api_step.errors.full_messages
+      render "api/shared/error", status: 401
     end
   end
 
