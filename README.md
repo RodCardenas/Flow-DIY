@@ -52,32 +52,29 @@ Flow-DIY will provide site visitors an interface to manage projects online and g
 **Objective:** Projects can be created, read, edited, and destroyed through the API.
 
  - [x] Create Project Index Component
- - [ ] Create Project Index Item Component
- - [ ] Setup Project Store
- - [ ] Setup Dispatcher
- - [ ] Setup Action Creators
- - [ ] Client Actions
- - [ ] Server Actions
- - [ ] Implement API Util
+ - [x] Create Project Index Item Component
+ - [x] Setup Project Store
+ - [x] Setup Dispatcher
+ - [x] Setup Action Creators
+ - [ ] Project Actions
+ - [ ] Implement API Util (pending destroy and update)
  - [x] Implement Project model
  - [x] Create Project controller and implement the Project's CRUD
- - [x] Generate jSON responses with jBuilder
- - [ ] Seed data samples
+ - [x] Generate jSON responses with jBuilder (pending pictures for steps in show)
+ - [x] Seed data samples
  - [ ] Test Projects CRUD through API
 
 ####3: Steps Models, API, and APIUtil (2.0 days)
 **Objective:** Steps can be created, read, edited, and destroyed through the API.
 
- - [ ] Create Step Component
- - [ ] Modify Action Creators to include Step functionality
- - [ ] Client Actions
- - [ ] Server Actions
+ - [x] Create Step Component
+ - [x] Modify Action Creators to include Step functionality
  - [ ] Expand API Util to include step functionality
- - [ ] Implement Step model
- - [ ] Create Step controller and implement the Step's CRUD
- - [ ] Generate jSON responses with jBuilder
- - [ ] Modify Project's implementation to include steps
- - [ ] Seed data samples
+ - [x] Implement Step model
+ - [x] Create Step controller and implement the Step's CRUD
+ - [x] Generate jSON responses with jBuilder
+ - [x] Modify Project's implementation to include steps
+ - [x] Seed data samples
  - [ ] Test Step and Projects CRUD through API
 
 ####4: Flux Architecture and Router (2.0 days)
