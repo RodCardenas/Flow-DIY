@@ -79,6 +79,10 @@
   transform: translateY(-18px);
 }
 
+.NavBar input:not(:empty){
+  color: #a5a5a5;
+}
+
 .NavBar label input:focus + .label-text {
   color: white;
   -moz-transform: translateY(1px);

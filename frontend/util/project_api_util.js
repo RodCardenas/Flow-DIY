@@ -4,7 +4,7 @@ module.exports =  {
   fetchProject: function(id){
     $.ajax({
       method: 'GET',
-      url: '/api/projects' + id,
+      url: '/api/projects/' + id,
       success: function(project){
         ProjectActions.receiveProject(project);
       },

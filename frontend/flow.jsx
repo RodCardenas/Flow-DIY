@@ -13,23 +13,26 @@ Cloudinary.config({
   api_secret: 'NZWYT0r3l8qyPYn7ymE-OKolgcM'
 });
 
-
-var ProjectIndex = require('./components/project_index');
 var NavBar = require('./components/nav_bar');
+var ProjectIndex = require('./components/project_index');
+var ProjectDetail = require('./components/project_detail');
 
 var App = React.createClass({
   render: function(){
     return (
         <div>
           <NavBar />
-          <ProjectIndex />
+          {this.props.children}
         </div>
     );
   }
 });
 
 var routes = (
-  <Route path="/" component={App} />
+  <Route path="/" component={App}>
+    <IndexRoute component={ProjectIndex} />
+    <Route path="/projects/:projectId" component={ProjectDetail} />
+  </Route>
 );
 
 document.addEventListener('DOMContentLoaded', function(){

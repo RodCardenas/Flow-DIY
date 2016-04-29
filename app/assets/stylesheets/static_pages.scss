@@ -4,8 +4,8 @@
 
 .project-index{
   display: table;
-
-  width: 80%;
+  width: 100%;
+  background-color: rgba(246, 246, 246, 1);
 
   -webkit-margin-before: 1em;
   -webkit-margin-after: 1em;
@@ -15,6 +15,7 @@
 }
 
 .project-index-item{
+  background-color: rgba(255, 255, 255, 1);
   border: 1px solid rgba(0, 0, 0, 0.10);
   box-shadow: 0 1px 0px rgba(0, 0, 0, 0.15);
   -webkit-box-sizing: border-box;
@@ -36,12 +37,43 @@
 
 .project-title{
   max-width: 320px;
+  white-space:nowrap;
   overflow: hidden;
+}
+
+.project-image{
+  position: relative;
+  cursor: pointer;
 }
 
 .project-image img{
   width: 324px;
   height: 270px;
+  display: block;
+}
+
+.project-image .project-text-container{
+  position: absolute;
+  top: 33%;
+  width: 324px;
+  height: 90px;
+  background-color:rgba(0,0,0,0.8);
+  color: #ddd;
+  font-size: 14px;
+  display: none;
+  text-align: center;
+}
+
+.project-image:hover .project-text-container{
+  color: white;
+  display: block;
+}
+
+.project-title-text{
+  background-color:rgba(0,0,0,0);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .project-author{
