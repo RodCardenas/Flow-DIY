@@ -36,12 +36,11 @@ class Api::StepsController < ApplicationController
   def create
     @api_step = Api::Step.new(api_step_params)
 
-      if @api_step.save
-        format.json { render :show, status: :created, location: @api_step }
-      else
-        @errors = @api_step.errors.full_messages
-        render "api/shared/error", status: 401
-      end
+    if @api_step.save
+      format.json { render :show, status: :created, location: @api_step }
+    else
+      @errors = @api_step.errors.full_messages
+      render "api/shared/error", status: 401
     end
   end
 
