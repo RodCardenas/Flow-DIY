@@ -10,6 +10,13 @@ Api::User.create!(email:"guest@flow-diy.com", password:"flow-diy");
 Api::User.create!(email:"rod@flow-diy.com", password:"1");
 
 Api::Project.create!(title:"How to user Flow-DIY", author_id:1)
+
+Api::Picture.create!(
+  imageable_id: 1,
+  imageable_type:"Api::Project",
+  picture_url:"http://res.cloudinary.com/flow-diy/image/upload/v1461796717/logo.png"
+)
+
 Api::Project.create!(title:"How to design an enclosure using the Laser cutter in the Engineering College maker space", author_id:2)
 
 Api::Picture.create!(

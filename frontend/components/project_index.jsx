@@ -33,7 +33,6 @@ var ProjectIndex = React.createClass({
             <ProjectIndexItem
               project={projectsObj[projectId]}
               key={projectId}
-              className="project-index-item"
             />
         );
       });
@@ -42,7 +41,7 @@ var ProjectIndex = React.createClass({
     }
 
     return (
-      <ul>
+      <ul className="project-index">
         {projects}
       </ul>
     );

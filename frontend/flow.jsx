@@ -22,7 +22,6 @@ var App = React.createClass({
     return (
         <div>
           <NavBar />
-          <header><h1>Flow</h1></header>
           <ProjectIndex />
         </div>
     );

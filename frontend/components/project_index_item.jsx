@@ -15,21 +15,31 @@ var ProjectIndexItem = React.createClass({
 
     if (typeof picture !== 'undefined'){
       var image =
-        <a id={project.id} href={project.url}>
+        <a className="project-image" id={project.id} href={project.url}>
           <CloudinaryImage
             imageUrl={picture.picture_url}
-            format={{height: 200, crop: "scale"}}
+            format={{height: 270, width: 324, crop: "fit"}}
           />
         </a>;
     } else {
       image = "";
     }
 
+    var email = "mailto:" + project.author.email + "?Subject=" + project.title;
+
     return (
-      <li>
-        {project.title}
-        {project.author.email}
+      <li className="project-index-item">
         {image}
+        <div className="project-info">
+          <span className="project-title">
+            {project.title}
+          </span><br></br>
+          <span>
+            by <a className="project-author" href={email}>
+                {project.author.email}
+               </a>
+          </span>
+        </div>
       </li>
     );
   }
