@@ -7,13 +7,12 @@ var Step = React.createClass({
     return ({step: this.props.step});
   },
 
-  accessPicture: function(pictures){
-    if(typeof pictures !== 'undefined'){
+  accessPicture: function(pictures, step){
+    if(typeof pictures !== 'undefined' && pictures.length > 0){
       var picturesHTML = pictures.map(function(picture){
         return (
-          <div className="step-picture">
+          <div className="step-picture" key={picture.id + "-" + step.id}>
             <CloudinaryImage
-              key={picture.id}
               imageUrl={picture.picture_url}
               format={{height: 300, width: 300, crop: "fit"}}
             />
@@ -31,7 +30,7 @@ var Step = React.createClass({
 
   render: function(){
     var step = this.state.step;
-    var pictures = this.accessPicture(step.pictures);
+    var pictures = this.accessPicture(step.pictures, step);
 
     return (
       <li className="step-detail">

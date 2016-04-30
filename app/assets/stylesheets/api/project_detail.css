@@ -6,6 +6,10 @@
   margin-right: auto;
 }
 
+.project-pictures-container{
+  width:1000px;
+}
+
 .step-pictures-container{
   display: flex;
   flex-direction: row;
