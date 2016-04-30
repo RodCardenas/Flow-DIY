@@ -1,5 +1,6 @@
 var React = require('react');
 var CloudinaryImage = require('./cloudinary_image');
+var Step = require('./step');
 var ProjectStore = require('../stores/project_store');
 var ProjectUtil = require('../util/project_api_util');
 
@@ -26,11 +27,16 @@ var ProjectDetail = React.createClass({
     if(typeof pictures !== 'undefined'){
       var picturesHTML = pictures.map(function(picture){
         return (
+          <div className="project-picture">
             <CloudinaryImage
               key={picture.id}
               imageUrl={picture.picture_url}
               format={{height: 300, width: 300, crop: "fit"}}
             />
+            <h6 className="picture-caption">
+              {picture.caption}
+            </h6>
+          </div>
         );
       });
     } else {
@@ -42,12 +48,8 @@ var ProjectDetail = React.createClass({
   accessSteps: function(steps){
     if(typeof steps !== 'undefined'){
       var stepsHTML = steps.map(function(step){
-        console.log(step);
         return (
-          <li className="step" key={step.id}>
-            {step.title}
-            {step.body}
-          </li>
+          <Step className="step" key={step.id} step={step}/>
         );
       });
     } else {
@@ -63,10 +65,10 @@ var ProjectDetail = React.createClass({
 
     return (
       <div className="project-detail">
-        <span className="project-title">
+        <h2 className="project-detail-title">
           {project.title}
-        </span>
-        <ul className="pictures-container">
+        </h2>
+        <ul className="project-pictures-container">
           {pictures}
         </ul>
         <ul className="steps-container">
