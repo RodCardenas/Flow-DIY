@@ -9,14 +9,39 @@
 Api::User.create!(email:"guest@flow-diy.com", password:"flow-diy");
 Api::User.create!(email:"rod@flow-diy.com", password:"1");
 
-Api::Project.create!(title:"How to user Flow-DIY", author_id:1)
+
+# Project 1
+Api::Project.create!(title:"Flow-DIY: How to flow and search for projects", author_id:1)
 
 Api::Picture.create!(
   imageable_id: 1,
   imageable_type:"Api::Project",
-  picture_url:"http://res.cloudinary.com/flow-diy/image/upload/v1461796717/logo.png"
+  picture_url:"http://res.cloudinary.com/flow-diy/image/upload/v1462228150/search.png"
 )
 
+Api::Step.create!(
+  order: 1,
+  title:"Getting Started",
+  body:"Make yourself comfortable with the layout and look for the search bar at the top of the page.",
+  project_id: 1
+)
+
+Api::Step.create!(
+  order: 2,
+  title:"Search Bar",
+  body:"As you type into the search bar, the results will populate below it. Woah!",
+  project_id: 1
+)
+
+Api::Step.create!(
+  order: 3,
+  title:"Choose and Flow!",
+  body:"Feel free to click on any of the search results. But beware, the page will change and take you to the project you chose! Go Flow!",
+  project_id: 1
+)
+
+
+# Project 2
 Api::Project.create!(title:"How to design an enclosure using the Laser cutter in the Engineering College maker space", author_id:2)
 
 Api::Picture.create!(
@@ -35,28 +60,28 @@ Api::Step.create!(
 )
 
 Api::Picture.create!(
-  imageable_id: 1,
+  imageable_id: 4,
   imageable_type:"Api::Step",
   picture_url:"http://res.cloudinary.com/flow-diy/image/upload/v1461880724/image002_odhuyf.jpg",
   caption:"Figure 1A. Lab3Box"
 )
 
 Api::Picture.create!(
-  imageable_id: 1,
+  imageable_id: 4,
   imageable_type:"Api::Step",
   picture_url:"http://res.cloudinary.com/flow-diy/image/upload/v1461880730/image004_gnmnn5.jpg",
   caption:"Figure 1B. Lab9Box"
 )
 
 Api::Picture.create!(
-  imageable_id: 1,
+  imageable_id: 4,
   imageable_type:"Api::Step",
   picture_url:"http://res.cloudinary.com/flow-diy/image/upload/v1461880733/image006_lytd3o.jpg",
   caption:"Figure 1C. WoodBox"
 )
 
 Api::Picture.create!(
-  imageable_id: 1,
+  imageable_id: 4,
   imageable_type:"Api::Step",
   picture_url:"http://res.cloudinary.com/flow-diy/image/upload/v1461880747/image008_bxd1bi.jpg",
   caption: "Figure 1D. WoodBox2"
@@ -88,7 +113,7 @@ Api::Step.create!(
 )
 
 Api::Picture.create!(
-  imageable_id: 3,
+  imageable_id: 7,
   imageable_type:"Api::Step",
   picture_url:"http://res.cloudinary.com/flow-diy/image/upload/v1461878635/Design in PCB Artist.jpg",
   caption:"Figure 2. Design in PCB Artist"
@@ -102,14 +127,14 @@ Api::Step.create!(
 )
 
 Api::Picture.create!(
-imageable_id: 4,
+imageable_id: 8,
 imageable_type:"Api::Step",
 picture_url:"http://res.cloudinary.com/flow-diy/image/upload/v1461879748/image012_wk9hjq.jpg",
 caption:"Figure 3A. Settings->Grids for 80 mil acrylic"
 )
 
 Api::Picture.create!(
-  imageable_id: 4,
+  imageable_id: 8,
   imageable_type:"Api::Step",
   picture_url:"http://res.cloudinary.com/flow-diy/image/upload/v1461879752/image014_piyr79.jpg",
   caption:"Figure 3B. Settings->Grids for 125 mil wood"
@@ -139,14 +164,14 @@ Api::Step.create!(
 )
 
 Api::Picture.create!(
-  imageable_id: 7,
+  imageable_id: 11,
   imageable_type:"Api::Step",
   picture_url:"http://res.cloudinary.com/flow-diy/image/upload/v1461880038/image016_uhrgru.jpg",
   caption:"Figure 4. Components of the actual PCB pasted over the top side of the box"
 )
 
 Api::Picture.create!(
-  imageable_id: 7,
+  imageable_id: 11,
   imageable_type:"Api::Step",
   picture_url:"http://res.cloudinary.com/flow-diy/image/upload/v1461880042/image018_nxaefr.jpg",
   caption:"Figure 5. The top side of the box with cutouts for display, switch and LED"
@@ -166,21 +191,21 @@ Api::Step.create!(
 )
 
 Api::Picture.create!(
-  imageable_id: 9,
+  imageable_id: 13,
   imageable_type:"Api::Step",
   picture_url:"http://res.cloudinary.com/flow-diy/image/upload/v1461880236/image020_eaimtn.jpg",
   caption:"Figure 6. Settings->Grids for ½ the desired shrinkage. For 93-mil acrylic I set the grid to 3mil and moved one side 6 mils and the other side I moved three mil."
 )
 
 Api::Picture.create!(
-  imageable_id: 9,
+  imageable_id: 13,
   imageable_type:"Api::Step",
   picture_url:"http://res.cloudinary.com/flow-diy/image/upload/v1461880259/image022_sturnw.jpg",
   caption:"Figure 7A. A slot is originally 1680 by 80 mil."
 )
 
 Api::Picture.create!(
-  imageable_id: 9,
+  imageable_id: 13,
   imageable_type:"Api::Step",
   picture_url:"http://res.cloudinary.com/flow-diy/image/upload/v1461880262/image024_y3cmrp.jpg",
   caption:"Figure 7B. We shrink the slot to 1680 by 70 mil. Notice both lines are moved towards each other."
@@ -201,4 +226,82 @@ Api::Step.create!(
   2) First etch the labels by printing the top silk.
   3) Second, cut the pieces by printing the top copper layer.",
   project_id: 2
+)
+
+Api::Project.create!(title:"Flow-DIY: How to flow and create projects", author_id:1)
+
+Api::Picture.create!(
+  imageable_id: 3,
+  imageable_type:"Api::Project",
+  picture_url:"http://res.cloudinary.com/flow-diy/image/upload/v1462228335/create.jpg"
+)
+
+Api::Step.create!(
+  order: 1,
+  title:"Getting Started",
+  body:"Make yourself comfortable with the layout and look for the plus sign at the top of the page.",
+  project_id: 3
+)
+
+Api::Step.create!(
+  order: 2,
+  title:"Creating a project",
+  body:"You will be taken to a new page in which you can fill in the details for the idea that Flows in your head!",
+  project_id: 3
+)
+
+Api::Step.create!(
+  order: 3,
+  title:"Steps and Pictures",
+  body:"Write down your idea in step for others to flow to. They say pictures are worth a 1000 words so make your page as rich as you want!",
+  project_id: 3
+)
+
+Api::Step.create!(
+  order: 4,
+  title:"Submit!",
+  body:"The world is ready to flow with you and you know it! Submit the project and let others experience it!",
+  project_id: 3
+)
+
+Api::Project.create!(title:"Watermelon Water: Nature's Own", author_id:1)
+
+Api::Picture.create!(
+  imageable_id: 4,
+  imageable_type:"Api::Project",
+  picture_url:"http://res.cloudinary.com/flow-diy/image/upload/v1462229321/watermelon.jpg"
+)
+
+Api::Step.create!(
+  order: 1,
+  title:"watermelon",
+  body:"Get a Watermelon. Not too big, not too small.",
+  project_id: 4
+)
+
+Api::Step.create!(
+  order: 2,
+  title:"Hole",
+  body:"Punch a hole in it!",
+  project_id: 4
+)
+
+Api::Step.create!(
+  order: 3,
+  title:"Collect Water",
+  body:"Insert device in hole made to extract water.",
+  project_id: 4
+)
+
+Api::Step.create!(
+  order: 4,
+  title:"Drink It!",
+  body:"Feel refreshed and content!",
+  project_id: 4
+)
+
+Api::Picture.create!(
+  imageable_id: 22,
+  imageable_type:"Api::Step",
+  picture_url:"http://res.cloudinary.com/flow-diy/image/upload/v1462229561/images_xlnc0x.jpg"
 )

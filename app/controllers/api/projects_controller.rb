@@ -14,8 +14,11 @@ class Api::ProjectsController < ApplicationController
 
   # GET /api/projects.json
   def index
-    @api_projects = Api::Project.all.includes(:author, :pictures, steps: [:pictures])
-    puts @api_projects
+    @api_projects = Api::Project.includes(:author, :pictures, steps: [:pictures])
+  end
+
+  def search
+    @api_search_projects = Api::Project.includes(:author, :pictures, steps: [:pictures]).where("UPPER(title) ~ UPPER(?)", params[:search])
   end
 
   # GET /api/projects/1.json

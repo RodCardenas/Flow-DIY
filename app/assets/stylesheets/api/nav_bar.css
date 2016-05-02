@@ -58,8 +58,8 @@
 }
 
 .NavBar .search{
+  position: relative;
   min-width: 280px;
-  text-transform: uppercase;
   width: 25%;
   margin-left: auto;
   margin-right: auto;
@@ -68,13 +68,14 @@
 .NavBar label{
   letter-spacing: 1px;
   margin-right: 5px;
+  text-transform: uppercase;
 }
 
 .NavBar .search input{
   min-width: 150px;
   border-radius: 27px;
   border: 1px solid white;
-  text-transform: uppercase;
+  text-transform: none;
   padding: 4px 5px;
   width: 70%;
   margin-left: 5px;

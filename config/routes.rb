@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :user, except: [:index]
     resource :session, only: [:new, :create, :destroy, :show]
     resources :projects do
+      get "search", on: :collection
       resources :steps
     end
   end
