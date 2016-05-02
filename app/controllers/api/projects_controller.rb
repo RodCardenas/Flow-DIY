@@ -18,7 +18,7 @@ class Api::ProjectsController < ApplicationController
   end
 
   def search
-    @api_search_projects = Api::Project.includes(:author, :pictures, steps: [:pictures]).where("UPPER(title) ~ UPPER(?)", params[:search])
+    @api_search_projects = Api::Project.includes(:author, :pictures, steps: [:pictures]).where("UPPER(title) ~ UPPER(?)", params[:search]).limit(5)
   end
 
   # GET /api/projects/1.json
