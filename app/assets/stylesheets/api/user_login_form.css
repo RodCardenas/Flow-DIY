@@ -1,0 +1,61 @@
+.ReactModalPortal {
+  margin: 5px;
+  padding: 10px;
+  letter-spacing: 3px;
+  background: #666666;
+}
+
+.ReactModalPortal label {
+  letter-spacing: 2px;
+  text-align: center;
+}
+.ReactModalPortal label .label-text {
+  color: #a5a5a5;
+  cursor: text;
+  text-transform: uppercase;
+  transition: all 0.3s;
+  margin-top: 2%;
+}
+.ReactModalPortal label input {
+  background-color: transparent;
+  border: 0;
+  border-bottom: 2px solid #333333;
+  color: white;
+  text-align: center;
+  transition: all 0.3s;
+  width: 70%;
+  margin-left: 15%;
+}
+.ReactModalPortal label input:focus {
+  max-width: 100%;
+  width: 80%;
+  margin-left: 10%;
+}
+
+.ReactModalPortal .buttons {
+  height: 10%;
+  width: inherit;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.ReactModalPortal button {
+  margin-top: 15%;
+  background-color: #333333;
+  border: 1px solid white;
+  border-radius: 25px;
+  text-align: center;
+  color: white;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 200ms;
+  padding: 2px 5px;
+  height: 40px;
+  width: 25%;
+}
+.ReactModalPortal button:hover, button:focus {
+  background-color: white;
+  color: #333333;
+  outline: 0;
+}

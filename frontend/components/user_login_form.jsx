@@ -21,7 +21,12 @@ var UserLoginForm = React.createClass({
 
   login: function(e) {
     e.preventDefault();
+    var self = this;
 
+    this.setState({
+      username: '',
+      password: ''
+    });
     UserApiUtil.loginUser({
       email: this.state.email,
       password: this.state.password,
@@ -31,14 +36,40 @@ var UserLoginForm = React.createClass({
   loginGuest: function(e) {
     e.preventDefault();
 
-    document.getElementById("email").value = "guest@flow-diy.com";
-    document.getElementById("password").value = "flow-diy";
+    var username = "guest@flow-diy.com".split("");
+    var password = "flow-diy".split("");
+    var time = 50;
 
-    UserApiUtil.loginUser({
-      email: "guest@flow-diy.com",
-      password: "flow-diy",
+    username.forEach(function (letter) {
+      time += 50;
+
+      document.getElementById("email").focus();
+      setTimeout(function () {
+        self.setState({email: self.state.email + letter});
+      }, time);
     });
-    this.context.router.push("/");
+
+    time += 500;
+
+    password.forEach(function (letter) {
+      time += 50;
+
+      setTimeout(function () {
+        document.getElementById("password").focus();
+        self.setState({password: self.state.password + letter});
+      }, time);
+    });
+
+    time += 650;
+
+    setTimeout(function(){
+      UserApiUtil.loginUser({
+        email: "guest@flow-diy.com",
+        password: "flow-diy",
+      });
+      this.context.router.push("/");
+    }, time);
+
   },
 
   signUp: function(e) {
@@ -88,23 +119,24 @@ var UserLoginForm = React.createClass({
     } else {
       content =
         <div id="login-form-and-errors-container">
+          {this.getErrors()}
           <form id="login-form">
             <label>
+              <div className="label-text">Email</div>
               <input
                 type="text"
                 id="email"
                 onChange={this.uChange}
                 value={this.state.email} />
-              <div className="label-text">Email</div>
             </label>
 
             <label>
+              <div className="label-text">Password</div>
               <input
                 type="password"
                 id="password"
                 onChange={this.pChange}
                 value={this.state.password} />
-              <div className="label-text">Password</div>
             </label>
 
             <div className="buttons">
@@ -113,7 +145,6 @@ var UserLoginForm = React.createClass({
               <button onClick={this.loginGuest}>demo</button>
             </div>
           </form>
-          {this.getErrors()}
         </div>;
     }
 

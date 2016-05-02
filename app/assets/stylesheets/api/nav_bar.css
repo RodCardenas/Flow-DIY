@@ -15,30 +15,23 @@
 .NavBar #errors{
   background-color: red;
   color: white;
+  float: left;
 }
 
 .NavBar #logo {
   margin-right: auto;
   max-width:100px;
 }
+.NavBar #logo a{
+  text-decoration: none;
+}
 
 .NavBar img {
   height: 100%;
 }
 
-.NavBar #logo:hover{
-  text-decoration: none;
-}
-
 .NavBar #user-interations {
   margin-left: auto;
-}
-
-.NavBar #login-form-and-errors-container {
-  font-size: 12px;
-  text-align: center;
-  margin-left: auto;
-  margin-right: 5px;
 }
 
 .NavBar #logout-form-container {
@@ -46,59 +39,6 @@
   text-align: center;
   margin-left: auto;
   margin-right: 5px;
-}
-
-.NavBar label {
-  letter-spacing: 2px;
-  text-align: center;
-}
-.NavBar label .label-text {
-  color: #a5a5a5;
-  cursor: text;
-  text-transform: uppercase;
-  transition: all 0.3s;
-}
-.NavBar label input {
-  background-color: transparent;
-  border: 0;
-  border-bottom: 2px solid #333333;
-  color: white;
-  text-align: center;
-  transition: all 0.3s;
-  width: 120px;
-}
-.NavBar label input:focus {
-  max-width: 100%;
-  width: 150px;
-}
-
-.NavBar label .label-text {
-  -moz-transform: translateY(-18px);
-  -ms-transform: translateY(-18px);
-  -webkit-transform: translateY(-18px);
-  transform: translateY(-18px);
-}
-
-.NavBar input:not(:empty){
-  color: #a5a5a5;
-}
-
-.NavBar label input:focus + .label-text {
-  color: white;
-  -moz-transform: translateY(1px);
-  -ms-transform: translateY(1px);
-  -webkit-transform: translateY(1px);
-  transform: translateY(1px);
-}
-
-.NavBar #login-signup {
-  margin: 5px;
-  padding: 10px;
-  letter-spacing: 3px;
-}
-
-.NavBar .buttons {
-  height: 28px;
 }
 
 .NavBar button {
@@ -111,8 +51,32 @@
   transition: all 200ms;
   padding: 2px 5px;
 }
-.NavBar button:hover, button:focus {
+.NavBar button:hover, button:active {
   background-color: white;
   color: #333333;
   outline: 0;
+}
+
+.NavBar .search{
+  min-width: 280px;
+  text-transform: uppercase;
+  width: 25%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.NavBar label{
+  letter-spacing: 1px;
+  margin-right: 5px;
+}
+
+.NavBar .search input{
+  min-width: 150px;
+  border-radius: 27px;
+  border: 1px solid white;
+  text-transform: uppercase;
+  padding: 4px 5px;
+  width: 70%;
+  margin-left: 5px;
+  margin-right: auto;
 }
