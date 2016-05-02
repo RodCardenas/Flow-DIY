@@ -21,12 +21,7 @@ var UserLoginForm = React.createClass({
 
   login: function(e) {
     e.preventDefault();
-    var self = this;
 
-    this.setState({
-      username: '',
-      password: ''
-    });
     UserApiUtil.loginUser({
       email: this.state.email,
       password: this.state.password,
@@ -36,27 +31,34 @@ var UserLoginForm = React.createClass({
   loginGuest: function(e) {
     e.preventDefault();
 
-    var username = "guest@flow-diy.com".split("");
+    var email = "guest@flow-diy.com".split("");
     var password = "flow-diy".split("");
     var time = 50;
 
-    username.forEach(function (letter) {
+    var self = this;
+
+    this.setState({
+      username: '',
+      password: ''
+    });
+
+    email.forEach(function (char) {
       time += 50;
 
       document.getElementById("email").focus();
       setTimeout(function () {
-        self.setState({email: self.state.email + letter});
+        self.setState({email: self.state.email + char});
       }, time);
     });
 
     time += 500;
 
-    password.forEach(function (letter) {
+    password.forEach(function (char) {
       time += 50;
 
       setTimeout(function () {
         document.getElementById("password").focus();
-        self.setState({password: self.state.password + letter});
+        self.setState({password: self.state.password + char});
       }, time);
     });
 
@@ -67,7 +69,7 @@ var UserLoginForm = React.createClass({
         email: "guest@flow-diy.com",
         password: "flow-diy",
       });
-      this.context.router.push("/");
+      self.context.router.push("/");
     }, time);
 
   },
