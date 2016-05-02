@@ -69,7 +69,7 @@ Flow-DIY will provide site visitors an interface to manage projects online and g
 
  - [x] Create Step Component
  - [x] Modify Action Creators to include Step functionality
- - [ ] Expand API Util to include step functionality
+ - [x] Expand API Util to include step functionality
  - [x] Implement Step model
  - [x] Create Step controller and implement the Step's CRUD
  - [x] Generate jSON responses with jBuilder
