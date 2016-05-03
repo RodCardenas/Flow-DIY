@@ -29,8 +29,9 @@ class Api::UserController < ApplicationController
   # POST /api/users
   def create
     @api_user = Api::User.new(api_user_params)
-    puts api_user_params
+
     if @api_user.save
+      @api_user.get_default_avatar_picture
       login_user!(@api_user)
 			render "api/users/show"
     else

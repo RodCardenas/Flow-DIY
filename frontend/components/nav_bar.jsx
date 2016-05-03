@@ -81,7 +81,7 @@ var NavBar = React.createClass({
     } else {
       content =
         <div id="nav-form-container">
-          Welcome back, {this.state.currentUser.email}
+         {this.state.currentUser.avatar}
           <button onClick={this.logout}>Logout</button>
         </div>;
     }

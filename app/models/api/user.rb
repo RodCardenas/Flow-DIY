@@ -52,8 +52,12 @@ class Api::User < ActiveRecord::Base
     self.session_token ||= Api::User.generate_token
   end
 
-  def activate!
-    self.update_attribute(:activated, true)
+  def get_default_avatar_picture
+    Api::Picture.create!(
+      imageable_id: self.id,
+      imageable_type: self.class,
+      picture_url: "http://res.cloudinary.com/flow-diy/image/upload/v1462235698/no-user.png"
+    )
   end
 
 end

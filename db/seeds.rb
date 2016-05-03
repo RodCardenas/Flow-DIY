@@ -7,7 +7,20 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Api::User.create!(email:"guest@flow-diy.com", password:"flow-diy");
+
+Api::Picture.create!(
+  imageable_id: 1,
+  imageable_type:"Api::User",
+  picture_url:"http://res.cloudinary.com/flow-diy/image/upload/v1462235698/no-user.png"
+)
+
 Api::User.create!(email:"rod@flow-diy.com", password:"1");
+
+Api::Picture.create!(
+  imageable_id: 2,
+  imageable_type:"Api::User",
+  picture_url:"http://res.cloudinary.com/flow-diy/image/upload/v1462235698/no-user.png"
+)
 
 
 # Project 1
@@ -228,6 +241,8 @@ Api::Step.create!(
   project_id: 2
 )
 
+#Project 3
+
 Api::Project.create!(title:"Flow-DIY: How to flow and create projects", author_id:1)
 
 Api::Picture.create!(
@@ -263,6 +278,8 @@ Api::Step.create!(
   body:"The world is ready to flow with you and you know it! Submit the project and let others experience it!",
   project_id: 3
 )
+
+#Project 4
 
 Api::Project.create!(title:"Watermelon Water: Nature's Own", author_id:1)
 
