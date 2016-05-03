@@ -35,6 +35,7 @@ var routes = (
     <IndexRoute component={ProjectIndex} />
     <Route path="/projects/:projectId" component={ProjectDetail} />
     <Route path="/user/:userEmail" component={UserDetail} />
+    <Route path="/myFlow/:userEmail" component={ProjectIndex} />
   </Route>
 );
 

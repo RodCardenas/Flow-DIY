@@ -6,7 +6,7 @@ var ProjectIndexItem = require('./project_index_item');
 var ProjectIndex = React.createClass({
 
   getInitialState: function(){
-    return ({ projects: ProjectStore.all() });
+    return ({ projects: ProjectStore.all(this.props.params.userEmail) });
   },
 
   componentDidMount: function(){
@@ -19,7 +19,7 @@ var ProjectIndex = React.createClass({
   },
 
   onChange: function(){
-    this.setState({ projects:ProjectStore.all() });
+    this.setState({ projects:ProjectStore.all(this.props.params.userEmail) });
   },
 
   render: function(){

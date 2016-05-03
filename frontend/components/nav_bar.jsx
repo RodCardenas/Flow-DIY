@@ -36,6 +36,10 @@ const customStyles = {
 };
 
 var NavBar = React.createClass({
+  contextTypes: {
+    router: React.PropTypes.object.isRequired
+  },
+
   mixins: [CurrentUserStateMixin],
 
   getInitialState: function() {
@@ -53,6 +57,11 @@ var NavBar = React.createClass({
   logout: function() {
     UserApiUtil.logoutUser(this.state.currentUser);
     this.setState({modalIsOpen: false});
+  },
+
+  goToMyFlow: function(user){
+    this.context.router.push("/myFlow/" + user.email);
+    window.location.reload();
   },
 
   showButtons: function(){
@@ -79,19 +88,25 @@ var NavBar = React.createClass({
   },
 
   showUserMenu: function(){
+    var user = this.state.currentUser;
     return (
       <div id="user-menu-container" >
         <CloudinaryImage
           className="user-menu-picture"
-          imageUrl={this.state.currentUser.picture.picture_url}
+          imageUrl={user.picture.picture_url}
           format={{height: 100, crop: "scale"}} />
 
         <ul className="user-menu-options-container">
-          <li>
-            <a  href={"/#/user/" + this.state.currentUser.email}>Profile</a>
+          <li onClick={this.goToMyFlow.bind(this, user)}>
+            My Flow
           </li>
           <li>
-            <a  href={"/#/"} onClick={this.logout}>Logout</a>
+            <a href={"/#/user/" + user.email} >Profile
+            </a>
+          </li>
+          <li>
+            <a href={"/#/"} onClick={this.logout} >Logout
+            </a>
           </li>
         </ul>
       </div>
