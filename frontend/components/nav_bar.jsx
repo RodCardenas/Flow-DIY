@@ -36,10 +36,6 @@ const customStyles = {
 };
 
 var NavBar = React.createClass({
-  contextTypes: {
-    router: React.PropTypes.object.isRequired
-  },
-
   mixins: [CurrentUserStateMixin],
 
   getInitialState: function() {
@@ -59,11 +55,6 @@ var NavBar = React.createClass({
     this.setState({modalIsOpen: false});
   },
 
-  goToMyFlow: function(user){
-    this.context.router.push("/myFlow/" + user.email);
-    window.location.reload();
-  },
-
   showButtons: function(){
     return (
       <div id="user-interations">
@@ -79,14 +70,6 @@ var NavBar = React.createClass({
     );
   },
 
-  showUserPicture: function(){
-    return (
-      <div id="user-menu-container" onClick={this.showUserMenu}>
-
-      </div>
-    );
-  },
-
   showUserMenu: function(){
     var user = this.state.currentUser;
     return (
@@ -97,8 +80,9 @@ var NavBar = React.createClass({
           format={{height: 100, crop: "scale"}} />
 
         <ul className="user-menu-options-container">
-          <li onClick={this.goToMyFlow.bind(this, user)}>
-            My Flow
+          <li>
+            <a href={"/#/myFlow/" + user.email} >My Flow
+            </a>
           </li>
           <li>
             <a href={"/#/user/" + user.email} >Profile
