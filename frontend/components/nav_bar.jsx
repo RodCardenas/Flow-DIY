@@ -80,7 +80,7 @@ var NavBar = React.createClass({
 
   showUserMenu: function(){
     return (
-      <div id="user-menu-container">
+      <div id="user-menu-container" >
         <CloudinaryImage
           className="user-menu-picture"
           imageUrl={this.state.currentUser.picture.picture_url}
@@ -91,7 +91,7 @@ var NavBar = React.createClass({
             <a  href={"/#/user/" + this.state.currentUser.email}>My Profile</a>
           </li>
           <li>
-            <button onClick={this.logout}>Logout</button>
+            <a  href={"/#/"} onClick={this.logout}>Logout</a>
           </li>
         </ul>
       </div>
