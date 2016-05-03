@@ -88,7 +88,7 @@ var NavBar = React.createClass({
 
         <ul className="user-menu-options-container">
           <li>
-            <a  href={"/#/user/" + this.state.currentUser.email}>My Profile</a>
+            <a  href={"/#/user/" + this.state.currentUser.email}>Profile</a>
           </li>
           <li>
             <a  href={"/#/"} onClick={this.logout}>Logout</a>

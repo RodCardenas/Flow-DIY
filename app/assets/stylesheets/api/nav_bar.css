@@ -6,10 +6,10 @@
   flex-wrap: nowrap;
   align-items: center;
   justify-content: space-around;
-  height: 100px;
+  height: 50px;
   width: 100%;
   font-family: 'Abel', sans-serif;
-  font-size: 18px;
+  font-size: 12px;
 }
 
 .NavBar #errors{
@@ -20,26 +20,18 @@
 
 .NavBar #logo {
   margin-right: auto;
-  max-width:100px;
-  height: 100px;
-}
-.NavBar #logo a{
+  width: 100px;
+  height: 50px;
   text-decoration: none;
 }
 
 .NavBar img {
-  height: 100px;
+  height: 50px;
 }
 
 .NavBar #user-interations {
   margin-left: auto;
-}
-
-.NavBar #logout-form-container {
-  font-size: 18px;
-  text-align: center;
-  margin-left: auto;
-  margin-right: 5px;
+  width: 115px;
 }
 
 .NavBar button {
@@ -58,6 +50,17 @@
   outline: 0;
 }
 
+.NavBar ul{
+  width: inherit;
+  position: absolute;
+  display: none;
+  border: 1px solid black;
+  overflow: hidden;
+  background-color: #999999;
+  z-index: 1;
+  white-space: nowrap;
+}
+
 .NavBar .search{
   min-width: 280px;
   width: 25%;
@@ -72,41 +75,49 @@
 }
 
 .NavBar .search input{
+  font-size: 14px;
   min-width: 150px;
   border-radius: 27px;
   border: 1px solid white;
   text-transform: none;
-  padding: 4px 5px;
+  padding: 3px 12px;
   width: 70%;
   margin-left: 5px;
   margin-right: auto;
 }
 
-.NavBar .search .search-results{
-  width: inherit;
-  position: absolute;
+.NavBar input:focus + .search-results{
   display: list-item;
-  border: 1px solid black;
-  overflow: hidden;
-  background-color: #999999;
-  z-index: 1;
+  width: inherit;
+  width: 17.5%;
+  transform: translateX(60px);
+}
+
+.NavBar ul li{
+  margin-left: 2px;
+  border-top: 1px solid gray;
+}
+
+.search-result-title{
+  display: none;
+}
+
+.search-results li:hover .search-result-title{
+  overflow: visible;
+  display:block;
+  white-space:normal;
 }
 
 .NavBar #user-menu-container{
-  height: 100px;
-}
-
-.NavBar .user-menu-options-container{
-  width: 98px;
-  position: absolute;
-  display: list-item;
-  border: 1px solid black;
-  overflow: hidden;
-  background-color: #999999;
-  z-index: 1;
-  display: none;
+  height: 50px;
+  margin-left: auto;
 }
 
 .NavBar #user-menu-container:hover .user-menu-options-container{
   display: list-item;
+  width: 48px;
+}
+
+.user-menu-options-container{
+  text-align: center;
 }
