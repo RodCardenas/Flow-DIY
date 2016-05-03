@@ -81,7 +81,11 @@ var NavBar = React.createClass({
     } else {
       content =
         <div id="nav-form-container">
-         {this.state.currentUser.avatar}
+          <a id="user-picture" href={"/#/user/" + this.state.currentUser.id}>
+            <CloudinaryImage
+              imageUrl={this.state.currentUser.picture.picture_url}
+              format={{height: 100, crop: "scale"}} />
+            </a>
           <button onClick={this.logout}>Logout</button>
         </div>;
     }

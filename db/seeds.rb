@@ -6,22 +6,10 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Api::User.create!(email:"guest@flow-diy.com", password:"flow-diy");
-
-Api::Picture.create!(
-  imageable_id: 1,
-  imageable_type:"Api::User",
-  picture_url:"http://res.cloudinary.com/flow-diy/image/upload/v1462235698/no-user.png"
-)
-
-Api::User.create!(email:"rod@flow-diy.com", password:"1");
-
-Api::Picture.create!(
-  imageable_id: 2,
-  imageable_type:"Api::User",
-  picture_url:"http://res.cloudinary.com/flow-diy/image/upload/v1462235698/no-user.png"
-)
-
+u = Api::User.create!(email:"guest@flow-diy.com", password:"flow-diy");
+u.get_default_avatar_picture
+u = Api::User.create!(email:"rod@flow-diy.com", password:"1");
+u.get_default_avatar_picture
 
 # Project 1
 Api::Project.create!(title:"Flow-DIY: How to flow and search for projects", author_id:1)

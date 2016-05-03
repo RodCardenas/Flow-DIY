@@ -13,7 +13,7 @@ class Api::SessionsController < ApplicationController
   end
 
   def create
-    @api_user = Api::User.find_by_credentials(
+    @api_user = Api::User.includes(:picture).find_by_credentials(
       params[:user][:email],
       params[:user][:password]
     )
