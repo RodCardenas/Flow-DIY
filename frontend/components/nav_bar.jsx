@@ -1,11 +1,13 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Modal = require('react-modal');
+var UserApiUtil = require('../util/user_api_util');
+
 var UserLoginForm = require ('./user_login_form');
 var CloudinaryImage = require('./cloudinary_image');
 var Search = require('./search');
 var CurrentUserStateMixin = require('../mixins/current_user_state');
-var UserApiUtil = require('../util/user_api_util');
+
 
 /*eslint prefer-const: "error"*/
 /*eslint-env es6*/
@@ -44,11 +46,12 @@ var NavBar = React.createClass({
     this.setState({modalIsOpen: true});
   },
 
-  afterOpenModal: function() {
-    this.refs.subtitle.style.color = '#f00';
+  closeModal: function() {
+    this.setState({modalIsOpen: false});
   },
 
-  closeModal: function() {
+  logout: function() {
+    UserApiUtil.logoutUser(this.state.currentUser);
     this.setState({modalIsOpen: false});
   },
 
@@ -58,7 +61,6 @@ var NavBar = React.createClass({
         <button onClick={this.openModal}>login/signup</button>
         <Modal id="modal"
           isOpen={this.state.modalIsOpen}
-          onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
           style={customStyles}>
 
@@ -68,9 +70,17 @@ var NavBar = React.createClass({
     );
   },
 
-  logout: function() {
-    UserApiUtil.logoutUser(this.state.currentUser);
-    this.setState( {modalIsOpen: false});
+  showUserMenu: function(){
+    return (
+      <div id="user-menu-container">
+        <a id="user-picture" href={"/#/user/" + this.state.currentUser.email}>
+          <CloudinaryImage
+            imageUrl={this.state.currentUser.picture.picture_url}
+            format={{height: 100, crop: "scale"}} />
+        </a>
+        <button onClick={this.logout}>Logout</button>
+      </div>
+    );
   },
 
   render: function(){
@@ -79,15 +89,7 @@ var NavBar = React.createClass({
     if(typeof this.state.currentUser === 'undefined'){
       content = this.showButtons();
     } else {
-      content =
-        <div id="nav-form-container">
-          <a id="user-picture" href={"/#/user/" + this.state.currentUser.id}>
-            <CloudinaryImage
-              imageUrl={this.state.currentUser.picture.picture_url}
-              format={{height: 100, crop: "scale"}} />
-            </a>
-          <button onClick={this.logout}>Logout</button>
-        </div>;
+      content = this.showUserMenu();
     }
 
     return (

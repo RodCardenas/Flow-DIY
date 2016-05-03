@@ -14,11 +14,6 @@ var UserLoginForm = React.createClass({
     return ({email: "", password: "" });
   },
 
-  logout: function() {
-    UserApiUtil.logoutUser(this.state.currentUser);
-    this.loggedOut = true;
-  },
-
   login: function(e) {
     e.preventDefault();
 
@@ -84,11 +79,11 @@ var UserLoginForm = React.createClass({
     this.context.router.push("/");
   },
 
-  uChange: function(event) {
+  emailInputChange: function(event) {
     this.setState({email: event.target.value});
   },
 
-  pChange: function(event) {
+  passwordInputChange: function(event) {
     this.setState({password: event.target.value});
   },
 
@@ -108,27 +103,21 @@ var UserLoginForm = React.createClass({
   },
 
   render: function(){
-    var user = this.state.currentUser;
-    var content;
 
-    if(user){
-      this.loggedOut = false;
-      content =
-        <div id="logout-form-container">
-          Welcome back, {user.email}
-          <button onClick={this.logout}>Logout</button>
-        </div>;
-    } else {
-      content =
+    if(typeof this.state.currentUser === 'undefined'){
+      return (
         <div id="login-form-and-errors-container">
+
           {this.getErrors()}
+
           <form id="login-form">
+
             <label>
               <div className="label-text">Email</div>
               <input
                 type="text"
                 id="email"
-                onChange={this.uChange}
+                onChange={this.emailInputChange}
                 value={this.state.email} />
             </label>
 
@@ -137,7 +126,7 @@ var UserLoginForm = React.createClass({
               <input
                 type="password"
                 id="password"
-                onChange={this.pChange}
+                onChange={this.passwordInputChange}
                 value={this.state.password} />
             </label>
 
@@ -146,13 +135,12 @@ var UserLoginForm = React.createClass({
               <button onClick={this.signUp}>SignUp</button>
               <button onClick={this.loginGuest}>demo</button>
             </div>
-          </form>
-        </div>;
-    }
 
-    return (
-        content
-    );
+          </form>
+
+        </div>
+      );
+    }
   }
 });
 

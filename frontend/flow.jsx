@@ -16,6 +16,7 @@ Cloudinary.config({
 var NavBar = require('./components/nav_bar');
 var ProjectIndex = require('./components/project_index');
 var ProjectDetail = require('./components/project_detail');
+var UserDetail = require('./components/user_detail');
 var Modal = require('react-modal');
 
 var App = React.createClass({
@@ -33,6 +34,7 @@ var routes = (
   <Route path="/" component={App}>
     <IndexRoute component={ProjectIndex} />
     <Route path="/projects/:projectId" component={ProjectDetail} />
+    <Route path="/user/:userEmail" component={UserDetail} />
   </Route>
 );
 
