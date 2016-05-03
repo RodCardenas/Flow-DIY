@@ -6,7 +6,10 @@ var ProjectIndexItem = require('./project_index_item');
 var ProjectIndex = React.createClass({
 
   getInitialState: function(){
-    return ({ projects: ProjectStore.all(this.props.params.userEmail) });
+    if (typeof this.props.params !== 'undefined') {
+      this.userEmail = this.props.params.userEmail;
+    }
+    return ({ projects: ProjectStore.all(this.userEmail) });
   },
 
   componentDidMount: function(){
@@ -19,7 +22,10 @@ var ProjectIndex = React.createClass({
   },
 
   onChange: function(){
-    this.setState({ projects:ProjectStore.all(this.props.params.userEmail) });
+    if (typeof this.props.params !== 'undefined') {
+      this.userEmail = this.props.params.userEmail;
+    }
+    this.setState({ projects:ProjectStore.all(this.userEmail) });
   },
 
   render: function(){
