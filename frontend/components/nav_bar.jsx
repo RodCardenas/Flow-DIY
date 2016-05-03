@@ -70,15 +70,30 @@ var NavBar = React.createClass({
     );
   },
 
+  showUserPicture: function(){
+    return (
+      <div id="user-menu-container" onClick={this.showUserMenu}>
+
+      </div>
+    );
+  },
+
   showUserMenu: function(){
     return (
       <div id="user-menu-container">
-        <a id="user-picture" href={"/#/user/" + this.state.currentUser.email}>
-          <CloudinaryImage
-            imageUrl={this.state.currentUser.picture.picture_url}
-            format={{height: 100, crop: "scale"}} />
-        </a>
-        <button onClick={this.logout}>Logout</button>
+        <CloudinaryImage
+          className="user-menu-picture"
+          imageUrl={this.state.currentUser.picture.picture_url}
+          format={{height: 100, crop: "scale"}} />
+
+        <ul className="user-menu-options-container">
+          <li>
+            <a  href={"/#/user/" + this.state.currentUser.email}>My Profile</a>
+          </li>
+          <li>
+            <button onClick={this.logout}>Logout</button>
+          </li>
+        </ul>
       </div>
     );
   },

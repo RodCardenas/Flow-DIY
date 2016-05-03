@@ -29,7 +29,6 @@ var Search = React.createClass({
   },
 
   selectResult: function(project){
-    console.log("Going to selected result");
     this.context.router.push("/projects/" + project.id);
     this.setState({search: ""});
     window.location.reload();
