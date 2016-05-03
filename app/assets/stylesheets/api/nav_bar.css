@@ -61,6 +61,13 @@
   white-space: nowrap;
 }
 
+.NavBar ul li{
+  margin-left: 2px;
+  border-top: 2px solid gray;
+  position: relative;
+  cursor: pointer;
+}
+
 .NavBar .search{
   min-width: 280px;
   width: 25%;
@@ -88,25 +95,24 @@
 
 .NavBar input:focus + .search-results{
   display: list-item;
-  width: inherit;
   width: 17.5%;
   transform: translateX(60px);
 }
 
-.NavBar ul li{
-  margin-left: 2px;
-  border-top: 2px solid gray;
+.search-results:hover{
+  display: list-item;
+  width: 17.5%;
+  transform: translateX(60px);
 }
 
-.search-result-title{
-  display: none;
+.search-results li:hover{
+  color: #666666;
 }
 
-.search-results li:hover .search-result-title{
-  overflow: visible;
-  display:block;
-  white-space:normal;
+.search-results li:hover {
+  white-space: normal;
 }
+
 
 .NavBar #user-menu-container{
   height: 50px;

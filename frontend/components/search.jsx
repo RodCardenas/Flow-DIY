@@ -49,7 +49,6 @@ var Search = React.createClass({
             project={project}
             key={projectId}>
               {project.title}
-              <span className="search-result-title">{project.title}</span>
           </li>
         );
       });
