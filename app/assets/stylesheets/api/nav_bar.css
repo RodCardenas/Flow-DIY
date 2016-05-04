@@ -44,28 +44,11 @@
   transition: all 200ms;
   padding: 2px 5px;
 }
+
 .NavBar button:hover, button:active {
   background-color: white;
   color: #333333;
   outline: 0;
-}
-
-.NavBar ul{
-  width: inherit;
-  position: absolute;
-  display: none;
-  border: 1px solid black;
-  overflow: hidden;
-  background-color: #999999;
-  z-index: 1;
-  white-space: nowrap;
-}
-
-.NavBar ul li{
-  margin-left: 2px;
-  border-top: 2px solid gray;
-  position: relative;
-  cursor: pointer;
 }
 
 .NavBar .search{
@@ -93,37 +76,63 @@
   margin-right: auto;
 }
 
-.NavBar input:focus + .search-results{
-  display: list-item;
+.NavBar .search-results{
   width: 17.5%;
-  transform: translateX(60px);
+  position: absolute;
+  border: 1px solid black;
+  overflow: hidden;
+  background-color: #999999;
+  z-index: 1;
+  white-space: nowrap;
+
+  max-height: 0px;
+  -webkit-transform: perspective(600) rotate3d(1, 0, 0, -90deg) translateX(60px);
+  -webkit-transform-origin: 50% 0;
+  -webkit-transition: 350ms;
+  -moz-transition: 350ms;
+  -o-transition: 350ms;
+  transition: 350ms;
 }
 
-.search-results:hover{
-  display: list-item;
-  width: 17.5%;
-  transform: translateX(60px);
+.NavBar ul li{
+  margin-left: 2px;
+  border-top: 2px solid gray;
+  position: relative;
+  cursor: pointer;
+}
+
+.NavBar input:focus + .search-results{
+  max-height: 1000px;
+  -webkit-transform: perspective(600) rotate3d(0, 0, 0, 0) translateX(60px);
 }
 
 .search-results li:hover{
-  color: #666666;
-}
-
-.search-results li:hover {
+  color: #dddddd;
   white-space: normal;
 }
-
 
 .NavBar #user-menu-container{
   height: 50px;
   margin-left: auto;
 }
 
-.NavBar #user-menu-container:hover .user-menu-options-container{
-  display: list-item;
-  width: 48px;
+.NavBar #user-menu-container:hover .user-menu-options-container {
+  max-height: 100px;
+  -webkit-transform: perspective(600) rotate3d(0, 0, 0, 0) translateY(-4px);
 }
 
-.user-menu-options-container{
+.NavBar #user-menu-container .user-menu-options-container {
   text-align: center;
+  width: 48px;
+  border: 1px solid black;
+  background-color: #999999;
+  z-index: 1;
+  position: absolute;
+  max-height: 0px;
+  -webkit-transform: perspective(600) rotate3d(1, 0, 0, -90deg);
+  -webkit-transform-origin: 50% 0;
+  -webkit-transition: 350ms;
+  -moz-transition: 350ms;
+  -o-transition: 350ms;
+  transition: 350ms;
 }
