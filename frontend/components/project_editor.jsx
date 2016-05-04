@@ -2,19 +2,15 @@ var React = require('react');
 var CloudinaryImage = require('./cloudinary_image');
 var ProjectStore = require('../stores/project_store');
 var ProjectUtil = require('../util/project_api_util');
-var StepEditor = require('./step_editor');
+var StepIndex = require('./step_index');
 
 var ProjectEditor = React.createClass({
   getInitialState: function(){
-    return ({projectName: "", step: ""});
+    return ({projectName: ""});
   },
 
   projectNameChange: function(event) {
     this.setState({projectName: event.target.value});
-  },
-
-  stepChange: function(event) {
-    this.setState({step: event.target.value});
   },
 
   createProject: function(e) {
@@ -22,8 +18,7 @@ var ProjectEditor = React.createClass({
 
     ProjectUtil.createProject({
       title: this.state.projectName,
-      author_id: this.props.params.userId,
-      step: this.state.step,
+      author_id: this.props.params.userId
     });
   },
 
@@ -42,11 +37,9 @@ var ProjectEditor = React.createClass({
                 value={this.state.projectName} />
             </label>
 
-            <label>
-              <StepEditor order={1}/>
-            </label>
+            <StepIndex />
 
-          <input type="submit" onClick={this.createProject} />
+            <input type="submit" onClick={this.createProject} />
         </form>
       </div>
     );

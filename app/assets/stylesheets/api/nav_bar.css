@@ -121,22 +121,23 @@
 .NavBar #user-menu-container{
   height: 50px;
   margin-left: auto;
+  margin-right: 25px
 }
 
 .NavBar #user-menu-container:hover .user-menu-options-container {
   max-height: 100px;
-  -webkit-transform: perspective(600) rotate3d(0, 0, 0, 0) translateY(-4px);
+  -webkit-transform: translateX(-26px) perspective(600) rotate3d(0, 0, 0, 0) translateY(-5px);
 }
 
 .NavBar #user-menu-container .user-menu-options-container {
   text-align: center;
-  width: 48px;
+  width: 98px;
   border: 1px solid black;
   background-color: #999999;
   z-index: 1;
   position: absolute;
   max-height: 0px;
-  -webkit-transform: perspective(600) rotate3d(1, 0, 0, -90deg);
+  -webkit-transform: perspective(600) rotate3d(1, 0, 0, -90deg) translateX(-26px);
   -webkit-transform-origin: 50% 0;
   -webkit-transition: 350ms;
   -moz-transition: 350ms;

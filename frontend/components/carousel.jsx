@@ -35,7 +35,6 @@ var Carousel = React.createClass({
         }
       });
     }
-
     this.setState(modState);
   },
 
@@ -44,32 +43,44 @@ var Carousel = React.createClass({
     setInterval(self.setPicState, 5000);
   },
 
+  activateImage: function(position){
+    var keys = Object.keys(this.state);
+    var modState = Object.assign({}, this.state);
+    var keyForPosition = Object.keys(modState)[position];
+
+    keys.forEach(function(key){
+        modState[key] = "";
+    });
+
+    modState[keyForPosition] = 'active';
+    this.setState(modState);
+  },
+
   render: function(){
     return (
       <div className="carousel-container">
-        <ul className="carousel">
-          <CloudinaryImage
-            className={"image" + " " + this.state.pic1}
-            imageUrl={"http://res.cloudinary.com/flow-diy/image/upload/v1462382665/raspberry-gb_yafizd.jpg"}
-            format={{height: 600, crop: "scale"}} />
+          <ul className="carousel">
+            <CloudinaryImage
+              className={"image" + " " + this.state.pic1}
+              imageUrl={"http://res.cloudinary.com/flow-diy/image/upload/v1462382665/raspberry-gb_yafizd.jpg"}
+              format={{height: 600}} />
+
+            <CloudinaryImage
+              className={"image" + " " + this.state.pic2}
+              imageUrl={"http://res.cloudinary.com/flow-diy/image/upload/v1462382423/nixie-clock_gzonw7.jpg"}
+              format={{height: 600}} />
+
+            <CloudinaryImage
+              className={"image" + " " + this.state.pic3}
+              imageUrl={"http://res.cloudinary.com/flow-diy/image/upload/v1462382105/rf-condenser-microphone_opzo1m.jpg"}
+              format={{height: 600}} />
 
           <CloudinaryImage
-            className={"image" + " " + this.state.pic2}
-            imageUrl={"http://res.cloudinary.com/flow-diy/image/upload/v1462382423/nixie-clock_gzonw7.jpg"}
-            format={{height: 600, crop: "scale"}} />
-
-          <CloudinaryImage
-            className={"image" + " " + this.state.pic3}
-            imageUrl={"http://res.cloudinary.com/flow-diy/image/upload/v1462382105/rf-condenser-microphone_opzo1m.jpg"}
-            format={{height: 600, crop: "scale"}} />
-
-        <CloudinaryImage
-            className={"image" + " " + this.state.pic4}
-            imageUrl={"http://res.cloudinary.com/flow-diy/image/upload/v1462322142/maxresdefault_srs4xd.jpg"}
-            format={{height: 600, crop: "scale"}} />
-        </ul>
+              className={"image" + " " + this.state.pic4}
+              imageUrl={"http://res.cloudinary.com/flow-diy/image/upload/v1462322142/maxresdefault_srs4xd.jpg"}
+              format={{height: 600}} />
+          </ul>
       </div>
-
     );
   }
 });

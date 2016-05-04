@@ -1,7 +1,7 @@
 var React = require('react');
 var CloudinaryImage = require('./cloudinary_image');
 
-var StepEditor = React.createClass({
+var StepIndexItem = React.createClass({
   getInitialState: function(){
     return ({title: "", body: ""});
   },
@@ -17,7 +17,7 @@ var StepEditor = React.createClass({
   render: function(){
     return (
       <div className="step-editor">
-        Step
+        Step {this.props.order}
         <label>
           <div className="label-text">Title</div>
           <input
@@ -39,4 +39,4 @@ var StepEditor = React.createClass({
   }
 });
 
-module.exports = StepEditor;
+module.exports = StepIndexItem;
