@@ -3,14 +3,13 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .project-index{
+  min-width: 1053px;
+  max-width: 1404px;
+  margin-left: auto;
+  margin-right: auto;
   display: table;
   width: 100%;
   background-color: rgba(246, 246, 246, 1);
-  -webkit-margin-before: 1em;
-  -webkit-margin-after: 1em;
-  -webkit-margin-start: 0px;
-  -webkit-margin-end: 0px;
-  -webkit-padding-start: 40px;
   font-size: 14px;
 }
 

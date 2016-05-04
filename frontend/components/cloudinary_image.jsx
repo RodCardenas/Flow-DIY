@@ -17,7 +17,7 @@ var CloudinaryImage = React.createClass({
     var klass = this.props.className || "cloudinaryImg";
 
     return (
-          <img src={imgSrc} className={klass} id={imageName} />
+      <img src={imgSrc} className={klass} id={imageName} />
     );
   }
 });

@@ -1,0 +1,15 @@
+.carousel-container{
+  height: 600px;
+  width: 100%;
+}
+
+.carousel .image{
+  display: none;
+  height: 600px;
+}
+
+.carousel .active{
+  display: block;
+  width: 100%;
+  height: 600px;
+}
