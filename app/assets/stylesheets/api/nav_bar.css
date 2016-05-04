@@ -8,8 +8,9 @@
   justify-content: space-around;
   height: 50px;
   width: 100%;
-  font-family: 'Abel', sans-serif;
-  font-size: 12px;
+  font-family: 'BenchNine', sans-serif;
+  font-size: 14px;
+  letter-spacing: 2px;
 }
 
 .NavBar #errors{
@@ -23,6 +24,12 @@
   width: 100px;
   height: 50px;
   text-decoration: none;
+}
+
+.NavBar .catch-phrase {
+  position: absolute;
+  text-transform: lowercase;;
+  transform: translateY(-22px) translateX(60px);
 }
 
 .NavBar img {

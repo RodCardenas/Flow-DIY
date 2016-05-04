@@ -112,6 +112,9 @@ var NavBar = React.createClass({
           <CloudinaryImage
             imageUrl="http://res.cloudinary.com/flow-diy/image/upload/v1461796717/logo.png"
             format={{height: 100, crop: "scale"}} />
+          <div className="catch-phrase">
+            Let your ideas flow through others
+          </div>
         </a>
 
         <Search />
