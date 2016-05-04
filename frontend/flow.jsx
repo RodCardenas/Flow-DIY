@@ -8,6 +8,7 @@ var hashHistory = ReactRouter.hashHistory;
 
 var NavBar = require('./components/nav_bar');
 var ProjectDetail = require('./components/project_detail');
+var ProjectEditor = require('./components/project_editor');
 var UserDetail = require('./components/user_detail');
 var ProjectIndex = require('./components/project_index');
 var Landing = require('./components/landing');
@@ -23,7 +24,7 @@ Cloudinary.config({
 var App = React.createClass({
   render: function(){
     return (
-        <div>
+        <div id="all">
           <NavBar />
           {this.props.children}
         </div>
@@ -37,6 +38,7 @@ var routes = (
     <Route path="/projects/:projectId" component={ProjectDetail} />
     <Route path="/user/:userEmail" component={UserDetail} />
     <Route path="/myFlow/:userEmail" component={ProjectIndex} />
+    <Route path="/project/new/:userId" component={ProjectEditor} />
   </Route>
 );
 

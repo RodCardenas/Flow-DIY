@@ -50,22 +50,22 @@ var Carousel = React.createClass({
         <ul className="carousel">
           <CloudinaryImage
             className={"image" + " " + this.state.pic1}
-            imageUrl={"http://res.cloudinary.com/flow-diy/image/upload/v1462322093/maxresdefault_tleb64.jpg"}
+            imageUrl={"http://res.cloudinary.com/flow-diy/image/upload/v1462382665/raspberry-gb_yafizd.jpg"}
             format={{height: 600, crop: "scale"}} />
 
           <CloudinaryImage
             className={"image" + " " + this.state.pic2}
-            imageUrl={"http://res.cloudinary.com/flow-diy/image/upload/v1462322176/tumblr_mt7xleW5EG1sg9x8ro1_1280_haydtd.jpg"}
+            imageUrl={"http://res.cloudinary.com/flow-diy/image/upload/v1462382423/nixie-clock_gzonw7.jpg"}
             format={{height: 600, crop: "scale"}} />
 
           <CloudinaryImage
             className={"image" + " " + this.state.pic3}
-            imageUrl={"http://res.cloudinary.com/flow-diy/image/upload/v1462322142/maxresdefault_srs4xd.jpg"}
+            imageUrl={"http://res.cloudinary.com/flow-diy/image/upload/v1462382105/rf-condenser-microphone_opzo1m.jpg"}
             format={{height: 600, crop: "scale"}} />
 
         <CloudinaryImage
             className={"image" + " " + this.state.pic4}
-            imageUrl={"http://res.cloudinary.com/flow-diy/image/upload/v1462321705/original_i2oeco.jpg"}
+            imageUrl={"http://res.cloudinary.com/flow-diy/image/upload/v1462322142/maxresdefault_srs4xd.jpg"}
             format={{height: 600, crop: "scale"}} />
         </ul>
       </div>
