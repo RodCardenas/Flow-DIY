@@ -1,6 +1,7 @@
 var React = require('react');
 var SearchStore = require('../stores/search_store');
 var SearchApiUtil = require('../util/search_api_util');
+var ProjectActions = require('../actions/project_actions');
 
 var Search = React.createClass({
   contextTypes: {
@@ -24,8 +25,8 @@ var Search = React.createClass({
     SearchApiUtil.searchProjectsContaining(event.currentTarget.value);
   },
 
-  onSearchComplete: function(projects){
-    this.setState({projects: SearchStore.all()});
+  onSearchComplete: function(){
+    // this.setState({projects: SearchStore.all()});
   },
 
   selectResult: function(project){
@@ -41,13 +42,13 @@ var Search = React.createClass({
       var keys = Object.keys(projectsObj);
       var self = this;
 
-      var projects = keys.map(function(projectId){
-        var project = projectsObj[projectId];
+      var projects = keys.map(function(key){
+        var project = projectsObj[key];
         return (
           <li
             onClick={self.selectResult.bind(self, project)}
             project={project}
-            key={projectId}>
+            key={projectsObj[key].id}>
               {project.title}
           </li>
         );
@@ -62,7 +63,7 @@ var Search = React.createClass({
       <div className="search">
         <label>Search
           <input type="text" value={this.state.search} onChange={this.onChange} />
-          {projects}
+          
         </label>
       </div>
     );

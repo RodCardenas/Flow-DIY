@@ -3,6 +3,7 @@
   padding: 10px;
   letter-spacing: 3px;
   background: #666666;
+  z-index: 2;
 }
 
 .ReactModalPortal label {
@@ -16,6 +17,7 @@
   transition: all 0.3s;
   margin-top: 2%;
 }
+
 .ReactModalPortal label input {
   background-color: transparent;
   border: 0;
@@ -26,6 +28,7 @@
   width: 70%;
   margin-left: 15%;
 }
+
 .ReactModalPortal label input:focus {
   color: black;
   max-width: 100%;
@@ -51,10 +54,11 @@
   cursor: pointer;
   text-transform: uppercase;
   transition: all 200ms;
-  padding: 2px 5px;
+  padding: 3px 6px;
   height: 40px;
   width: 25%;
 }
+
 .ReactModalPortal button:hover, button:focus {
   background-color: white;
   color: #333333;

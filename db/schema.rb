@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20160428210736) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "api_projects", ["author_id", "title"], name: "index_api_projects_on_author_id_and_title", unique: true, using: :btree
   add_index "api_projects", ["author_id"], name: "index_api_projects_on_author_id", using: :btree
 
   create_table "api_steps", force: :cascade do |t|

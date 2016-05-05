@@ -1,5 +1,6 @@
 var React = require('react');
 var ProjectStore = require('../stores/project_store');
+var SearchStore = require('../stores/search_store');
 var ProjectUtil = require('../util/project_api_util');
 var ProjectIndexItem = require('./project_index_item');
 
@@ -14,11 +15,13 @@ var ProjectIndex = React.createClass({
 
   componentDidMount: function(){
     ProjectUtil.fetchProjects();
-    this.listenerToken = ProjectStore.addListener(this.onChange);
+    this.listenerProjectStore = ProjectStore.addListener(this.onChange);
+    this.listenerSearchStore = SearchStore.addListener(this.searchReady);
   },
 
   componentWillUnmount: function(){
-    this.listenerToken.remove();
+    this.listenerSearchStore.remove();
+    this.listenerProjectStore.remove();
   },
 
   onChange: function(){
@@ -28,22 +31,26 @@ var ProjectIndex = React.createClass({
     this.setState({ projects:ProjectStore.all(this.userEmail) });
   },
 
+  searchReady: function(){
+    this.setState({ projects:SearchStore.all() });
+  },
+
   render: function(){
     var projectsObj = this.state.projects;
 
-    if(typeof projectsObj !== 'undefined'){
+    if(typeof projectsObj !== 'undefined' && Object.keys(projectsObj).length !== 0){
       var keys = Object.keys(projectsObj);
 
-      var projects = keys.map(function(projectId){
+      var projects = keys.map(function(key){
         return (
             <ProjectIndexItem
-              project={projectsObj[projectId]}
-              key={projectId}
+              project={projectsObj[key]}
+              key={projectsObj[key].id}
             />
         );
       });
     } else {
-      projects = <div> No Projects </div>;
+      projects = <div className="no-projects"> Sorry, no projects matched your search... </div>;
     }
 
     return (

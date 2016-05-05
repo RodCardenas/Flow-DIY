@@ -1,5 +1,6 @@
 .landing{
   width: 100%;
+  background-color: rgba(246, 246, 246, 1);
 }
 
 .project-index-container{
@@ -13,7 +14,6 @@
   text-align: center;
   margin-left: auto;
   margin-right: auto;
-  background-color: rgba(246, 246, 246, 1);
   font-size: 14px;
 }
 
@@ -41,6 +41,7 @@
   max-width: 320px;
   white-space:nowrap;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .project-image{
@@ -85,4 +86,8 @@
 .project-title:hover{
   color: white;
   background-color: #666666;
+}
+
+.no-projects{
+font-size: 16px;
 }

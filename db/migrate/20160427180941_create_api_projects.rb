@@ -5,5 +5,6 @@ class CreateApiProjects < ActiveRecord::Migration
       t.integer   :author_id,  null: false, index: true
       t.timestamps             null: false
     end
+    add_index "api_projects", ["author_id", "title"], :unique => true
   end
 end
