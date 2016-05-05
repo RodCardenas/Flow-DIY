@@ -40,7 +40,11 @@ var Carousel = React.createClass({
 
   componentDidMount: function(){
     var self = this;
-    setInterval(self.setPicState, 5000);
+    this.intervalToken = setInterval(self.setPicState, 5000);
+  },
+
+  componentWillUnmount: function(){
+    clearInterval(this.intervalToken);
   },
 
   activateImage: function(position){
@@ -62,23 +66,23 @@ var Carousel = React.createClass({
           <ul className="carousel">
             <CloudinaryImage
               className={"image" + " " + this.state.pic1}
-              imageUrl={"http://res.cloudinary.com/flow-diy/image/upload/v1462382665/raspberry-gb_yafizd.jpg"}
-              format={{height: 600}} />
+              imageUrl={"http://res.cloudinary.com/flow-diy/image/upload/v1462402016/photo-1458007683879-47560d7e33c3_rmkukq.jpg"}
+              format={{width: 1839}} />
 
             <CloudinaryImage
               className={"image" + " " + this.state.pic2}
-              imageUrl={"http://res.cloudinary.com/flow-diy/image/upload/v1462382423/nixie-clock_gzonw7.jpg"}
-              format={{height: 600}} />
+              imageUrl={"http://res.cloudinary.com/flow-diy/image/upload/a_270/v1462403136/photo-1416339212457-ef9ffadc2903_qhe5vi.jpg"}
+              format={{width: 1839, angle: 270}} />
 
             <CloudinaryImage
               className={"image" + " " + this.state.pic3}
-              imageUrl={"http://res.cloudinary.com/flow-diy/image/upload/v1462382105/rf-condenser-microphone_opzo1m.jpg"}
-              format={{height: 600}} />
+              imageUrl={"http://res.cloudinary.com/flow-diy/image/upload/v1462402764/HF-Mic_hires_tz8oz0.jpg"}
+              format={{width: 1839}} />
 
           <CloudinaryImage
               className={"image" + " " + this.state.pic4}
-              imageUrl={"http://res.cloudinary.com/flow-diy/image/upload/v1462322142/maxresdefault_srs4xd.jpg"}
-              format={{height: 600}} />
+              imageUrl={"http://res.cloudinary.com/flow-diy/image/upload/v1462402654/Nixie-009_hr1l56.jpg"}
+              format={{width: 1839}} />
           </ul>
       </div>
     );

@@ -3,7 +3,7 @@ var CloudinaryImage = require('./cloudinary_image');
 
 var StepIndexItem = React.createClass({
   getInitialState: function(){
-    return ({title: "", body: ""});
+    return ({title: "", body: "", order: this.props.order});
   },
 
   titleChange: function(event) {
@@ -14,10 +14,14 @@ var StepIndexItem = React.createClass({
     this.setState({body: event.target.value});
   },
 
+  parseStep: function(){
+    return this.state;
+  },
+
   render: function(){
     return (
-      <div className="step-editor">
-        Step {this.props.order}
+      <div className="step-index-item">
+        Step {this.state.order}
         <label>
           <div className="label-text">Title</div>
           <input

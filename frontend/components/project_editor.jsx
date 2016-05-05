@@ -1,25 +1,29 @@
 var React = require('react');
 var CloudinaryImage = require('./cloudinary_image');
-var ProjectStore = require('../stores/project_store');
 var ProjectUtil = require('../util/project_api_util');
 var StepIndex = require('./step_index');
 
 var ProjectEditor = React.createClass({
+
   getInitialState: function(){
     return ({projectName: ""});
   },
 
-  projectNameChange: function(event) {
-    this.setState({projectName: event.target.value});
-  },
-
   createProject: function(e) {
     e.preventDefault();
+    var steps = this.refs.stepIndex.parseSteps();
 
-    ProjectUtil.createProject({
-      title: this.state.projectName,
-      author_id: this.props.params.userId
-    });
+    console.log(steps);
+
+    // ProjectUtil.createProject({
+    //   title: this.state.projectName,
+    //   author_id: 1,
+    //   steps: this.parseSteps
+    // });
+  },
+
+  projectNameChange: function(event) {
+    this.setState({projectName: event.target.value});
   },
 
   render: function(){
@@ -27,7 +31,6 @@ var ProjectEditor = React.createClass({
       <div className="project-editor">
         Project Editor
         <form id="project-form">
-
             <label>
               <div className="label-text">Project</div>
               <input
@@ -37,7 +40,10 @@ var ProjectEditor = React.createClass({
                 value={this.state.projectName} />
             </label>
 
-            <StepIndex />
+            <div>
+              Project Steps
+              <StepIndex ref="stepIndex"/>
+            </div>
 
             <input type="submit" onClick={this.createProject} />
         </form>

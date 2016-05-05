@@ -89,7 +89,7 @@ var NavBar = React.createClass({
             </a>
           </li>
           <li>
-            <a href={"/#/project/new/" + user.id} >Create
+            <a href={"/#/project/new/"} >Create
             </a>
           </li>
           <li>
