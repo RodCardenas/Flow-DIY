@@ -23,6 +23,7 @@
   box-shadow: 0 1px 0px rgba(0, 0, 0, 0.15);
   -webkit-box-sizing: border-box;
   display: inline-block;
+  text-align: left;
   width: 325px;
   height: 365px;
   margin: 10px 10px;

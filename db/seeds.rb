@@ -8,9 +8,12 @@
 
 u = Api::User.create!(email:"guest@flow-diy.com", password:"flow-diy");
 u.get_default_avatar_picture
-u = Api::User.create!(email:"rod@flow-diy.com", password:"1");
-u.get_default_avatar_picture
-
+Api::User.create!(email:"rod@flow-diy.com", password:"1");
+Api::Picture.create!(
+  imageable_id: 2,
+  imageable_type: "Api::User",
+  picture_url:"http://res.cloudinary.com/flow-diy/image/upload/v1462471248/Rodrigo_Cardenas_mlwhol.jpg"
+)
 # Project 1
 Api::Project.create!(title:"Flow-DIY: How to flow and search for projects", author_id:1)
 

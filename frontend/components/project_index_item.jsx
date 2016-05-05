@@ -49,10 +49,8 @@ var ProjectIndexItem = React.createClass({
       <li className="project-index-item">
         {image}
         <div className="project-info">
-          <span className="project-title">
-            <a href={project.url}>
-              {title}
-            </a>
+          <span className="project-title" onClick={this.goToProject}>
+            {title}
           </span><br></br>
           <span>
             by <a className="project-author" href={email}>
