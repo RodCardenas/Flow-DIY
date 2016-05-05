@@ -47,9 +47,11 @@ var ProjectIndex = React.createClass({
     }
 
     return (
-      <ul className="project-index">
-        {projects}
-      </ul>
+      <div className="project-index-container">
+        <ul className="project-index">
+          {projects}
+        </ul>
+      </div>
     );
   }
 });

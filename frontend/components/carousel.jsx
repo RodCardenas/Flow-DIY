@@ -2,6 +2,9 @@ var React = require('react');
 var CloudinaryImage = require('./cloudinary_image');
 
 var Carousel = React.createClass({
+  contextTypes: {
+    router: React.PropTypes.object.isRequired
+  },
 
   getInitialState: function(){
     return({
@@ -60,12 +63,17 @@ var Carousel = React.createClass({
     this.setState(modState);
   },
 
+  explore: function(){
+    this.context.router.push("/explore/");
+  },
+
   render: function(){
     return (
       <div className="carousel-container">
-        <span className="carousel-overlay">
-          Flow <br />
-          let your ideas flow through others
+        <span className="carousel-overlay" onClick={this.explore}>
+          <span id="site-title">Flow</span>
+          <br/>
+          <span id="site-catchphrase">let your ideas flow through others</span>
         </span>
 
         <ul className="carousel">
@@ -76,12 +84,12 @@ var Carousel = React.createClass({
 
           <CloudinaryImage
             className={"image" + " " + this.state.pic2}
-            imageUrl={"http://res.cloudinary.com/flow-diy/image/upload/a_270/v1462403136/photo-1416339212457-ef9ffadc2903_qhe5vi.jpg"}
+            imageUrl={"http://res.cloudinary.com/flow-diy/image/upload/v1462469877/photo-1416339212457-ef9ffadc2903_ao0tsq.jpg"}
             format={{width: 1839, angle: 270}} />
 
           <CloudinaryImage
             className={"image" + " " + this.state.pic3}
-            imageUrl={"http://res.cloudinary.com/flow-diy/image/upload/v1462402764/HF-Mic_hires_tz8oz0.jpg"}
+            imageUrl={"http://res.cloudinary.com/flow-diy/image/upload/v1462469977/New_Program_for_old_Microcontroller_gz34xw.jpg"}
             format={{width: 1839}} />
 
         <CloudinaryImage

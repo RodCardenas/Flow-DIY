@@ -8,7 +8,6 @@
   justify-content: space-around;
   height: 50px;
   width: 100%;
-  font-family: 'BenchNine', sans-serif;
   font-size: 14px;
   letter-spacing: 2px;
 }
@@ -72,7 +71,8 @@
 }
 
 .NavBar .search input{
-  font-size: 14px;
+  letter-spacing: 2px;
+  font-size: 16px;
   min-width: 150px;
   border-radius: 27px;
   border: 1px solid white;

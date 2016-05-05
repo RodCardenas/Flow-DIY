@@ -1,7 +1,31 @@
 .carousel-container{
-  height: 600px;
+  height: 650px;
   width: 100%;
   overflow: hidden;
+}
+
+.carousel-overlay{
+  position: absolute;
+  color: white;
+  width: 100%;
+  height: 650px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.carousel-overlay #site-title{
+  font-size: 150px;
+  position: absolute;
+  top: 45%;
+  transform: translateY(-90%) translateX(-40%);
+}
+
+.carousel-overlay #site-catchphrase{
+  font-size: 34px;
+  position: absolute;
+  top: 45%;
+  transform: translateY(-20%) translateX(-10%);
 }
 
 .carousel .image{

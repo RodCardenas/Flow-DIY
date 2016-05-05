@@ -38,6 +38,7 @@ var routes = (
     <Route path="/projects/:projectId" component={ProjectDetail} />
     <Route path="/user/:userEmail" component={UserDetail} />
     <Route path="/myFlow/:userEmail" component={ProjectIndex} />
+    <Route path="/explore/" component={ProjectIndex} />
     <Route path="/project/new/" component={ProjectEditor} />
   </Route>
 );

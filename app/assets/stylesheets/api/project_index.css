@@ -1,14 +1,18 @@
-// Place all the styles related to the StaticPages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.landing{
+  width: 100%;
+}
+
+.project-index-container{
+  min-width: 1053px;
+  width: 100%;
+}
 
 .project-index{
   min-width: 1053px;
-  max-width: 1404px;
+  width: 100%;
+  text-align: center;
   margin-left: auto;
   margin-right: auto;
-  display: table;
-  width: 100%;
   background-color: rgba(246, 246, 246, 1);
   font-size: 14px;
 }
@@ -18,11 +22,10 @@
   border: 1px solid rgba(0, 0, 0, 0.10);
   box-shadow: 0 1px 0px rgba(0, 0, 0, 0.15);
   -webkit-box-sizing: border-box;
+  display: inline-block;
   width: 325px;
   height: 365px;
-  display: list-item;
-  float: left;
-  margin: 13px 13px;
+  margin: 10px 10px;
 }
 
 .project-info{
