@@ -39,7 +39,7 @@ class Api::ProjectsController < ApplicationController
     @api_project = Api::Project.new(api_project_params)
 
     if @api_project.save
-      format.json { render :show, status: :created, location: @api_project }
+      render "api/projects/show"
     else
       @errors = @api_project.errors.full_messages
       render "api/shared/error", status: 401

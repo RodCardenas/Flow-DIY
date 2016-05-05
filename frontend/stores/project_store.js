@@ -25,6 +25,11 @@ ProjectStore.find = function(id){
   return Object.assign({}, _projects[id]);
 };
 
+ProjectStore.findNewestProjectByAuthor = function(authorId){
+  var lastKey = Object.keys(_projects)[Object.keys(_projects).length-1];
+  return Object.assign({}, _projects[lastKey]);
+};
+
 var resetProjects = function(projects){
   _projects = projects;
 };
