@@ -49,7 +49,7 @@ class Api::ProjectsController < ApplicationController
   # PATCH/PUT /api/projects/1.json
   def update
     if @api_project.update(api_project_params)
-      format.json { render :show, status: :ok, location: @api_project }
+      render "api/projects/show"
     else
       @errors = @api_project.errors.full_messages
       render "api/shared/error", status: 401
@@ -59,7 +59,7 @@ class Api::ProjectsController < ApplicationController
   # DELETE /api/projects/1.json
   def destroy
     @api_project.destroy
-    format.json { head :no_content } #TODO
+    render @api_project.title + " has been deleted."
   end
 
   private

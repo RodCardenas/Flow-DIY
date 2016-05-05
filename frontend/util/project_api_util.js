@@ -46,7 +46,7 @@ module.exports =  {
       method: 'DELETE',
       url: 'api/project/' + id,
       success: function(project){
-        ProjectActions.deletedUser(project);
+        ProjectActions.deletedProject(project);
       },
       error: function(error){
         ProjectActions.handleError(error);

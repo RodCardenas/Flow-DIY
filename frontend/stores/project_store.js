@@ -25,9 +25,20 @@ ProjectStore.find = function(id){
   return Object.assign({}, _projects[id]);
 };
 
-ProjectStore.findNewestProjectByAuthor = function(authorId){
-  var lastKey = Object.keys(_projects)[Object.keys(_projects).length-1];
-  return Object.assign({}, _projects[lastKey]);
+ProjectStore.findProjectByAuthorAndTitle = function(authorId, title){
+  var keys = Object.keys(_projects);
+  var theProjectBeingLookedFor = null;
+
+  keys.forEach(function(key){
+    var project = _projects[key];
+
+
+    if(project.author.id === authorId && project.title === title){
+      theProjectBeingLookedFor =  project;
+    }
+  });
+
+  return theProjectBeingLookedFor;
 };
 
 var resetProjects = function(projects){

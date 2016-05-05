@@ -37,7 +37,7 @@ class Api::StepsController < ApplicationController
     @api_step = Api::Step.new(api_step_params)
 
     if @api_step.save
-      format.json { render :show, status: :created, location: @api_step }
+      render "api/steps/show"
     else
       @errors = @api_step.errors.full_messages
       render "api/shared/error", status: 401
@@ -47,7 +47,7 @@ class Api::StepsController < ApplicationController
   # PATCH/PUT /api/steps/1.json
   def update
     if @api_step.update(api_step_params)
-      format.json { render :show, status: :ok, location: @api_step }
+      render "api/steps/show"
     else
       @errors = @api_step.errors.full_messages
       render "api/shared/error", status: 401
@@ -57,7 +57,7 @@ class Api::StepsController < ApplicationController
   # DELETE /api/steps/1.json
   def destroy
     @api_step.destroy
-    format.json { head :no_content }
+    render @api_step.title + " has been deleted."
   end
 
   private

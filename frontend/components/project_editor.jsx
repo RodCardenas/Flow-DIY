@@ -4,9 +4,11 @@ var Modal = require('react-modal');
 
 var CloudinaryImage = require('./cloudinary_image');
 var ProjectUtil = require('../util/project_api_util');
+var StepUtil = require('../util/step_api_util');
 var StepIndex = require('./step_index');
 var CurrentUserStateMixin = require('../mixins/current_user_state');
 var ProjectStore = require('../stores/project_store');
+var StepStore = require('../stores/step_store');
 
 /*eslint prefer-const: "error"*/
 /*eslint-env es6*/
@@ -35,10 +37,14 @@ const customStyles = {
 };
 
 var ProjectEditor = React.createClass({
+  contextTypes: {
+    router: React.PropTypes.object.isRequired
+  },
+
   mixins: [CurrentUserStateMixin],
 
   getInitialState: function(){
-    return ({projectTitle: "", projectName: "", projectId: null, modalIsOpen: false});
+    return ({projectTitle: "", projectName: "", project: null, modalIsOpen: false});
   },
 
   openModal: function() {
@@ -74,16 +80,24 @@ var ProjectEditor = React.createClass({
 
   componentDidMount: function(){
     ProjectUtil.fetchProjects();
-    this.listenerToken = ProjectStore.addListener(this.onChange);
+    this.projectStoreListener = ProjectStore.addListener(this.onChange);
+    this.stepStoreListener = ProjectStore.addListener(this.onChange);
   },
 
   componentWillUnmount: function(){
-    this.listenerToken.remove();
+    this.projectStoreListener.remove();
+    this.stepStoreListener.remove();
   },
 
   onChange: function(){
-    this.setState({
-       projectId:ProjectStore.findNewestProjectByAuthor(this.state.currentUser.id).id });
+    if(this.state.currentUser !== 'undefined'){
+      this.setState({
+         project: ProjectStore.findProjectByAuthorAndTitle(
+           this.state.currentUser.id,
+           this.state.projectName
+         )
+      });
+    }
   },
 
   createProject: function(e) {
@@ -101,12 +115,26 @@ var ProjectEditor = React.createClass({
     this.setState({projectTitle: event.target.value});
   },
 
-  createSteps: function(){
-    var steps = this.refs.stepIndex.parseSteps();
+  updateProject: function(e){
+    e.preventDefault();
 
-    steps.forEach(function(step){
-      //Create Step. Api Util must be defined
+    var steps = this.refs.stepIndex.parseSteps();
+    var keys = Object.keys(steps);
+
+    var project = ProjectStore.findProjectByAuthorAndTitle(
+      this.state.currentUser.id,
+      this.state.projectName
+    );
+
+    keys.forEach(function(key){
+      var step = steps[key];
+      step["project_id"] = project.id;
+      StepUtil.createStep(project.id, step);
     });
+
+    StepUtil.fetchSteps(project.id);
+
+    this.context.router.push("/projects/" + this.state.project.id);
   },
 
   projectNameChange: function(event) {
@@ -172,7 +200,6 @@ var ProjectEditor = React.createClass({
         );
     }
 
-    console.log(this.state);
     return (
       <div className="project-editor-container">
         {this.getErrors()}
