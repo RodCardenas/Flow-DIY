@@ -100,7 +100,8 @@ var ProjectCreator = React.createClass({
       StepUtil.createStep(project.id, step);
     });
 
-    this.goToProject();
+    this.context.router.push("/projects/" + this.state.project.id);
+    window.location.reload();
   },
 
   goToProject: function(){
