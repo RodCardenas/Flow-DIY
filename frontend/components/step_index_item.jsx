@@ -3,7 +3,7 @@ var CloudinaryImage = require('./cloudinary_image');
 
 var StepIndexItem = React.createClass({
   getInitialState: function(){
-    return ({title: "", body: "", order: this.props.order, pictures:[], picture_urls: []});
+    return ({title: "", body: "", order: this.props.order, pictures:[], picture_urls: [], error:""});
   },
 
   titleChange: function(event) {
@@ -19,6 +19,7 @@ var StepIndexItem = React.createClass({
 
     stateForStep["pictures"] = stateForStep.picture_urls;
     delete stateForStep["picture_urls"];
+    delete stateForStep["error"];
 
     console.log(stateForStep);
     return stateForStep;
@@ -38,15 +39,18 @@ var StepIndexItem = React.createClass({
 
   showPictures: function(error, result){
     if(error !== null){
-      this.setState({pictures: error });
+      this.setState({error: error });
       return;
     }
 
+    console.log(result);
+
     var pictureCnt = this.state.pictures.length;
     var modPictures = this.state.pictures.slice(0);
-    var modURLs = [];
+    var modURLs = this.state.picture_urls.slice(0);
 
     result.forEach(function(picture){
+      console.log(picture.url);
       modURLs.push(picture.url);
       modPictures.push(
         <CloudinaryImage
@@ -80,6 +84,7 @@ var StepIndexItem = React.createClass({
             value={this.state.body} />
         </label>
         {this.state.pictures}
+        {this.state.error}
         <button onClick={this.addPicture}>Add Picture</button>
       </div>
     );

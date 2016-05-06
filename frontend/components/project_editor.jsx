@@ -119,6 +119,7 @@ var ProjectEditor = React.createClass({
     e.preventDefault();
 
     var steps = this.refs.stepIndex.parseSteps();
+    console.log(steps);
     var keys = Object.keys(steps);
 
     var project = ProjectStore.findProjectByAuthorAndTitle(
