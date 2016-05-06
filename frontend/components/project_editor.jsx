@@ -27,8 +27,6 @@ var ProjectEditor = React.createClass({
   updateProject: function(e) {
     e.preventDefault();
 
-    console.log(this.props.params.projectId);
-
     ProjectUtil.updateProject(this.props.params.projectId,{
       title: this.state.projectTitle,
       author_id: this.state.currentUser.id
@@ -46,25 +44,22 @@ var ProjectEditor = React.createClass({
   updateSteps: function(){
     var steps = this.refs.stepIndex.parseSteps();
     var keys = Object.keys(steps);
-
+    var self = this;
     var project = this.state.project;
 
     keys.forEach(function(key){
       var step = steps[key];
-      step["project_id"] = project.id;
+      console.log(step);
       StepUtil.updateStep(project.id, step.id, step);
     });
   },
 
   getSteps: function(){
-    console.log(this.state.project);
     var stepCnt = this.state.project.steps.length;
     var self = this;
     var oldSteps = [];
 
     this.state.project.steps.forEach(function(step){
-      console.log(step);
-
       var pictureUrls = [];
       var pictures = [];
 
@@ -80,6 +75,7 @@ var ProjectEditor = React.createClass({
 
       oldSteps.push(
         <StepIndexItem
+          stepId={step.id}
           title={step.title}
           body={step.body}
           projectId={self.props.projectId}

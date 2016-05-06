@@ -13,7 +13,7 @@
 
 
 class Api::StepsController < ApplicationController
-  before_action :set_api_step, only: [:show, :edit, :update, :destroy]
+  before_action :set_api_step, only: [:show, :edit, :destroy]
 
   # GET /api/steps.json
   def index
@@ -59,7 +59,30 @@ class Api::StepsController < ApplicationController
 
   # PATCH/PUT /api/steps/1.json
   def update
-    if @api_step.update(api_step_params)
+    @api_step = Api::Step.find(params[:id])
+
+    if @api_step.update_attributes(
+        order: params[:api_step][:order],
+        title: params[:api_step][:title],
+        body: params[:api_step][:body],
+        project_id: params[:project_id]
+      )
+
+      if @api_step.pictures
+        @api_step.pictures.each do |picture|
+          puts picture
+          picture.destroy
+        end
+      end
+
+      params[:api_step][:pictures].each do |picture|
+        Api::Picture.create!(
+          imageable_type: "Api::Step",
+          imageable_id: @api_step.id,
+          picture_url: picture
+        )
+      end
+
       render "api/steps/show"
     else
       @errors = @api_step.errors.full_messages

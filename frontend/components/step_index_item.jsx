@@ -27,6 +27,10 @@ var StepIndexItem = React.createClass({
     delete stateForStep["picture_urls"];
     delete stateForStep["error"];
 
+    if(typeof this.props.stepId !== 'undefined'){
+      console.log(this.props.stepId);
+      stateForStep["id"] = this.props.stepId;
+    }
     return stateForStep;
   },
 
