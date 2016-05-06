@@ -26,14 +26,16 @@ var ProjectEditor = React.createClass({
   updateProject: function(e) {
     e.preventDefault();
 
-    ProjectUtil.updateProject({
+    console.log(this.props.params.projectId);
+
+    ProjectUtil.updateProject(this.props.params.projectId,{
       title: this.state.projectTitle,
       author_id: this.state.currentUser.id
-    }, this.props.params.projectId);
+    });
 
     // this.updateSteps();
 
-    this.context.router.push("/projects/" + this.state.project.id);
+    this.context.router.push("/projects/" + this.props.params.projectId);
   },
 
   projectTitleChange: function(event) {
