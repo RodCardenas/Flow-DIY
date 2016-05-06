@@ -25,3 +25,15 @@
 .picture-caption{
   text-align: left;
 }
+
+.project-detail button {
+  margin-bottom: 10px;
+  background-color: #333333;
+  border: 1px solid white;
+  border-radius: 27px;
+  color: white;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 200ms;
+  padding: 2px 6px;
+}

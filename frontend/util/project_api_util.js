@@ -44,7 +44,7 @@ module.exports =  {
   deleteProject: function(id){
     $.ajax({
       method: 'DELETE',
-      url: 'api/project/' + id,
+      url: 'api/projects/' + id,
       success: function(project){
         ProjectActions.deletedProject(project);
       },
