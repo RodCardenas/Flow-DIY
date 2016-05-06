@@ -74,8 +74,7 @@ var ProjectDetail = React.createClass({
     var steps = this.accessSteps(project.steps);
 
     if(Object.keys(project).length !== 0){
-      console.log(this.state.currentUser.id);
-      console.log(project.author.id);
+      if(typeof this.state.currentUser !== 'undefined')
       if(this.state.currentUser.id === project.author.id){
         var projectOptions = (
           <div id="project-options">
