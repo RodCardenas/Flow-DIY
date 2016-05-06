@@ -127,7 +127,10 @@ var ProjectCreator = React.createClass({
                 </label>
 
                 <div className="step-index-container">
-                  Steps
+                  <hr/>
+                  <h2>
+                    Steps
+                  </h2>
                   <StepIndex
                     steps={[]}
                     projectId={this.state.project.id}

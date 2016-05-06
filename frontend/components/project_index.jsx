@@ -50,7 +50,7 @@ var ProjectIndex = React.createClass({
         );
       });
     } else {
-      projects = <div className="no-projects"> Sorry, no projects matched your search... </div>;
+      projects = <div className="try-searching-projects"> Try searching for something! </div>;
     }
 
     return (

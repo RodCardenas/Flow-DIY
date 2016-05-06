@@ -28,6 +28,13 @@
   transform: translateY(-20%) translateX(-10%);
 }
 
+.carousel-overlay #site-description{
+  font-size: 24px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-20%) translateX(-10%);
+}
+
 .carousel .image{
   width: 100%;
   display: none;

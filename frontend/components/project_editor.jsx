@@ -113,7 +113,7 @@ var ProjectEditor = React.createClass({
           <div className="project-editor">
             <form id="project-form">
                 <label>
-                  <div className="label-text">Project</div>
+                  <div className="label-text"><h1>Project</h1></div>
                   <input
                     type="text"
                     id="project-title"
@@ -122,7 +122,10 @@ var ProjectEditor = React.createClass({
                 </label>
 
                 <div className="step-index-container">
-                  Steps
+                  <hr/>
+                  <h2>
+                    Steps
+                  </h2>
                   <StepIndex
                     steps={this.getSteps()}
                     projectId={this.state.project.id}

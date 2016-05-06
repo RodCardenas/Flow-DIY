@@ -28,7 +28,6 @@ var StepIndexItem = React.createClass({
     delete stateForStep["error"];
 
     if(typeof this.props.stepId !== 'undefined'){
-      console.log(this.props.stepId);
       stateForStep["id"] = this.props.stepId;
     }
     return stateForStep;
@@ -72,7 +71,9 @@ var StepIndexItem = React.createClass({
   render: function(){
     return (
       <div className="step-index-item">
-        Step {this.state.order}
+        <h3>
+          <strong>Step {this.state.order}</strong>
+        </h3>
         <label>
           <div className="label-text">Title</div>
           <input
@@ -89,10 +90,13 @@ var StepIndexItem = React.createClass({
             onChange={this.bodyChange}
             value={this.state.body} />
         </label>
-        {this.state.pictures}
+        <div className="step-item-pictures">
+          {this.state.pictures}
+        </div>
         {this.state.error}
         <br/ >
         <button onClick={this.addPicture}>Add Picture</button>
+        <hr/>
       </div>
     );
   }

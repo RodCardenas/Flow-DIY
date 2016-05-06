@@ -65,6 +65,7 @@ var UserLoginForm = React.createClass({
         password: "flow-diy",
       });
       self.context.router.push("/");
+      window.location.reaload();
     }, time);
 
   },
