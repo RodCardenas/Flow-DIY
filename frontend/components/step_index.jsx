@@ -3,7 +3,7 @@ var StepIndexItem = require('./step_index_item');
 
 var SteptIndex = React.createClass({
   getInitialState: function(){
-    return ({ steps:[] });
+    return ({ steps:this.props.steps });
   },
 
   parseSteps: function(){
@@ -27,6 +27,8 @@ var SteptIndex = React.createClass({
     var modSteps = this.steps.slice(0);
     modSteps.push(
       <StepIndexItem
+        title=""
+        body=""
         projectId={this.props.projectId}
         key={stepCnt + 1}
         order={stepCnt + 1} />
@@ -36,6 +38,7 @@ var SteptIndex = React.createClass({
   },
 
   render: function(){
+    console.log(this.state.steps);
     this.steps = this.state.steps.map(function(step, idx){
       var theRef = "step" + (idx + 1);
       return React.cloneElement(step, {ref:theRef});

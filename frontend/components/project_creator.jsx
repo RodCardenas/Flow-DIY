@@ -128,7 +128,10 @@ var ProjectCreator = React.createClass({
 
                 <div className="step-index-container">
                   Steps
-                  <StepIndex projectId={this.state.project.id} ref="stepIndex"/>
+                  <StepIndex
+                    steps={[]}
+                    projectId={this.state.project.id}
+                    ref="stepIndex"/>
                 </div>
 
                 <button onClick={this.updateProject}>Update & View Project</button>

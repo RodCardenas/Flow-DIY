@@ -5,6 +5,7 @@ var CloudinaryImage = require('./cloudinary_image');
 var ProjectUtil = require('../util/project_api_util');
 var StepUtil = require('../util/step_api_util');
 var StepIndex = require('./step_index');
+var StepIndexItem = require('./step_index_item');
 var CurrentUserStateMixin = require('../mixins/current_user_state');
 var ProjectStore = require('../stores/project_store');
 
@@ -33,7 +34,7 @@ var ProjectEditor = React.createClass({
       author_id: this.state.currentUser.id
     });
 
-    // this.updateSteps();
+    this.updateSteps();
 
     this.context.router.push("/projects/" + this.props.params.projectId);
   },
@@ -42,9 +43,7 @@ var ProjectEditor = React.createClass({
     this.setState({projectTitle: event.target.value});
   },
 
-  updateSteps: function(e){
-    e.preventDefault();
-
+  updateSteps: function(){
     var steps = this.refs.stepIndex.parseSteps();
     var keys = Object.keys(steps);
 
@@ -53,11 +52,29 @@ var ProjectEditor = React.createClass({
     keys.forEach(function(key){
       var step = steps[key];
       step["project_id"] = project.id;
-      StepUtil.updateStep(project.id, step);
+      StepUtil.updateStep(project.id, step.id, step);
+    });
+  },
+
+  getSteps: function(){
+    console.log(this.state.project);
+    var stepCnt = this.state.project.steps.length;
+    var self = this;
+    var oldSteps = [];
+
+    this.state.project.steps.forEach(function(step){
+      console.log(step);
+      oldSteps.push(
+        <StepIndexItem
+          title={step.title}
+          body={step.body}
+          projectId={self.props.projectId}
+          key={step.id}
+          order={step.order} />
+      );
     });
 
-    this.context.router.push("/projects/" + this.state.project.id);
-    window.location.reload();
+    return oldSteps;
   },
 
   getErrors: function() {
@@ -93,7 +110,10 @@ var ProjectEditor = React.createClass({
 
                 <div className="step-index-container">
                   Steps
-                  <StepIndex projectId={this.state.project.id} ref="stepIndex"/>
+                  <StepIndex
+                    steps={this.getSteps()}
+                    projectId={this.state.project.id}
+                    ref="stepIndex"/>
                 </div>
 
                 <button onClick={this.updateProject}>Update Project</button>

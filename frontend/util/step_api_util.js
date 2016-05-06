@@ -41,6 +41,20 @@ module.exports =  {
     });
   },
 
+  updateStep: function(projectId, stepId, details){
+    $.ajax({
+      method: 'PATCH',
+      url: '/api/projects/' + projectId + "/steps/" + stepId,
+      data: {api_step: details},
+      success: function(step){
+        StepActions.createdStep(step);
+      },
+      error: function(error){
+        StepActions.handleError(error);
+      }
+    });
+  },
+
   deleteStep: function(projectId, stepId){
     $.ajax({
       method: 'DELETE',

@@ -3,7 +3,13 @@ var CloudinaryImage = require('./cloudinary_image');
 
 var StepIndexItem = React.createClass({
   getInitialState: function(){
-    return ({title: "", body: "", order: this.props.order, pictures:[], picture_urls: [], error:""});
+    return ({
+      title: this.props.title,
+      body: this.props.body,
+      order: this.props.order,
+      pictures:[],
+      picture_urls: [],
+      error:""});
   },
 
   titleChange: function(event) {
