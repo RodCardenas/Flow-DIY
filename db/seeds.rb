@@ -23,7 +23,7 @@ Api::User.create!(email:"rod@flow-diy.com", password:"1");
 Api::Picture.create!(
   imageable_id: userCnt,
   imageable_type: "Api::User",
-  picture_url:"http://res.cloudinary.com/flow-diy/image/upload/v1462471248/Rodrigo_Cardenas_mlwhol.jpg"
+  picture_url:"http://res.cloudinary.com/flow-diy/image/upload/v1462551422/profile.jpg"
 )
 
 userCnt += 1
