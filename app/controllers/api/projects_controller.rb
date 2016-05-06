@@ -39,6 +39,7 @@ class Api::ProjectsController < ApplicationController
     @api_project = Api::Project.new(api_project_params)
 
     if @api_project.save
+      @api_project.get_default_project_picture
       render "api/projects/show"
     else
       @errors = @api_project.errors.full_messages

@@ -26,7 +26,7 @@ var Search = React.createClass({
   },
 
   onSearchComplete: function(){
-    // this.setState({projects: SearchStore.all()});
+    this.setState({projects: SearchStore.all()});
   },
 
   selectResult: function(project){
@@ -59,11 +59,17 @@ var Search = React.createClass({
       projects = null;
     }
 
+    console.log(window.location.href );
+
+    if(!window.location.href.includes("/project/") && !window.location.href.includes("/user/")){
+      projects = null;
+    }
+
     return (
       <div className="search">
         <label>Search
           <input type="text" value={this.state.search} onChange={this.onChange} />
-          
+          {projects}
         </label>
       </div>
     );

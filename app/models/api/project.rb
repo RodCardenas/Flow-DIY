@@ -19,4 +19,12 @@ class Api::Project < ActiveRecord::Base
 
   has_many :steps
   has_many :pictures, :as => :imageable
+
+  def get_default_project_picture
+    Api::Picture.create!(
+      imageable_id: self.id,
+      imageable_type: self.class,
+      picture_url: "http://res.cloudinary.com/flow-diy/image/upload/v1462553037/Empty_book_huxeup.jpg"
+    )
+  end
 end
