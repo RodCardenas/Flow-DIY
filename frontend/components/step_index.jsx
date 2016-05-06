@@ -43,7 +43,6 @@ var SteptIndex = React.createClass({
 
     return (
       <ul className="step-index">
-        {this.props.projectId}
         {this.steps}
         <button onClick={this.addStep}>Add Step</button>
       </ul>

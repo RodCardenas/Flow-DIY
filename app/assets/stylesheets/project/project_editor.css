@@ -1,4 +1,4 @@
-.project-editor-container{
+.project-creator-container{
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -10,7 +10,7 @@
   min-height: 925px;
 }
 
-.project-editor{
+.project-creator{
   display: inline-block;
 }
 
@@ -18,17 +18,17 @@
   color: red;
 }
 
-.project-editor .label-text{
+.project-creator .label-text{
   text-transform: uppercase;;
   margin-top: 10px;
 }
 
-.project-editor label{
+.project-creator label{
   text-transform: uppercase;;
   margin-top: 10px;
 }
 
-.project-editor input[type=text]{
+.project-creator input[type=text]{
   margin-top: 10px;
   letter-spacing: 1px;
   font-size: 16px;
@@ -40,7 +40,7 @@
   padding: 3px 12px;
 }
 
-.project-editor input[type=textarea]{
+.project-creator input[type=textarea]{
   margin-top: 10px;
   letter-spacing: 1px;
   font-size: 16px;
@@ -52,7 +52,7 @@
   padding: 3px 12px;
 }
 
-.project-editor button {
+.project-creator button {
   margin-top: 10px;
   background-color: #333333;
   border: 1px solid white;

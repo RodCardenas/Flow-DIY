@@ -11,6 +11,7 @@
 
 class Api::Project < ActiveRecord::Base
   validates :title, :author_id, presence: true
+  validates :title, uniqueness: true
 
   belongs_to :author,
     foreign_key: :author_id,
@@ -24,7 +25,7 @@ class Api::Project < ActiveRecord::Base
     Api::Picture.create!(
       imageable_id: self.id,
       imageable_type: self.class,
-      picture_url: "http://res.cloudinary.com/flow-diy/image/upload/v1462553037/Empty_book_huxeup.jpg"
+      picture_url: "http://res.cloudinary.com/flow-diy/image/upload/v1462559985/empty-book.jpg"
     )
   end
 end

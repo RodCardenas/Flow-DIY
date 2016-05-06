@@ -9,7 +9,7 @@ var hashHistory = ReactRouter.hashHistory;
 var NavBar = require('./components/nav_bar');
 var Footer = require('./components/footer');
 var ProjectDetail = require('./components/project_detail');
-var ProjectEditor = require('./components/project_editor');
+var ProjectCreator = require('./components/project_creator');
 var UserDetail = require('./components/user_detail');
 var ProjectIndex = require('./components/project_index');
 var Landing = require('./components/landing');
@@ -41,7 +41,7 @@ var routes = (
     <Route path="/user/:userEmail" component={UserDetail} />
     <Route path="/myFlow/:userEmail" component={ProjectIndex} />
     <Route path="/explore/" component={ProjectIndex} />
-    <Route path="/project/new/" component={ProjectEditor} />
+    <Route path="/project/new/" component={ProjectCreator} />
   </Route>
 );
 

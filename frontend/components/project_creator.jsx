@@ -8,7 +8,6 @@ var StepUtil = require('../util/step_api_util');
 var StepIndex = require('./step_index');
 var CurrentUserStateMixin = require('../mixins/current_user_state');
 var ProjectStore = require('../stores/project_store');
-var StepStore = require('../stores/step_store');
 
 /*eslint prefer-const: "error"*/
 /*eslint-env es6*/
@@ -36,7 +35,7 @@ const customStyles = {
   },
 };
 
-var ProjectEditor = React.createClass({
+var ProjectCreator = React.createClass({
   contextTypes: {
     router: React.PropTypes.object.isRequired
   },
@@ -44,13 +43,12 @@ var ProjectEditor = React.createClass({
   mixins: [CurrentUserStateMixin],
 
   getInitialState: function(){
-    return ({projectTitle: "", projectName: "", project: null, modalIsOpen: false, steps:[]});
+    return ({projectTitle: "", projectName: "", project: null, steps:[], errors:ProjectStore.getErrors() });
   },
 
   componentDidMount: function(){
     ProjectUtil.fetchProjects();
     this.projectStoreListener = ProjectStore.addListener(this.findProject);
-    this.stepStoreListener = ProjectStore.addListener(this.findSteps);
   },
 
   componentWillUnmount: function(){
@@ -64,15 +62,8 @@ var ProjectEditor = React.createClass({
          project: ProjectStore.findProjectByAuthorAndTitle(
            this.state.currentUser.id,
            this.state.projectName
-         )
-      });
-    }
-  },
-
-  findSteps: function(){
-    if(this.state.project !== null){
-      this.setState({
-        steps: StepStore.findStepsByProjectId(this.state.project.id)
+         ),
+         errors: ProjectStore.getErrors()
       });
     }
   },
@@ -106,23 +97,14 @@ var ProjectEditor = React.createClass({
     keys.forEach(function(key){
       var step = steps[key];
       step["project_id"] = project.id;
-      console.log(step);
       StepUtil.createStep(project.id, step);
     });
 
-    this.context.router.push("/projects/" + this.state.project.id);
+    this.goToProject();
   },
 
   goToProject: function(){
     this.context.router.push("/projects/" + this.state.project.id);
-  },
-
-  createPicture: function(details){
-    $.ajax({
-      method: 'POST',
-      url: '/api/pictures/',
-      data: {picture: details}
-    });
   },
 
   projectNameChange: function(event) {
@@ -130,10 +112,10 @@ var ProjectEditor = React.createClass({
   },
 
   getErrors: function() {
-    if (this.state.authErrors){
+    if (Object.keys(this.state.errors).length !== 0){
       return(
         <div id="errors">
-          {this.state.authErrors}
+          {this.state.errors}
         </div>
       );
     } else {
@@ -145,9 +127,9 @@ var ProjectEditor = React.createClass({
   },
 
   render: function(){
-    if (this.state.projectName === ""){
+    if (this.state.projectName === "" || this.state.errors.length !== 0){
         var content = (
-          <div className="project-editor">
+          <div className="project-creator">
             <label>
               <div className="label-text">My project is called:</div>
               <input
@@ -164,7 +146,7 @@ var ProjectEditor = React.createClass({
         );
     } else {
         content = (
-          <div className="project-editor">
+          <div className="project-creator">
             <form id="project-form">
                 <label>
                   <div className="label-text">Project</div>
@@ -191,7 +173,7 @@ var ProjectEditor = React.createClass({
     }
 
     return (
-      <div className="project-editor-container">
+      <div className="project-creator-container">
         {this.getErrors()}
         {content}
       </div>
@@ -199,4 +181,4 @@ var ProjectEditor = React.createClass({
   }
 });
 
-module.exports = ProjectEditor;
+module.exports = ProjectCreator;

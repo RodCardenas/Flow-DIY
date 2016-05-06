@@ -32,7 +32,7 @@ module.exports = {
 
   handleError: function(error) {
     AppDispatcher.dispatch({
-      actionType: ProjectConstants.ERROR,
+      actionType: ProjectConstants.PROJ_ERROR,
       errors: error.responseJSON.errors
     });
   }

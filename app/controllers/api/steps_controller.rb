@@ -53,7 +53,7 @@ class Api::StepsController < ApplicationController
       render "api/steps/show"
     else
       @errors = @api_step.errors.full_messages
-      render "api/shared/error", status: 401
+      render "api/shared/error", status: :unprocessable_entity
     end
   end
 
@@ -63,7 +63,7 @@ class Api::StepsController < ApplicationController
       render "api/steps/show"
     else
       @errors = @api_step.errors.full_messages
-      render "api/shared/error", status: 401
+      render "api/shared/error", status: :unprocessable_entity
     end
   end
 

@@ -27,7 +27,7 @@ class Api::PicturesController < ApplicationController
       format.json { render :show, status: :created, location: @api_picture }
     else
       @errors = @api_picture.errors.full_messages
-      render "api/shared/error", status: 401
+      render "api/shared/error", status: :unprocessable_entity
     end
   end
 
@@ -37,7 +37,7 @@ class Api::PicturesController < ApplicationController
       format.json { render :show, status: :ok, location: @api_picture }
     else
       @errors = @api_picture.errors.full_messages
-      render "api/shared/error", status: 401
+      render "api/shared/error", status: :unprocessable_entity
     end
   end
 

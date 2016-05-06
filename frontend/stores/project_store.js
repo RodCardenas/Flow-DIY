@@ -3,7 +3,7 @@ var AppDispatcher = require('../dispatcher/dispatcher');
 var ProjectConstants = require('../constants/project_constants');
 
 var _projects = {};
-var _errors = {};
+var _errors = [];
 var ProjectStore = new Store(AppDispatcher);
 
 ProjectStore.all = function (userEmail) {
@@ -39,6 +39,10 @@ ProjectStore.findProjectByAuthorAndTitle = function(authorId, title){
   });
 
   return theProjectBeingLookedFor;
+};
+
+ProjectStore.getErrors = function(){
+  return  _errors.slice(0);
 };
 
 var resetProjects = function(projects){
@@ -80,7 +84,7 @@ ProjectStore.__onDispatch = function (payload) {
       ProjectStore.__emitChange();
       break;
 
-    case ProjectConstants.ERROR:
+    case ProjectConstants.PROJ_ERROR:
       resetErrors(payload.errors);
       ProjectStore.__emitChange();
       break;

@@ -21,7 +21,6 @@ var StepIndexItem = React.createClass({
     delete stateForStep["picture_urls"];
     delete stateForStep["error"];
 
-    console.log(stateForStep);
     return stateForStep;
   },
 
@@ -43,14 +42,11 @@ var StepIndexItem = React.createClass({
       return;
     }
 
-    console.log(result);
-
     var pictureCnt = this.state.pictures.length;
     var modPictures = this.state.pictures.slice(0);
     var modURLs = this.state.picture_urls.slice(0);
 
     result.forEach(function(picture){
-      console.log(picture.url);
       modURLs.push(picture.url);
       modPictures.push(
         <CloudinaryImage

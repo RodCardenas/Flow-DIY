@@ -53,7 +53,7 @@ class Api::ProjectsController < ApplicationController
       render "api/projects/show"
     else
       @errors = @api_project.errors.full_messages
-      render "api/shared/error", status: 401
+      render "api/shared/error", status: :unprocessable_entity
     end
   end
 
@@ -63,7 +63,7 @@ class Api::ProjectsController < ApplicationController
       render "api/projects/show"
     else
       @errors = @api_project.errors.full_messages
-      render "api/shared/error", status: 401
+      render "api/shared/error", status: :unprocessable_entity
     end
   end
 
