@@ -1,4 +1,4 @@
-.ReactModalPortal {
+.ReactModalPortal:active {
   margin: 5px;
   padding: 10px;
   letter-spacing: 3px;

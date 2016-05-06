@@ -7,6 +7,7 @@ var IndexRoute = ReactRouter.IndexRoute;
 var hashHistory = ReactRouter.hashHistory;
 
 var NavBar = require('./components/nav_bar');
+var Footer = require('./components/footer');
 var ProjectDetail = require('./components/project_detail');
 var ProjectEditor = require('./components/project_editor');
 var UserDetail = require('./components/user_detail');
@@ -27,6 +28,7 @@ var App = React.createClass({
         <div id="all">
           <NavBar />
           {this.props.children}
+          <Footer />
         </div>
     );
   }

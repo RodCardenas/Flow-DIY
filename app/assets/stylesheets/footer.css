@@ -1,0 +1,28 @@
+.footer{
+  background-color: #666666;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-around;
+  height: 50px;
+  width: 100%;
+  font-size: 12px;
+  letter-spacing: 1px;
+  min-width: 1053px;
+  margin-top: auto;
+}
+
+.footer ul{
+  display: inline-table;
+}
+
+.footer .footer-section-title{
+  font-size: 16px;
+}
+
+.footer .footer-section-title a{
+  margin-left: 10px;
+  font-size: 12px;
+}

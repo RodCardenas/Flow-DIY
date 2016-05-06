@@ -200,6 +200,10 @@ var ProjectEditor = React.createClass({
         );
     }
 
+    if (typeof this.state.currentUser === 'undefined'){
+      content = <div className="no-user">Please login/signup to use this feature :)</div>;
+    }
+
     return (
       <div className="project-editor-container">
         {this.getErrors()}
