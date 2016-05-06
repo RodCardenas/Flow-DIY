@@ -45,7 +45,7 @@ Flow-DIY will provide site visitors an interface to manage projects online and g
  - [x] Implement Authentication
  - [x] User signup form
  - [x] User signing form
- - [ ] Implement modal form (bonus)
+ - [x] Implement modal form (bonus)
 
 
 ####2: Projects Models, API, and APIUtil (2.0 days)
@@ -56,13 +56,13 @@ Flow-DIY will provide site visitors an interface to manage projects online and g
  - [x] Setup Project Store
  - [x] Setup Dispatcher
  - [x] Setup Action Creators
- - [ ] Project Actions
- - [ ] Implement API Util (pending destroy and update)
+ - [x] Project Actions
+ - [x] Implement API Util (pending destroy and update)
  - [x] Implement Project model
  - [x] Create Project controller and implement the Project's CRUD
  - [x] Generate jSON responses with jBuilder (pending pictures for steps in show)
  - [x] Seed data samples
- - [ ] Test Projects CRUD through API
+ - [x] Test Projects CRUD through API
 
 ####3: Steps Models, API, and APIUtil (2.0 days)
 **Objective:** Steps can be created, read, edited, and destroyed through the API.
@@ -75,20 +75,20 @@ Flow-DIY will provide site visitors an interface to manage projects online and g
  - [x] Generate jSON responses with jBuilder
  - [x] Modify Project's implementation to include steps
  - [x] Seed data samples
- - [ ] Test Step and Projects CRUD through API
+ - [x] Test Step and Projects CRUD through API
 
 ####4: Flux Architecture and Router (2.0 days)
 **Objective:** Projects and Steps can be created, read, edited, and destroyed through the user interface. URL will respond to actions on the user interface.
 
  - [x] Setup the React Router
- - [ ] Modify implementation to have pages and URLs corresponding to page interactions
+ - [x] Modify implementation to have pages and URLs corresponding to page interactions
 
 
 ####5: Page Layouts (1.0 days)
 **Objective:** Color scheme, locations, and shapes will be finalized.
 
- - [ ] Website's style guide will be defined and implemented
- - [ ] Color scheme
+ - [x] Website's style guide will be defined and implemented
+ - [x] Color scheme
  - [ ] Elements' shapes and dimensions
  - [x] Website's logo
  - [ ] Element's positioning will be finalized
@@ -97,8 +97,8 @@ Flow-DIY will provide site visitors an interface to manage projects online and g
 **Objective:** Finalize styling and define standard seed data.
 
  - [ ] Complete transitions and animations
- - [ ] Populate database with immersive data
- - [ ] Do test to verify site's fluidity
+ - [x] Populate database with immersive data
+ - [x] Do test to verify site's fluidity
 
 ### Bonus
 

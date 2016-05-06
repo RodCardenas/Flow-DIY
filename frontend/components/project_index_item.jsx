@@ -22,7 +22,11 @@ var ProjectIndexItem = React.createClass({
 
     if (typeof picture !== 'undefined'){
       var image =
-        <div className="project-image" onClick={this.goToProject} id={project.id} href={project.url}>
+        <div
+          className="project-image"
+          onClick={this.goToProject}
+          id={project.id}
+          href={project.url}>
           <CloudinaryImage
             imageUrl={picture.picture_url}
             format={{height: 270, width: 324, crop: "fit"}} >

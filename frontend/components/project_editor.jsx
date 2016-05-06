@@ -35,6 +35,7 @@ var ProjectEditor = React.createClass({
     this.updateSteps();
 
     this.context.router.push("/projects/" + this.props.params.projectId);
+    window.location.reload();
   },
 
   projectTitleChange: function(event) {
