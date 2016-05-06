@@ -73,13 +73,17 @@ var ProjectDetail = React.createClass({
     var pictures = this.accessPicture(project.pictures);
     var steps = this.accessSteps(project.steps);
 
-    if(this.state.currentUser){
-      var projectOptions = (
-        <div id="project-options">
-          <button onClick={this.deleteProject}>Delete Project</button>
-          <button onClick={this.updateProject}>Update Project</button>
-        </div>
-      );
+    if(Object.keys(project).length !== 0){
+      console.log(this.state.currentUser.id);
+      console.log(project.author.id);
+      if(this.state.currentUser.id === project.author.id){
+        var projectOptions = (
+          <div id="project-options">
+            <button onClick={this.deleteProject}>Delete Project</button>
+            <button onClick={this.updateProject}>Update Project</button>
+          </div>
+        );
+      }
     }
 
     return (
