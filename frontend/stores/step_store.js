@@ -32,12 +32,28 @@ StepStore.findStepByProjectAndTitle = function(projectId, title){
   keys.forEach(function(key){
     var step = _steps[key];
 
-    if(step.author_id === projectId && step.title === title){
+    if(step.project_id === projectId && step.title === title){
       theStepBeingLookedFor =  step;
     }
   });
 
   return theStepBeingLookedFor;
+};
+
+StepStore.findStepsByProjectId = function(projectId){
+  var keys = Object.keys(_steps);
+  var theStepBeingLookedFor = null;
+  var steps = [];
+
+  keys.forEach(function(key){
+    var step = _steps[key];
+
+    if(step.project_id === projectId){
+      steps.push(step);
+    }
+  });
+
+  return steps;
 };
 
 var resetSteps = function(steps){

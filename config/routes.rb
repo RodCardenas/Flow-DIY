@@ -8,5 +8,7 @@ Rails.application.routes.draw do
       get "search", on: :collection
       resources :steps
     end
+
+    resources :pictures
   end
 end

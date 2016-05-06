@@ -44,7 +44,7 @@ var ProjectEditor = React.createClass({
   mixins: [CurrentUserStateMixin],
 
   getInitialState: function(){
-    return ({projectTitle: "", projectName: "", project: null, modalIsOpen: false});
+    return ({projectTitle: "", projectName: "", project: null, modalIsOpen: false, steps:[]});
   },
 
   openModal: function() {
@@ -80,8 +80,8 @@ var ProjectEditor = React.createClass({
 
   componentDidMount: function(){
     ProjectUtil.fetchProjects();
-    this.projectStoreListener = ProjectStore.addListener(this.onChange);
-    this.stepStoreListener = ProjectStore.addListener(this.onChange);
+    this.projectStoreListener = ProjectStore.addListener(this.findProject);
+    this.stepStoreListener = ProjectStore.addListener(this.findSteps);
   },
 
   componentWillUnmount: function(){
@@ -89,13 +89,21 @@ var ProjectEditor = React.createClass({
     this.stepStoreListener.remove();
   },
 
-  onChange: function(){
+  findProject: function(){
     if(this.state.currentUser !== 'undefined'){
       this.setState({
          project: ProjectStore.findProjectByAuthorAndTitle(
            this.state.currentUser.id,
            this.state.projectName
          )
+      });
+    }
+  },
+
+  findSteps: function(){
+    if(this.state.projects !== null){
+      this.setState({
+        steps: StepStore.findStepsByProjectId(this.state.project.id)
       });
     }
   },
@@ -133,9 +141,32 @@ var ProjectEditor = React.createClass({
       StepUtil.createStep(project.id, step);
     });
 
-    StepUtil.fetchSteps(project.id);
+    var createdSteps = this.state.steps;
+    console.log(createdSteps);
+
+    //steps need to be created when the add button is pressed so that step id is present when pictures are being created
+
+    createdSteps.forEach(function(key){
+      var step = steps[key];
+
+      step.pictures.forEach(function(pictureUrl){
+        this.createPicture({
+          imageable_type: "Api::Step",
+          imageable_id: step.id,
+          picture_url: pictureUrl
+        });
+      });
+    });
 
     this.context.router.push("/projects/" + this.state.project.id);
+  },
+
+  createPicture: function(details){
+    $.ajax({
+      method: 'POST',
+      url: '/api/pictures/',
+      data: {picture: details}
+    });
   },
 
   projectNameChange: function(event) {
