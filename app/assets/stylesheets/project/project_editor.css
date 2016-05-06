@@ -1,0 +1,87 @@
+.project-editor-container{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #eeeeee;
+  font-size: 14px;
+  text-align: center;
+  min-height: 925px;
+}
+
+.project-editor{
+  display: inline-block;
+}
+
+#errors{
+  color: red;
+}
+
+.project-editor .label-text{
+  text-transform: uppercase;;
+  margin-top: 10px;
+}
+
+.project-editor label{
+  text-transform: uppercase;;
+  margin-top: 10px;
+}
+
+.project-editor input[type=text]{
+  margin-top: 10px;
+  letter-spacing: 1px;
+  font-size: 16px;
+  min-width: 250px;
+  width: 30%;
+  border-radius: 27px;
+  border: 1px solid #666666;
+  text-transform: none;
+  padding: 3px 12px;
+}
+
+.project-editor input[type=textarea]{
+  margin-top: 10px;
+  letter-spacing: 1px;
+  font-size: 16px;
+  min-width: 400px;
+  width: 45%;
+  border-radius: 27px;
+  border: 1px solid #666666;
+  text-transform: none;
+  padding: 3px 12px;
+}
+
+.project-editor button {
+  margin-top: 10px;
+  background-color: #333333;
+  border: 1px solid white;
+  border-radius: 27px;
+  color: white;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 200ms;
+  padding: 2px 6px;
+}
+
+.step-index-container{
+  margin-top: 10px;
+  width: 100%;
+}
+
+.step-index{
+  margin-top: 10px;
+  width: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.step-index-item{
+  margin-top: 10px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: space-around;
+}

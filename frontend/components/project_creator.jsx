@@ -26,7 +26,6 @@ var ProjectCreator = React.createClass({
 
   componentWillUnmount: function(){
     this.projectStoreListener.remove();
-    this.stepStoreListener.remove();
   },
 
   findProject: function(){
@@ -75,10 +74,6 @@ var ProjectCreator = React.createClass({
 
     this.context.router.push("/projects/" + this.state.project.id);
     window.location.reload();
-  },
-
-  goToProject: function(){
-    this.context.router.push("/projects/" + this.state.project.id);
   },
 
   projectNameChange: function(event) {
@@ -136,7 +131,7 @@ var ProjectCreator = React.createClass({
                   <StepIndex projectId={this.state.project.id} ref="stepIndex"/>
                 </div>
 
-                <button onClick={this.updateProject}>Update Project</button>
+                <button onClick={this.updateProject}>Update & View Project</button>
             </form>
           </div>
         );

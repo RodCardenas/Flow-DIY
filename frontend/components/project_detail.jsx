@@ -68,6 +68,10 @@ var ProjectDetail = React.createClass({
     this.context.router.push("/myFlow/" + this.state.currentUser.email);
   },
 
+  updateProject: function(){
+    this.context.router.push("/edit/" + this.state.project.id);
+  },
+
   render: function(){
     var project = this.state.project;
     var pictures = this.accessPicture(project.pictures);

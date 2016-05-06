@@ -41,6 +41,20 @@ module.exports =  {
     });
   },
 
+  updateProject: function(id, details){
+    $.ajax({
+      method: 'PATCH',
+      url: '/api/projects/' + id,
+      data: {project: details},
+      success: function(project){
+        ProjectActions.createdProject(project);
+      },
+      error: function(error){
+        ProjectActions.handleError(error);
+      }
+    });
+  },
+
   deleteProject: function(id){
     $.ajax({
       method: 'DELETE',

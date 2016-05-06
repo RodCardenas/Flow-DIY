@@ -57,6 +57,10 @@ var removeProject = function(project){
   delete _projects[project.id];
 };
 
+var updateProject = function(project){
+  _projects[project.id] = project;
+};
+
 var resetErrors = function(errors){
   _errors = errors;
 };
@@ -81,6 +85,11 @@ ProjectStore.__onDispatch = function (payload) {
 
     case ProjectConstants.PROJECT_DESTROYED:
       removeProject(payload.project);
+      ProjectStore.__emitChange();
+      break;
+
+    case ProjectConstants.PROJECT_UPDATED:
+      updateProject(payload.project);
       ProjectStore.__emitChange();
       break;
 
