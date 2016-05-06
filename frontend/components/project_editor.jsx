@@ -47,37 +47,6 @@ var ProjectEditor = React.createClass({
     return ({projectTitle: "", projectName: "", project: null, modalIsOpen: false, steps:[]});
   },
 
-  openModal: function() {
-    this.setState({modalIsOpen: true});
-  },
-
-  closeModal: function() {
-    this.setState({modalIsOpen: false});
-  },
-
-  showCreateProjectModal: function(){
-    return (
-      <Modal id="project-modal"
-        isOpen={this.state.modalIsOpen}
-        onRequestClose={this.closeModal}
-        style={customStyles}>
-
-        <label>
-          <div className="label-text">My project is called:</div>
-          <input
-            type="text"
-            id="project-name"
-            onChange={this.projectNameChange}
-            value={this.state.projectName} />
-        </label>
-
-        <div className="buttons">
-          <button onClick={this.createProject}>Fill in Details!</button>
-        </div>
-      </Modal>
-    );
-  },
-
   componentDidMount: function(){
     ProjectUtil.fetchProjects();
     this.projectStoreListener = ProjectStore.addListener(this.findProject);
@@ -101,7 +70,7 @@ var ProjectEditor = React.createClass({
   },
 
   findSteps: function(){
-    if(this.state.projects !== null){
+    if(this.state.project !== null){
       this.setState({
         steps: StepStore.findStepsByProjectId(this.state.project.id)
       });
@@ -127,7 +96,6 @@ var ProjectEditor = React.createClass({
     e.preventDefault();
 
     var steps = this.refs.stepIndex.parseSteps();
-    console.log(steps);
     var keys = Object.keys(steps);
 
     var project = ProjectStore.findProjectByAuthorAndTitle(
@@ -138,26 +106,14 @@ var ProjectEditor = React.createClass({
     keys.forEach(function(key){
       var step = steps[key];
       step["project_id"] = project.id;
+      console.log(step);
       StepUtil.createStep(project.id, step);
     });
 
-    var createdSteps = this.state.steps;
-    console.log(createdSteps);
+    this.context.router.push("/projects/" + this.state.project.id);
+  },
 
-    //steps need to be created when the add button is pressed so that step id is present when pictures are being created
-
-    createdSteps.forEach(function(key){
-      var step = steps[key];
-
-      step.pictures.forEach(function(pictureUrl){
-        this.createPicture({
-          imageable_type: "Api::Step",
-          imageable_id: step.id,
-          picture_url: pictureUrl
-        });
-      });
-    });
-
+  goToProject: function(){
     this.context.router.push("/projects/" + this.state.project.id);
   },
 
@@ -192,7 +148,6 @@ var ProjectEditor = React.createClass({
     if (this.state.projectName === ""){
         var content = (
           <div className="project-editor">
-
             <label>
               <div className="label-text">My project is called:</div>
               <input
@@ -222,7 +177,7 @@ var ProjectEditor = React.createClass({
 
                 <div className="step-index-container">
                   Steps
-                  <StepIndex ref="stepIndex"/>
+                  <StepIndex projectId={this.state.project.id} ref="stepIndex"/>
                 </div>
 
                 <button onClick={this.updateProject}>Update Project</button>

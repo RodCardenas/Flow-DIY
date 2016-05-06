@@ -39,7 +39,17 @@ class Api::ProjectsController < ApplicationController
     @api_project = Api::Project.new(api_project_params)
 
     if @api_project.save
-      @api_project.get_default_project_picture
+      if params[:project][:pictures]
+        params[:project][:pictures].each do |picture|
+          Api::Picture.create!(
+            imageable_type: "Api::Project",
+            imageable_id: @api_project.id,
+            picture_url: picture
+          )
+        end
+      else
+        @api_project.get_default_project_picture
+      end
       render "api/projects/show"
     else
       @errors = @api_project.errors.full_messages
@@ -71,7 +81,7 @@ class Api::ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def api_project_params
-      params.require(:project).permit(:title, :author_id)
+      params.require(:project).permit(:title, :author_id, pictures:[])
     end
 
 end

@@ -25,7 +25,13 @@ var SteptIndex = React.createClass({
     e.preventDefault();
     var stepCnt = this.steps.length;
     var modSteps = this.steps.slice(0);
-    modSteps.push( <StepIndexItem key={stepCnt + 1} order={stepCnt + 1} /> );
+    modSteps.push(
+      <StepIndexItem
+        projectId={this.props.projectId}
+        key={stepCnt + 1}
+        order={stepCnt + 1} />
+    );
+
     this.setState({steps: modSteps });
   },
 
@@ -37,6 +43,7 @@ var SteptIndex = React.createClass({
 
     return (
       <ul className="step-index">
+        {this.props.projectId}
         {this.steps}
         <button onClick={this.addStep}>Add Step</button>
       </ul>
