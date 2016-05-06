@@ -78,13 +78,14 @@ var StepIndexItem = React.createClass({
         <label>
           <div className="label-text">Body</div>
           <input
-            type="text"
+            type="textarea"
             id="step-body"
             onChange={this.bodyChange}
             value={this.state.body} />
         </label>
         {this.state.pictures}
         {this.state.error}
+        <br/ >
         <button onClick={this.addPicture}>Add Picture</button>
       </div>
     );

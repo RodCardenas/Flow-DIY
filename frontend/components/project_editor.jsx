@@ -203,14 +203,13 @@ var ProjectEditor = React.createClass({
             </label>
 
             <div className="buttons">
-              <button onClick={this.createProject}>Fill in Details!</button>
+              <button onClick={this.createProject}>Create Project Flow!</button>
             </div>
           </div>
         );
     } else {
         content = (
           <div className="project-editor">
-            Project Editor
             <form id="project-form">
                 <label>
                   <div className="label-text">Project</div>
@@ -221,8 +220,8 @@ var ProjectEditor = React.createClass({
                     value={this.state.projectName} />
                 </label>
 
-                <div>
-                  Project Steps
+                <div className="step-index-container">
+                  Steps
                   <StepIndex ref="stepIndex"/>
                 </div>
 
