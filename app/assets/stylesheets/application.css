@@ -14,15 +14,16 @@
  *= require_self
  */
 
+ #all{
+   width: 100%;
+   min-height: 100%;
+   font-family: 'museo_sans500', sans-serif;
+ }
+
+
 #root{
   min-width: 1053px;
   margin-left: auto;
   margin-right: auto;
-  font-family: 'museo_sans500', sans-serif;
-}
-
-#all{
-  width: 100%;
-  height: 100%;
   font-family: 'museo_sans500', sans-serif;
 }

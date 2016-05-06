@@ -22,6 +22,10 @@ var Footer = React.createClass({
           </ul>
         </ul>
 
+        <div className="footer-top" onClick={this.scrollToTop}>
+          Back to Top
+        </div>
+
         <div className="footer-name" onClick={this.scrollToTop}>
           Flow-DIY
         </div>
