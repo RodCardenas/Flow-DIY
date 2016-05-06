@@ -64,11 +64,27 @@ var ProjectEditor = React.createClass({
 
     this.state.project.steps.forEach(function(step){
       console.log(step);
+
+      var pictureUrls = [];
+      var pictures = [];
+
+      step.pictures.forEach(function(picture){
+        pictureUrls.push(picture.picture_url);
+        pictures.push(
+          <CloudinaryImage
+            key={picture.id}
+            imageUrl={picture.picture_url}
+            format={{height: 100, width: 100, crop: "fit"}} />
+        );
+      });
+
       oldSteps.push(
         <StepIndexItem
           title={step.title}
           body={step.body}
           projectId={self.props.projectId}
+          pictures={pictures}
+          pictureUrls={pictureUrls}
           key={step.id}
           order={step.order} />
       );

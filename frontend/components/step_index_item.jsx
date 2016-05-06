@@ -7,8 +7,8 @@ var StepIndexItem = React.createClass({
       title: this.props.title,
       body: this.props.body,
       order: this.props.order,
-      pictures:[],
-      picture_urls: [],
+      pictures:this.props.pictures,
+      picture_urls: this.props.pictureUrls,
       error:""});
   },
 

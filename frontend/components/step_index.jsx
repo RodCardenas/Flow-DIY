@@ -29,6 +29,8 @@ var SteptIndex = React.createClass({
       <StepIndexItem
         title=""
         body=""
+        pictures={[]}
+        pictureUrls={[]}
         projectId={this.props.projectId}
         key={stepCnt + 1}
         order={stepCnt + 1} />
