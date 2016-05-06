@@ -1,141 +1,111 @@
-#[Flow-DIY](http://flow-diy.herokuapp.com/)
+# Flow-DIY
 
-##Minimum Viable Product
+###[Live Link](http://flow-diy.herokuapp.com/#/?_k=26xez4)
 
-Flow-DIY is a web application influenced by Instructables built on Ruby-on-Rails and React that will focus on hosting electronics projects. The basic functionality of the application includes:
+Flow-DIY is a web application influenced by [Instructables](instructables.com) built on Ruby-on-Rails and React that will focus on hosting do it yourself (diy) projects. Visitors will be able to explore other ideas and/or create their own projects online for others to try out!
 
- - New account creation, login, and a website demo login
- - Projects Interface
-  * Project Creation
-  * Project Editing
-  * Project Navigation/Index
- - Attractive visual design
-
-### Bonus Features
- - Favorite projects
- - User Comments
- - Completed production readme
- - Downloadable project files
-
-##Product Goals
-
-Flow-DIY will provide site visitors an interface to manage projects online and give them the opportunity to share their ideas with others! To achieve this, the website will:
-
- - Provide users the opporunity to **create an account** (MVP)
- - Through **authentication**, users will be able to store their projects and visit the projects of others (MVP)
- - Registered visitors will be able to create, read, edit, and delete projects. The projects will be detailed in steps that may include pictures (MVP)
- - Projects' videos can be stored on the project page
- - Visitors can comment on others' projects
- - Visitors will be able to track their favorite projects
-
-##Design Docs
-- [API](https://github.com/RodCardenas/Flow-DIY/blob/master/docs/API.md)
-- [Components](https://github.com/RodCardenas/Flow-DIY/blob/master/docs/components.md)
-- [Flux Cycles](https://github.com/RodCardenas/Flow-DIY/blob/master/docs/flux_cycles.md)
-- [Schema](https://github.com/RodCardenas/Flow-DIY/blob/master/docs/schema.md)
-- [Wireframes](https://github.com/RodCardenas/Flow-DIY/blob/master/docs/Wireframes/layouts.md)
-
-##Implementation Timeline
-
-####1: Backend setup and User Authentication (1.0 days)
-**Objective:** Rails backend with Authentication is implemented.
-
- - [x] Setup new project and its backend
- - [x] Implement User model/controller
- - [x] Implement Authentication
- - [x] User signup form
- - [x] User signing form
- - [x] Implement modal form (bonus)
+![Landing Page](./docs/screenshots/landing-page.png)
 
 
-####2: Projects Models, API, and APIUtil (2.0 days)
-**Objective:** Projects can be created, read, edited, and destroyed through the API.
+## Application Features
 
- - [x] Create Project Index Component
- - [x] Create Project Index Item Component
- - [x] Setup Project Store
- - [x] Setup Dispatcher
- - [x] Setup Action Creators
- - [x] Project Actions
- - [x] Implement API Util (pending destroy and update)
- - [x] Implement Project model
- - [x] Create Project controller and implement the Project's CRUD
- - [x] Generate jSON responses with jBuilder (pending pictures for steps in show)
- - [x] Seed data samples
- - [x] Test Projects CRUD through API
+#### Dynamic filtering allows users to search through Flow's database instantaneously
+![filtered_search]
 
-####3: Steps Models, API, and APIUtil (2.0 days)
-**Objective:** Steps can be created, read, edited, and destroyed through the API.
+#### Vivid display of all photos, rooms and locations map in multiple selectable views catering to different user preferences
+![slider_view] ![grid_view]
+![maps]
 
- - [x] Create Step Component
- - [x] Modify Action Creators to include Step functionality
- - [x] Expand API Util to include step functionality
- - [x] Implement Step model
- - [x] Create Step controller and implement the Step's CRUD
- - [x] Generate jSON responses with jBuilder
- - [x] Modify Project's implementation to include steps
- - [x] Seed data samples
- - [x] Test Step and Projects CRUD through API
+#### Booking made easy with automatically calculated display of nights booked and total price
+<p align="center">
+  <img src="./screenshots/booking.png"/>
+</p>
 
-####4: Flux Architecture and Router (2.0 days)
-**Objective:** Projects and Steps can be created, read, edited, and destroyed through the user interface. URL will respond to actions on the user interface.
+#### Complete single page application with authentication and instant error handling to provide a smooth user experience
+![auth_feedback]
+<p align="center">
+  <img src="./screenshots/add_form_feedback.png"/>
+</p>
 
- - [x] Setup the React Router
- - [x] Modify implementation to have pages and URLs corresponding to page interactions
+#### Management made easy for all account details
+#####Listings
+Dynamic display and update of all listings from the nav bar
+<p align="center">
+  <img src="./screenshots/listings.png"/>
+</p>
+
+All forms are custom designed to ensure intuitive use when adding, editing and deleting rooms and/or photos
+![add_page]
+![edit_page]
+
+#####Requests easily approved or denied with instant status and page updates
+
+<p align="center">
+    <img width="347" src="./screenshots/pending_request.png">
+    <img width="490" src="./screenshots/approved_request.png"/>
+</p>  
+
+#####Trips organized by status
+![trips]
+
+[add_form_feedback]: ./screenshots/add_form_feedback.png
+[auth_feedback]: ./screenshots/auth_feedback.png
+[search_filter]: ./screenshots/search_filter.png
+[autocomplete_nav]: ./screenshots/autocomplete_nav.png
+[autocomplete_landing]: ./screenshots/autocomplete_landing.png
+[grid_view]: ./screenshots/grid_view.png
+[slider_view]: ./screenshots/slider_view.png
+[trips]: ./screenshots/trips.png
+[requests_pending]: ./screenshots/requests_pending.png
+[listings]: ./screenshots/listings.png
+[filtered_search]: ./screenshots/filtered_search.png
+[maps]: ./screenshots/maps.png
+[edit_page]: ./screenshots/edit_page.png
+[booking]: ./screenshots/booking.png
+[add_page]: ./screenshots/add_page.png
+[pending_request]: ./screenshots/pending_request.png
+[approved_request]: ./screenshots/approved_request.png
+
+## Technical Features
+
+###Stack
+* Ruby on Rails
+* React.js
+* Postgresql
+
+###Models Schema
+* Users
+* Rooms
+* Images
+* Bookings
+
+###APIs
+* Google Maps API
+* Cloudinary API
+* Pusher Websocket API
+
+###Modularized Components
+React components are abstracted and grouped by logical similarity. This enables improved code maintainability and allows easy iterative design and development.
+
+###Data Integrity
+Integrated with React, the flux architecture provides real time reflection of all needed data from the database, allowing dynamic updates and minimal server requests.
+
+## Todos
+* refactor DateTime to single method in app context to improve code maintainability
+* refactor index view for booking to use show partial
+* set up browsing history in localStorage
+* display trips and requests in carousel to improve UI
+
+## Future Features
+* **Google Calendar Integration:** save trips and requests to user calendar
+* **Messaging model:** complete message history between guest and host for improved ease in trips/ request management
+* **Availability model:** multiple date ranges for each listing's available dates, allowing user to list with more flexibility
+* **Favorites model:** save listings for future trips
 
 
-####5: Page Layouts (1.0 days)
-**Objective:** Color scheme, locations, and shapes will be finalized.
 
- - [x] Website's style guide will be defined and implemented
- - [x] Color scheme
- - [ ] Elements' shapes and dimensions
- - [x] Website's logo
- - [ ] Element's positioning will be finalized
-
-####6: Polish Basic functionality (1.0 day)
-**Objective:** Finalize styling and define standard seed data.
-
- - [ ] Complete transitions and animations
- - [x] Populate database with immersive data
- - [x] Do test to verify site's fluidity
-
-### Bonus
-
-####1: Video Player Integration (2.0 days)
-**Objective:** Allow projects to include videos in conjuction with pictures.
-
- - [ ] Modify component implementation to permit videos in the website
- - [x] Alter backend to handle the storing of videos/video links
-
-####2: Comment Interface Implementation (1.5 days)
-**Objective:** Users can create, edit, delete, and update comments on projects.
-
- - [ ] Create Comment Index Component
- - [ ] Create Comment Index Item Component
- - [ ] Modify Action Creators to include Comment functionality
- - [ ] Client Actions
- - [ ] Server Actions
- - [ ] Expand API Util to include Comment functionality
- - [ ] Implement Comment model
- - [ ] Create Comment controller and implement the Comment's CRUD
- - [ ] Generate jSON responses with jBuilder
- - [ ] Modify layouts to include Comments
- - [ ] Seed data samples
- - [ ] Test Comment's CRUD through API
- - [ ] Test Comment's CRUD through user interface
-
-####3: Favorite Projects Implementation (1.5 days)
-**Objective:** Users can mark projects as favorite projects.
-
- - [ ] Modify Action Creators to include Favorite functionality
- - [ ] Client Actions
- - [ ] Server Actions
- - [ ] Expand API Util to include Favorite functionality
- - [ ] Implement Favorite model
- - [ ] Create Favorite controller and implement the Favorite's CRUD
- - [ ] Generate jSON responses with jBuilder
- - [ ] Modify layouts to include Favorite
- - [ ] Seed data samples
- - [ ] Test Favorite's CRUD through API
- - [ ] Test Favorite's CRUD through user interface
+[views]: ./docs/views.md
+[components]: ./docs/components.md
+[stores]: ./docs/stores.md
+[api-endpoints]: ./docs/api-endpoints.md
+[schema]: ./docs/schema.md

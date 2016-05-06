@@ -75,7 +75,7 @@ var StepIndexItem = React.createClass({
           <strong>Step {this.state.order}</strong>
         </h3>
         <label>
-          <div className="label-text">Title</div>
+          <div className="label-text"><h4><strong>Title</strong></h4></div>
           <input
             type="text"
             id="step-title"
@@ -83,7 +83,7 @@ var StepIndexItem = React.createClass({
             value={this.state.title} />
         </label>
         <label>
-          <div className="label-text">Body</div>
+          <div className="label-text"><h4><strong>Body</strong></h4></div>
           <input
             type="textarea"
             id="step-body"
