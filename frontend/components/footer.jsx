@@ -1,8 +1,16 @@
 var React = require('react');
 
 var Footer = React.createClass({
+  contextTypes: {
+    router: React.PropTypes.object.isRequired
+  },
+
   scrollToTop: function(){
     window.scrollTo(0, 0);
+  },
+
+  goToSpashPage: function(){
+    this.context.router.push("/");
   },
 
   render: function(){
@@ -26,7 +34,7 @@ var Footer = React.createClass({
           Back to Top
         </div>
 
-        <div className="footer-name" onClick={this.scrollToTop}>
+        <div className="footer-name" onClick={this.goToSpashPage}>
           Flow-DIY
         </div>
       </div>
