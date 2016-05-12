@@ -75,7 +75,7 @@ var Carousel = React.createClass({
           <span id="site-title">Flow</span>
           <br/>
           <span id="site-catchphrase">let your ideas flow through others</span>
-          <span id="site-description">come explore diy ideas or submit your own</span>
+          <span id="site-description">try out project ideas or submit your own</span>
           <button onClick={this.explore}>Explore</button>
         </span>
 

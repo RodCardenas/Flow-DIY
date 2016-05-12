@@ -26,9 +26,11 @@ Cloudinary.config({
 var App = React.createClass({
   render: function(){
     return (
-        <div id="all">
+        <div className="single-page-application-container">
           <NavBar />
-          {this.props.children}
+          <div className="page-content">
+            {this.props.children}
+          </div>
           <Footer />
         </div>
     );

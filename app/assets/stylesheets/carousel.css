@@ -17,7 +17,7 @@
   font-size: 150px;
   position: absolute;
   top: 45%;
-  transform: translateY(-90%) translateX(-40%);
+  transform: translateY(-90%) translateX(-50%);
 }
 
 .carousel-overlay #site-catchphrase{
@@ -57,7 +57,7 @@
 
   position: absolute;
   top: 70%;
-  transform: translateY(-20%) translateX(-10%);
+  transform: translateY(-20%) translateX(-50%);
 }
 
 .carousel-overlay  button:hover, button:active {

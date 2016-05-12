@@ -16,12 +16,14 @@ var Landing = React.createClass({
             </p>
 
             <CloudinaryImage
+              className="information-picture-odd"
               imageUrl="http://res.cloudinary.com/flow-diy/image/upload/v1461796717/logo.png"
               format={{height: 100, crop: "scale"}} />
           </div>
           <br />
           <div className="information-row">
             <CloudinaryImage
+              className="information-picture-even"
               imageUrl="http://res.cloudinary.com/flow-diy/image/upload/v1461796717/logo.png"
               format={{height: 100, crop: "scale"}} />
 
@@ -36,6 +38,7 @@ var Landing = React.createClass({
             </p>
 
             <CloudinaryImage
+              className="information-picture-odd"
               imageUrl="http://res.cloudinary.com/flow-diy/image/upload/v1461796717/logo.png"
               format={{height: 100, crop: "scale"}} />
           </div>

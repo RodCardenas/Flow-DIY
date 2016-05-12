@@ -32,7 +32,7 @@ var ProjectIndex = React.createClass({
   },
 
   searchReady: function(){
-    this.setState({ projects:SearchStore.all() });
+    this.setState({ projects:SearchStore.all(this.userEmail) });
   },
 
   render: function(){
@@ -50,7 +50,11 @@ var ProjectIndex = React.createClass({
         );
       });
     } else {
-      projects = <div className="try-searching-projects"> Try searching for something! </div>;
+      if(window.location.href.includes("/explore/")){
+        projects = <div className="try-searching-projects">Sorry, we couldn't find anything that matched your search. Try searching for something else! </div>;
+      } else {
+        projects = <div className="try-searching-projects">Sorry, we couldn't find a project you've created with that name.</div>;
+      }
     }
 
     return (

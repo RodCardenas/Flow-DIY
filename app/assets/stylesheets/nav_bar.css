@@ -1,4 +1,4 @@
-.NavBar {
+.nav-bar {
   background-color: #666666;
   color: white;
   display: flex;
@@ -13,35 +13,35 @@
   min-width: 1053px;
 }
 
-.NavBar #errors{
+.nav-bar #errors{
   background-color: red;
   color: white;
   float: left;
 }
 
-.NavBar #logo {
+.nav-bar #logo {
   margin-right: auto;
   width: 100px;
   height: 50px;
   text-decoration: none;
 }
 
-.NavBar .catch-phrase {
+.nav-bar .catch-phrase {
   position: absolute;
   text-transform: lowercase;;
   transform: translateY(-22px) translateX(60px);
 }
 
-.NavBar img {
+.nav-bar img {
   height: 50px;
 }
 
-.NavBar #user-interations {
+.nav-bar #user-interations {
   margin-left: auto;
   width: 115px;
 }
 
-.NavBar button {
+.nav-bar button {
   background-color: #333333;
   border: 1px solid white;
   border-radius: 27px;
@@ -52,26 +52,26 @@
   padding: 3px 6px;
 }
 
-.NavBar button:hover, button:active {
+.nav-bar button:hover, button:active {
   background-color: white;
   color: #333333;
   outline: 0;
 }
 
-.NavBar .search{
+.nav-bar .search{
   min-width: 320px;
   width: 25%;
   margin-left: auto;
   margin-right: auto;
 }
 
-.NavBar label{
+.nav-bar label{
   letter-spacing: 1px;
   margin-right: 5px;
   text-transform: uppercase;
 }
 
-.NavBar .search input{
+.nav-bar .search input{
   letter-spacing: 2px;
   font-size: 16px;
   min-width: 150px;
@@ -84,7 +84,7 @@
   margin-right: auto;
 }
 
-.NavBar .search-results{
+.nav-bar .search-results{
   width: 17.5%;
   position: absolute;
   border: 1px solid black;
@@ -102,14 +102,14 @@
   transition: 350ms;
 }
 
-.NavBar ul li{
+.nav-bar ul li{
   margin-left: 2px;
   border-top: 2px solid gray;
   position: relative;
   cursor: pointer;
 }
 
-.NavBar input:focus + .search-results{
+.nav-bar input:focus + .search-results{
   max-height: 1000px;
   -webkit-transform: perspective(600) rotate3d(0, 0, 0, 0) translateX(60px);
 }
@@ -119,18 +119,18 @@
   white-space: normal;
 }
 
-.NavBar #user-menu-container{
+.nav-bar #user-menu-container{
   height: 50px;
   margin-left: auto;
   margin-right: 25px
 }
 
-.NavBar #user-menu-container:hover .user-menu-options-container {
+.nav-bar #user-menu-container:hover .user-menu-options-container {
   max-height: 140px;
   -webkit-transform: translateX(-26px) perspective(600) rotate3d(0, 0, 0, 0) translateY(-5px);
 }
 
-.NavBar #user-menu-container .user-menu-options-container {
+.nav-bar #user-menu-container .user-menu-options-container {
   text-align: center;
   width: 98px;
   border: 1px solid black;
@@ -146,7 +146,7 @@
   transition: 350ms;
 }
 
-.NavBar li{
+.nav-bar li{
   padding-top: 5px;
   padding-bottom: 5px;
 }
