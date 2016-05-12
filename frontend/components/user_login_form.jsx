@@ -21,6 +21,8 @@ var UserLoginForm = React.createClass({
       email: this.state.email,
       password: this.state.password,
     });
+
+    this.context.router.push("/myFlow/" + this.state.email);
   },
 
   loginGuest: function(e) {
@@ -64,7 +66,7 @@ var UserLoginForm = React.createClass({
         email: "guest@flow-diy.com",
         password: "flow-diy",
       });
-      self.context.router.push("/");
+      self.context.router.push("/myFlow/guest@flow-diy.com");
       window.location.reaload();
     }, time);
 
@@ -77,7 +79,7 @@ var UserLoginForm = React.createClass({
       email: this.state.email,
       password: this.state.password,
     });
-    this.context.router.push("/");
+    this.context.router.push("/myFlow/" + this.state.email);
   },
 
   emailInputChange: function(event) {

@@ -16,7 +16,15 @@ var ProjectCreator = React.createClass({
   mixins: [CurrentUserStateMixin],
 
   getInitialState: function(){
-    return ({projectTitle: "", projectName: "", project: null, steps:[], errors:ProjectStore.getErrors() });
+    return ({
+      projectTitle: "",
+      projectName: "",
+      project: null,
+      steps:[],
+      errors:ProjectStore.getErrors(),
+      pictures: [],
+      picturesUrls: []
+     });
   },
 
   componentDidMount: function(){
@@ -72,6 +80,8 @@ var ProjectCreator = React.createClass({
       StepUtil.createStep(project.id, step);
     });
 
+    //TODO add call to update project with picture elements added to form
+
     this.context.router.push("/projects/" + this.state.project.id);
     window.location.reload();
   },
@@ -79,6 +89,42 @@ var ProjectCreator = React.createClass({
   projectNameChange: function(event) {
     this.setState({projectName: event.target.value});
   },
+
+  addPicture: function(e){
+    e.preventDefault();
+    var self = this;
+
+    window.cloudinary.openUploadWidget({
+      cloud_name: 'flow-diy',
+      upload_preset: 'flchasab',
+      theme: 'minimal'},
+      self.showPictures
+    );
+  },
+
+  showPictures: function(error, result){
+    if(error !== null){
+      this.setState({error: error });
+      return;
+    }
+
+    var pictureCnt = this.state.pictures.length;
+    var modPictures = this.state.pictures.slice(0);
+    var modURLs = this.state.picture_urls.slice(0);
+
+    result.forEach(function(picture){
+      modURLs.push(picture.url);
+      modPictures.push(
+        <CloudinaryImage
+          key={picture.public_id}
+          imageUrl={picture.url}
+          format={{height: 100, width: 100, crop: "fit"}} />
+      );
+    });
+
+    this.setState({pictures: modPictures, picture_urls: modURLs});
+  },
+
 
   getErrors: function() {
     if (Object.keys(this.state.errors).length !== 0){
@@ -125,6 +171,13 @@ var ProjectCreator = React.createClass({
                     onChange={this.projectNameChange}
                     value={this.state.projectName} />
                 </label>
+
+                <div className="project-pictures">
+                  {this.state.pictures}
+                </div>
+
+                <br/ >
+                <button onClick={this.addPicture}>Add Picture</button>
 
                 <div className="step-index-container">
                   <hr/>

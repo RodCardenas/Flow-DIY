@@ -59,7 +59,10 @@ var Search = React.createClass({
       projects = null;
     }
 
-    if(!window.location.href.includes("/project/") && !window.location.href.includes("/user/")){
+    if(!window.location.href.includes("/project/") &&
+      !window.location.href.includes("/user/") &&
+      !window.location.href.includes("/#/?")
+    ){
       projects = null;
     }
 

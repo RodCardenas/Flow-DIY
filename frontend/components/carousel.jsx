@@ -63,18 +63,20 @@ var Carousel = React.createClass({
     this.setState(modState);
   },
 
-  explore: function(){
+  explore: function(e){
+    e.preventDefault();
     this.context.router.push("/explore/");
   },
 
   render: function(){
     return (
       <div className="carousel-container">
-        <span className="carousel-overlay" onClick={this.explore}>
+        <span className="carousel-overlay">
           <span id="site-title">Flow</span>
           <br/>
           <span id="site-catchphrase">let your ideas flow through others</span>
           <span id="site-description">come explore diy ideas or submit your own</span>
+          <button onClick={this.explore}>Explore</button>
         </span>
 
         <ul className="carousel">

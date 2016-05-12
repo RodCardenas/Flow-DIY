@@ -1,0 +1,35 @@
+.information-container{
+  display: block;
+  width:70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.information-row{
+  margin-top: 50px;
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.information-parragraph-odd{
+  margin-right: auto;
+  margin-left: 50px;
+}
+
+.information-parragraph-even{
+  margin-left: auto;
+  margin-right: 50px;
+  width: 60%;
+}
+
+.information-container p{
+  text-align: justify;
+  width: 50%;
+}
+
+.information-container .cloudinaryImg{
+  margin-left: 50px;
+  margin-right: 50px;
+}
