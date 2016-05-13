@@ -109,7 +109,7 @@ var NavBar = React.createClass({
     } else {
       content = this.showUserMenu();
     }
-
+    // TODO: logo redirect must force reload so that project index repopulates.
     return (
       <div className="nav-bar">
         <a id="logo" href="/#/explore/">
