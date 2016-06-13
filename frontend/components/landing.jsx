@@ -17,14 +17,14 @@ var Landing = React.createClass({
 
             <CloudinaryImage
               className="information-picture-odd"
-              imageUrl="http://res.cloudinary.com/flow-diy/image/upload/v1461796717/logo.png"
+              imageUrl="http://res.cloudinary.com/flow-diy/image/upload/v1465843522/design_icons_set_6815097_wsgbcu.jpg"
               format={{height: 100, crop: "scale"}} />
           </div>
           <br />
           <div className="information-row">
             <CloudinaryImage
               className="information-picture-even"
-              imageUrl="http://res.cloudinary.com/flow-diy/image/upload/v1461796717/logo.png"
+              imageUrl="http://res.cloudinary.com/flow-diy/image/upload/v1465844575/17476841-Social-Network-Icon-Map-Stock-Photo-media_g1jlob.jpg"
               format={{height: 100, crop: "scale"}} />
 
             <p className="information-parragraph-even">
@@ -39,7 +39,7 @@ var Landing = React.createClass({
 
             <CloudinaryImage
               className="information-picture-odd"
-              imageUrl="http://res.cloudinary.com/flow-diy/image/upload/v1461796717/logo.png"
+              imageUrl="http://res.cloudinary.com/flow-diy/image/upload/v1465843826/co-created_icon_qz8tug.svg"
               format={{height: 100, crop: "scale"}} />
           </div>
         </div>

@@ -3,6 +3,9 @@
   width:50%;
   margin-left: auto;
   margin-right: auto;
+  letter-spacing: 1px;
+  line-height: 150%;
+  text-align: center;
 }
 
 .information-row{
@@ -32,9 +35,11 @@
 .information-container .information-picture-odd{
   margin-left: 50px;
   margin-right: auto;
+  height: 200px;
 }
 
 .information-container .information-picture-even{
   margin-left: auto;
   margin-right: 50px;
+  height: 200px;
 }
