@@ -23,7 +23,7 @@ var ProjectCreator = React.createClass({
       steps:[],
       errors:ProjectStore.getErrors(),
       pictures: [],
-      picturesUrls: []
+      picture_urls: []
      });
   },
 

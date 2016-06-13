@@ -53,7 +53,7 @@ class Api::UserController < ApplicationController
   # DELETE /api/users/1
   def destroy
     @api_user.destroy
-    render json: @api_user #TODO: What is this?
+    render json: @api_user
   end
 
   private
