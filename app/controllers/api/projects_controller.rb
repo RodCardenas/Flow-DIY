@@ -70,7 +70,7 @@ class Api::ProjectsController < ApplicationController
   # DELETE /api/projects/1.json
   def destroy
     @api_project.destroy
-    render @api_project.title + " has been deleted."
+    render nothing: true, status: :ok
   end
 
   private

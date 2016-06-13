@@ -43,12 +43,14 @@ class Api::StepsController < ApplicationController
     )
 
     if @api_step.save
-      params[:api_step][:pictures].each do |picture|
-        Api::Picture.create!(
-          imageable_type: "Api::Step",
-          imageable_id: @api_step.id,
-          picture_url: picture
-        )
+      unless params[:api_step][:pictures].nil?
+        params[:api_step][:pictures].each do |picture|
+          Api::Picture.create!(
+            imageable_type: "Api::Step",
+            imageable_id: @api_step.id,
+            picture_url: picture
+          )
+        end
       end
       render "api/steps/show"
     else

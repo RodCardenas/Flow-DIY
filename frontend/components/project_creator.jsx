@@ -4,6 +4,7 @@ var ReactDOM = require('react-dom');
 var CloudinaryImage = require('./cloudinary_image');
 var ProjectUtil = require('../util/project_api_util');
 var StepUtil = require('../util/step_api_util');
+var PictureUtil = require('../util/picture_api_util');
 var StepIndex = require('./step_index');
 var CurrentUserStateMixin = require('../mixins/current_user_state');
 var ProjectStore = require('../stores/project_store');
@@ -74,13 +75,21 @@ var ProjectCreator = React.createClass({
       this.state.projectName
     );
 
+    this.state.picture_urls.forEach(function(url){
+      var pic = {
+        imageable_id: project.id,
+        imageable_type: "Api::Project",
+        picture_url: url
+      };
+
+      PictureUtil.createPicture(pic);
+    });
+
     keys.forEach(function(key){
       var step = steps[key];
       step["project_id"] = project.id;
       StepUtil.createStep(project.id, step);
     });
-
-    //TODO add call to update project with picture elements added to form
 
     this.context.router.push("/projects/" + this.state.project.id);
     window.location.reload();

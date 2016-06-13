@@ -24,7 +24,8 @@ class Api::PicturesController < ApplicationController
     @api_picture = Api::Picture.new(api_picture_params)
 
     if @api_picture.save
-      format.json { render :show, status: :created, location: @api_picture }
+      Api::Project.find(params[:picture][:imageable_id]).delete_default_project_picture
+      render "api/pictures/show"
     else
       @errors = @api_picture.errors.full_messages
       render "api/shared/error", status: :unprocessable_entity

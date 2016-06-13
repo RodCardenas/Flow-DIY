@@ -28,4 +28,12 @@ class Api::Project < ActiveRecord::Base
       picture_url: "http://res.cloudinary.com/flow-diy/image/upload/v1462559985/empty-book.jpg"
     )
   end
+
+  def delete_default_project_picture
+    puts "Deleting default picture!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+
+    pic = Api::Picture.where("imageable_id = ? AND imageable_type = ? AND picture_url = ?", self.id, self.class, "http://res.cloudinary.com/flow-diy/image/upload/v1462559985/empty-book.jpg")
+
+    Api::Picture.destroy(pic.pluck(:id))
+  end
 end
