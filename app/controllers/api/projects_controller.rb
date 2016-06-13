@@ -18,7 +18,6 @@ class Api::ProjectsController < ApplicationController
   end
 
   def search
-    # TODO: Create filter so that in my flow page only user created projects show up
     @api_search_projects = Api::Project.includes(:author, :pictures).where("UPPER(title) ~ UPPER(?)", params[:search]).limit(30)
   end
 

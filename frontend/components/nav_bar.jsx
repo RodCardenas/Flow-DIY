@@ -38,6 +38,10 @@ const customStyles = {
 var NavBar = React.createClass({
   mixins: [CurrentUserStateMixin],
 
+  contextTypes: {
+    router: React.PropTypes.object.isRequired
+  },
+
   getInitialState: function() {
     return { modalIsOpen: false };
   },
@@ -70,6 +74,18 @@ var NavBar = React.createClass({
     );
   },
 
+  goToMyFlow: function(e){
+    e.preventDefault();
+    this.context.router.push("/myFlow/" + this.state.currentUser.email);
+    window.location.reload();
+  },
+
+  goExplore: function(e){
+    e.preventDefault();
+    this.context.router.push("/explore/");
+    window.location.reload();
+  },
+
   showUserMenu: function(){
     var user = this.state.currentUser;
     return (
@@ -81,7 +97,7 @@ var NavBar = React.createClass({
 
         <ul className="user-menu-options-container">
           <li>
-            <a href={"/#/myFlow/" + user.email} >My Flow
+            <a onClick={this.goToMyFlow}>My Flow
             </a>
           </li>
           <li>
@@ -109,10 +125,10 @@ var NavBar = React.createClass({
     } else {
       content = this.showUserMenu();
     }
-    // TODO: logo redirect must force reload so that project index repopulates.
+
     return (
       <div className="nav-bar">
-        <a id="logo" href="/#/explore/">
+        <a id="logo" onClick={this.goExplore}>
           <CloudinaryImage
             imageUrl="http://res.cloudinary.com/flow-diy/image/upload/v1461796717/logo.png"
             format={{height: 100, crop: "scale"}} />
