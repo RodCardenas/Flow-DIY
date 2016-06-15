@@ -2,6 +2,8 @@ var SearchActions = require ('../actions/search_actions');
 
 module.exports =  {
   searchProjectsContaining: function(searchString){
+    SearchActions.setSearch(searchString);
+    
     $.ajax({
       method: 'GET',
       url: '/api/projects/search',

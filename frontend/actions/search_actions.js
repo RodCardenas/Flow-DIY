@@ -9,6 +9,13 @@ module.exports = {
     });
   },
 
+  setSearch: function(search){
+    AppDispatcher.dispatch({
+      actionType: SearchConstants.NEW_SEARCH,
+      search: search
+    });
+  },
+
   handleError: function(error) {
     AppDispatcher.dispatch({
       actionType: SearchConstants.ERROR,

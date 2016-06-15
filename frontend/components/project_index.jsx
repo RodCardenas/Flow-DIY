@@ -9,8 +9,9 @@ var ProjectIndex = React.createClass({
   getInitialState: function(){
     if (typeof this.props.params !== 'undefined') {
       this.userEmail = this.props.params.userEmail;
+      return ({ projects: ProjectStore.all(this.userEmail) });
     }
-    return ({ projects: ProjectStore.all(this.userEmail) });
+    return ({ projects: ProjectStore.all() });
   },
 
   componentDidMount: function(){
@@ -51,7 +52,12 @@ var ProjectIndex = React.createClass({
       });
     } else {
       if(window.location.href.includes("/explore/")){
-        projects = <div className="try-searching-projects">Sorry, we couldn't find anything that matched your search. Try searching for something else! </div>;
+        if (SearchStore.getSearch() === ""){
+          projects = <div className="try-searching-projects">Try searching for something! </div>;
+        } else {
+          projects = <div className="try-searching-projects">Sorry, we couldn't find anything that matched your search. Try searching for something else! </div>;
+        }
+
       } else {
         projects = <div className="try-searching-projects">Sorry, we couldn't find a project you've created with that name.</div>;
       }
