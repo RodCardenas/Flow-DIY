@@ -17,15 +17,15 @@ var Landing = React.createClass({
 
             <CloudinaryImage
               className="information-picture-odd"
-              imageUrl="http://res.cloudinary.com/flow-diy/image/upload/v1465843522/design_icons_set_6815097_wsgbcu.jpg"
-              format={{height: 100, crop: "scale"}} />
+              imageUrl="http://res.cloudinary.com/flow-diy/image/upload/c_scale,e_sharpen,h_100,q_auto:best/v1467311870/graphic-design-tools-Feature_1290x688_MS_buhtrk.jpg"
+             />
           </div>
           <br />
           <div className="information-row">
             <CloudinaryImage
               className="information-picture-even"
-              imageUrl="http://res.cloudinary.com/flow-diy/image/upload/v1465844575/17476841-Social-Network-Icon-Map-Stock-Photo-media_g1jlob.jpg"
-              format={{height: 100, crop: "scale"}} />
+              imageUrl="http://res.cloudinary.com/flow-diy/image/upload/c_scale,e_sharpen,h_100,q_auto:best/v1465844575/17476841-Social-Network-Icon-Map-Stock-Photo-media_g1jlob.jpg"
+            />
 
             <p className="information-parragraph-even">
               If you need a place to store all of your ideas, Flow-DIY was made for you. Not only will you be able to easily upload your projects in an organized fashion, but you will also have the opporunity to share it with others all around the globe.
@@ -40,7 +40,7 @@ var Landing = React.createClass({
             <CloudinaryImage
               className="information-picture-odd"
               imageUrl="http://res.cloudinary.com/flow-diy/image/upload/v1465843826/co-created_icon_qz8tug.svg"
-              format={{height: 100, crop: "scale"}} />
+              format={{height: 100}} />
           </div>
         </div>
       </div>
