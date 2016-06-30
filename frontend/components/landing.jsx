@@ -17,7 +17,7 @@ var Landing = React.createClass({
 
             <CloudinaryImage
               className="information-picture-odd"
-              imageUrl="http://res.cloudinary.com/flow-diy/image/upload/c_scale,e_sharpen,h_100,q_auto:best/v1467311870/graphic-design-tools-Feature_1290x688_MS_buhtrk.jpg"
+              imageUrl="http://res.cloudinary.com/flow-diy/image/upload/c_scale,e_sharpen,h_100,q_auto:best/v1467312457/graphic-design-tools-Feature_1290x688_MS_buhtrk.jpg"
              />
           </div>
           <br />
