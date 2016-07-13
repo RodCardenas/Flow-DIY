@@ -12,25 +12,30 @@
 
 require 'test_helper'
 
-class Api::UsersControllerTest < ActionController::TestCase
+class Api::UserControllerTest < ActionController::TestCase
   setup do
     @api_user = api_users(:one)
   end
 
-  test "should get index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:api_users)
-  end
+  # TODO
 
-  test "should get new" do
-    get :new
-    assert_response :success
-  end
+  # test "should successfully create a new thing" do
+  #   assert_difference 'Thing.count' do
+  #     @request.headers["Accept"] = "application/json"
+  #
+  #     post(:create, {thing: {name: "My Thing"}})
+  #   end
+  #
+  #   assert_response :success
+  #
+  #   json_response = JSON.parse(@response.body)
+  #   assert_equal json_response["name"], "My Thing"
+  # end
+  #
 
   test "should create api_user" do
     assert_difference('Api::User.count') do
-      post :create, api_user: {  }
+      post :create, user: {email: "food"}
     end
 
     assert_redirected_to api_user_path(assigns(:api_user))
@@ -44,11 +49,6 @@ class Api::UsersControllerTest < ActionController::TestCase
   test "should get edit" do
     get :edit, id: @api_user
     assert_response :success
-  end
-
-  test "should update api_user" do
-    patch :update, id: @api_user, api_user: {  }
-    assert_redirected_to api_user_path(assigns(:api_user))
   end
 
   test "should destroy api_user" do

@@ -6,6 +6,7 @@
 #  imageable_id   :integer          not null
 #  imageable_type :string           not null
 #  picture_url    :string           not null
+#  caption        :string
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #
@@ -16,8 +17,9 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-#  column: value
+one:
+  id: 1
+  imageable_id: 1
+  imageable_type: "Api::User"
+  picture_url: "http://www.getelastic.com/wp-content/uploads/user-testing.gif"
+  caption: "A tester"

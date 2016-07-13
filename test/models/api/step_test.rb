@@ -5,7 +5,7 @@
 #  id         :integer          not null, primary key
 #  order      :integer          not null
 #  title      :string           not null
-#  body       :string           not null
+#  body       :text             not null
 #  project_id :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
