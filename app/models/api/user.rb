@@ -22,6 +22,14 @@ class Api::User < ActiveRecord::Base
 
   has_one :picture, :as => :imageable
 
+  has_many :favorites,
+    foreign_key: :author_id,
+    dependent: :destroy
+
+  has_many :favorite_projects,
+    through: :favorites
+
+
 
   def self.generate_token
     SecureRandom.base64(16)

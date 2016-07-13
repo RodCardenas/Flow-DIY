@@ -32,3 +32,10 @@ imageable_id   | integer   | not null, foreign key(can reference project/steps/u
 imageable_type | string    | not null
 picture_url    | string    | not null
 caption        | string    | not null
+
+## favorites
+column name | data type | details
+------------|-----------|-----------------------
+id          | integer   | not null, primary key
+author_id   | integer   | not null, foreign key (references users), indexed
+project_id  | integer   | not null, foreign key (references projects), indexed

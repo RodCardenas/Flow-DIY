@@ -21,6 +21,13 @@ class Api::Project < ActiveRecord::Base
   has_many :steps
   has_many :pictures, :as => :imageable
 
+  has_many :favorites,
+    dependent: :destroy
+
+  has_many :favoriters,
+    through: :favorites
+
+
   def get_default_project_picture
     Api::Picture.create!(
       imageable_id: self.id,

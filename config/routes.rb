@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
     resources :user, except: [:index]
+    resources :favorite, except: [:update, :show]
     resource :session, only: [:new, :create, :destroy, :show]
     resources :projects do
       get "search", on: :collection

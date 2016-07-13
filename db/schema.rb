@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160428210736) do
+ActiveRecord::Schema.define(version: 20160713211345) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "api_favorites", force: :cascade do |t|
+    t.integer  "author_id",  null: false
+    t.integer  "project_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "api_favorites", ["author_id"], name: "index_api_favorites_on_author_id", using: :btree
+  add_index "api_favorites", ["project_id"], name: "index_api_favorites_on_project_id", using: :btree
 
   create_table "api_pictures", force: :cascade do |t|
     t.integer  "imageable_id",   null: false

@@ -9,6 +9,7 @@
 userCnt = 1
 projectCnt = 1
 stepCnt = 1
+favoritesCnt = 1
 
 Api::User.create!(email:"guest@flow-diy.com", password:"flow-diy");
 Api::Picture.create!(
