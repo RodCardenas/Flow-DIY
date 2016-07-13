@@ -148,3 +148,26 @@ var ProjectEditor = React.createClass({
 });
 
 module.exports = ProjectEditor;
+
+
+function aliquotSequence(base,n){
+
+    var sequence = [base];
+
+    for(var i = 0 ; i < n ;i++){
+        var factors = [];
+        var sumOfFactors =0;
+
+        for(var j =1; j < sequence[i]; j++){
+            if(sequence[i] % j===0){
+                factors.push(j);
+            }
+        }
+
+        sumOfFactors = factors.reduce(function(result,currValue){
+            return result+currValue;
+        }, 0);
+        sequence.push(sumOfFactors);
+     }
+     return sequence;
+ }

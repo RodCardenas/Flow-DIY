@@ -4,6 +4,7 @@
   letter-spacing: 3px;
   background: #666666;
   z-index: 2;
+  min-width: 600px;
 }
 
 .ReactModalPortal label {

@@ -77,13 +77,13 @@ var NavBar = React.createClass({
   goToMyFlow: function(e){
     e.preventDefault();
     this.context.router.push("/myFlow/" + this.state.currentUser.email);
-    window.location.reload();
+    // window.location.reload();
   },
 
   goExplore: function(e){
     e.preventDefault();
     this.context.router.push("/explore/");
-    window.location.reload();
+    // window.location.reload();
   },
 
   showUserMenu: function(){

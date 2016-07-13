@@ -22,6 +22,7 @@
 
 .carousel-overlay #site-catchphrase{
   font-size: 34px;
+  min-width: 535px;
   position: absolute;
   top: 45%;
   transform: translateY(-20%) translateX(-10%);
@@ -29,6 +30,7 @@
 
 .carousel-overlay #site-description{
   font-size: 24px;
+  min-width: 450px;
   position: absolute;
   top: 50%;
   transform: translateY(-20%) translateX(-10%);
