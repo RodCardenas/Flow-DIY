@@ -15,7 +15,7 @@ require 'test_helper'
 class Api::UsersControllerTest < ActionController::TestCase
   setup do
     @request.headers["Accept"] = "application/json"
-    @api_user = api_users(:one)
+    @api_user = api_users(:user_one)
   end
 
   test "should create api_user" do

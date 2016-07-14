@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :users, except: [:index]
     resources :favorites, except: [:update, :show]
     resource :session, only: [:new, :create, :destroy, :show]
-    resources :projects do
+    resources :projects, except: [:edit] do
       get "search", on: :collection
       resources :steps
     end

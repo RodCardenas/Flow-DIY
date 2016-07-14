@@ -44,7 +44,7 @@ module.exports =  {
   createUser: function(credentials){
     $.ajax({
       method: 'POST',
-      url: '/api/user',
+      url: '/api/users',
       data: {user: credentials},
       success: function(user){
         UserActions.createdUser(user);
@@ -58,7 +58,7 @@ module.exports =  {
   deleteUser: function(id){
     $.ajax({
       method: 'DELETE',
-      url: 'api/user/' + id,
+      url: 'api/users/' + id,
       success: function(currentUser){
         UserActions.deletedUser(currentUser);
       },

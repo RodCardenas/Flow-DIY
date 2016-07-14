@@ -30,10 +30,6 @@ class Api::ProjectsController < ApplicationController
     @api_project = Api::Project.new
   end
 
-  # GET /api/projects/1/edit
-  def edit
-  end
-
   # POST /api/projects.json
   def create
     @api_project = Api::Project.new(api_project_params)
@@ -50,6 +46,7 @@ class Api::ProjectsController < ApplicationController
       else
         @api_project.get_default_project_picture
       end
+
       render "api/projects/show"
     else
       @errors = @api_project.errors.full_messages

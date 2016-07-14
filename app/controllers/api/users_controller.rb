@@ -24,6 +24,7 @@ class Api::UsersController < ApplicationController
 
   # GET /api/users/1/edit
   def edit
+    #TODO
   end
 
   # POST /api/users
