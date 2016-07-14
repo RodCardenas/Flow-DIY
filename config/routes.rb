@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   root to:"static_pages#root"
 
   namespace :api, defaults: {format: :json} do
-    resources :user, except: [:index]
-    resources :favorite, except: [:update, :show]
+    resources :users, except: [:index]
+    resources :favorites, except: [:update, :show]
     resource :session, only: [:new, :create, :destroy, :show]
     resources :projects do
       get "search", on: :collection

@@ -10,7 +10,7 @@
 #  updated_at      :datetime
 #
 
-class Api::UserController < ApplicationController
+class Api::UsersController < ApplicationController
   before_action :set_api_user, only: [:show, :edit, :update, :destroy]
 
   # GET /api/users/1
@@ -42,7 +42,7 @@ class Api::UserController < ApplicationController
 
   # PATCH/PUT /api/users/1
   def update
-    if @api_user.update(api_user_params)
+    if @api_user.update_attributes(api_user_params)
       render "api/users/show", status: :ok
     else
       @errors = @api_user.errors.full_messages

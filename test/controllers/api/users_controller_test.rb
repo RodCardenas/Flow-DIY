@@ -12,33 +12,20 @@
 
 require 'test_helper'
 
-class Api::UserControllerTest < ActionController::TestCase
+class Api::UsersControllerTest < ActionController::TestCase
   setup do
+    @request.headers["Accept"] = "application/json"
     @api_user = api_users(:one)
   end
 
-  # TODO
-
-  # test "should successfully create a new thing" do
-  #   assert_difference 'Thing.count' do
-  #     @request.headers["Accept"] = "application/json"
-  #
-  #     post(:create, {thing: {name: "My Thing"}})
-  #   end
-  #
-  #   assert_response :success
-  #
-  #   json_response = JSON.parse(@response.body)
-  #   assert_equal json_response["name"], "My Thing"
-  # end
-  #
-
   test "should create api_user" do
     assert_difference('Api::User.count') do
-      post :create, user: {email: "food"}
+      post :create, {user: {email: "food@test.com", password:"flow-diy"}}
     end
+    assert_response(:success)
 
-    assert_redirected_to api_user_path(assigns(:api_user))
+    json_response = JSON.parse(@response.body)
+    assert_equal json_response["email"], "food@test.com"
   end
 
   test "should show api_user" do
@@ -51,11 +38,19 @@ class Api::UserControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should update api_user" do
+    put :update, id: @api_user.id , :user => {:email => 'MyString2'}
+
+    @api_user.reload
+
+    assert_equal "MyString2", @api_user.email
+  end
+
   test "should destroy api_user" do
     assert_difference('Api::User.count', -1) do
       delete :destroy, id: @api_user
     end
 
-    assert_redirected_to api_users_path
+    assert_response :success
   end
 end
