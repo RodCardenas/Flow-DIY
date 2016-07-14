@@ -13,6 +13,7 @@ var ProjectCreator = require('./components/project_creator');
 var ProjectEditor = require('./components/project_editor');
 var UserDetail = require('./components/user_detail');
 var ProjectIndex = require('./components/project_index');
+var ProjectIndexMyFlow = require('./components/project_index_my_flow');
 var Landing = require('./components/landing');
 var Modal = require('react-modal');
 var Cloudinary = require('cloudinary');
@@ -42,7 +43,7 @@ var routes = (
     <IndexRoute component={Landing} />
     <Route path="/projects/:projectId" component={ProjectDetail} />
     <Route path="/user/:userEmail" component={UserDetail} />
-    <Route path="/myFlow/:userEmail" component={ProjectIndex} />
+    <Route path="/myFlow/:userEmail" component={ProjectIndexMyFlow} />
     <Route path="/explore/" component={ProjectIndex} />
     <Route path="/project/new/" component={ProjectCreator} />
     <Route path="/edit/:projectId" component={ProjectEditor} />
