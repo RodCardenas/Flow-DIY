@@ -62,9 +62,9 @@ var ProjectIndexItem = React.createClass({
                </a>
           </span>
         </div>
-        <Favorite project={project}/>
       </li>
     );
+    // <Favorite project={project}/>
   }
 });
 
