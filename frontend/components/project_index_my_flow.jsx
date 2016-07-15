@@ -50,6 +50,7 @@ var ProjectIndexMyFlow = React.createClass({
 
     return (
       <div className="project-index-container">
+        <h1 className="title">My Flow</h1>
         <ul className="project-index">
           {projects}
         </ul>

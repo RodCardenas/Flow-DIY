@@ -1,10 +1,21 @@
-.user-detail{
+.user-detail-container{
   min-width: 1053px;
   width: 100%;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
   font-size: 14px;
+  display: flex;
+}
+
+.user-detail{
+  margin-left: 50px;
+}
+
+.user-detail-email{
   margin-bottom: 50px;
-  min-height: 855px;
+}
+
+.user-detail-image{
+  height: 250px;
 }

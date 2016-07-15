@@ -7,12 +7,13 @@ var ProjectIndexItem = require('./project_index_item');
 var ProjectIndexFavorites = React.createClass({
 
   getInitialState: function(){
-    return ({ projects: ProjectStore.all() });
+    console.log(this.props);
+    this.userEmail = this.props.email;
+    return ({ projects: ProjectStore.allForUser(this.userEmail) });
   },
 
   componentDidMount: function(){
     ProjectUtil.fetchProjects();
-    // TODO: Change to favorites store
     this.listenerProjectStore = ProjectStore.addListener(this.onChange);
     this.listenerSearchStore = SearchStore.addListener(this.searchReady);
   },
@@ -23,14 +24,11 @@ var ProjectIndexFavorites = React.createClass({
   },
 
   onChange: function(){
-    if (typeof this.props.params !== 'undefined') {
-      this.userEmail = this.props.params.userEmail;
-    }
-    this.setState({ projects:ProjectStore.all(this.userEmail) });
+    this.setState({ projects:ProjectStore.allForUser(this.userEmail) });
   },
 
   searchReady: function(){
-    this.setState({ projects:SearchStore.all(this.userEmail) });
+    this.setState({ projects:SearchStore.allForUser(this.userEmail) });
   },
 
   render: function(){
@@ -53,6 +51,7 @@ var ProjectIndexFavorites = React.createClass({
 
       return (
         <div className="project-index-container">
+          <h1 className="title">Favorites</h1>
           <ul className="project-index">
             {projects}
           </ul>
