@@ -25,7 +25,8 @@ class Api::Project < ActiveRecord::Base
     dependent: :destroy
 
   has_many :favoriters,
-    through: :favorites
+    through: :favorites,
+    source: :author
 
 
   def get_default_project_picture

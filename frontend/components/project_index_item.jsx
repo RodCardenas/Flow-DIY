@@ -1,7 +1,8 @@
 var React = require('react');
-var ProjectStore = require('../stores/project_store');
-var ProjectUtil = require('../util/project_api_util');
+// var FavoriteStore = require('../stores/favorite_store');
+// var FavoriteUtil = require('../util/favorite_api_util');
 var CloudinaryImage = require('./cloudinary_image');
+var Favorite = require('./favorite');
 
 var ProjectIndexItem = React.createClass({
   contextTypes: {
@@ -29,8 +30,7 @@ var ProjectIndexItem = React.createClass({
           href={project.url}>
           <CloudinaryImage
             imageUrl={picture.picture_url}
-            format={{height: 270, width: 324, crop: "fit"}} >
-          </CloudinaryImage>
+            format={{height: 270, width: 324, crop: "fit"}} />
           <div className="project-text-container">
             <div className="project-title-text">
               {project.title}
@@ -62,6 +62,7 @@ var ProjectIndexItem = React.createClass({
                </a>
           </span>
         </div>
+        <Favorite project={project}/>
       </li>
     );
   }

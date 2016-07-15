@@ -36,6 +36,8 @@ var ProjectIndexMyFlow = React.createClass({
     if(typeof projectsObj !== 'undefined' && Object.keys(projectsObj).length !== 0){
       var keys = Object.keys(projectsObj);
 
+      //TODO: Pass favorite condition
+
       var projects = keys.map(function(key){
         return (
             <ProjectIndexItem

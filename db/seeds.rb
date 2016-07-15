@@ -767,3 +767,10 @@ Api::Picture.create!(
 )
 
 stepCnt += 1
+
+Api::Favorite.create!(
+  author_id: 1,
+  project_id: 2
+)
+
+favoritesCnt += 1

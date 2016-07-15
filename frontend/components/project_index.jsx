@@ -40,27 +40,23 @@ var ProjectIndex = React.createClass({
           <ProjectIndexItem
             project={projectsObj[key]}
             key={projectsObj[key].id}
-          />
+            />
         );
       });
     } else {
-      if (SearchStore.getSearch() === ""){
-        projects = <div className="try-searching-projects">Loading...</div>;
-        } else {
-          projects = <div className="try-searching-projects">Sorry, we couldn't find anything that matched your search. Try searching for something else! </div>;
-          }
-
+      if (SearchStore.getSearch() !== ""){
+        projects = <div className="try-searching-projects">Sorry, we couldn't find anything that matched your search. Try searching for something else! </div>;
         }
-
-        return (
-          <div className="project-index-container">
-            <h1 className="title">Community Projects</h1>
-            <ul className="project-index">
-              {projects}
-            </ul>
-          </div>
-        );
       }
-    });
+      return (
+        <div className="project-index-container">
+          <h1 className="title">Community Projects</h1>
+          <ul className="project-index">
+            {projects}
+          </ul>
+        </div>
+      );
+    }
+  });
 
-    module.exports = ProjectIndex;
+  module.exports = ProjectIndex;

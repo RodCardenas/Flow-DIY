@@ -68,4 +68,8 @@ class Api::User < ActiveRecord::Base
     )
   end
 
+  def favorites?(project_id)
+    Api::Favorite.where(project_id: project_id).where(author_id: self.id).any?
+  end
+
 end
