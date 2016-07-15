@@ -7,7 +7,6 @@ var ProjectIndexItem = require('./project_index_item');
 var ProjectIndexFavorites = React.createClass({
 
   getInitialState: function(){
-    console.log(this.props);
     this.userEmail = this.props.email;
     return ({ projects: ProjectStore.allForUser(this.userEmail) });
   },

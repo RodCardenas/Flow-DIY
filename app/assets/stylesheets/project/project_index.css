@@ -1,14 +1,19 @@
+.title{
+  font-size: 40px;
+}
+
 .project-index-container{
   min-width: 1053px;
   width: 100%;
   min-height: 875px;
-  margin-bottom: 50px;
   text-align: center;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .project-index{
   min-width: 1053px;
-  width: 100%;
+  width: 80%;
   text-align: center;
   margin-left: auto;
   margin-right: auto;

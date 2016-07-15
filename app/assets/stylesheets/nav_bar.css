@@ -11,6 +11,7 @@
   font-size: 12px;
   letter-spacing: 1px;
   min-width: 1053px;
+  border-bottom: 2px solid black;
 }
 
 .nav-bar #errors{
