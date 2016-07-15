@@ -7,19 +7,19 @@ var _errors = {};
 var _search = "";
 var SearchStore = new Store(AppDispatcher);
 
-SearchStore.all = function (userEmail) {
-  if(typeof userEmail === 'undefined'){
-    return Object.assign({}, _projects);
-  } else {
-      var keys = Object.keys(_projects);
-      var projects = {};
-      keys.forEach(function(projectId){
-        if(_projects[projectId].author.email === userEmail){
-          projects[projectId] =  _projects[projectId];
-        }
-      });
-      return projects;
-  }
+SearchStore.all = function () {
+  return Object.assign({}, _projects);
+};
+
+SearchStore.allForUser = function (userEmail) {
+  var keys = Object.keys(_projects);
+  var projects = {};
+  keys.forEach(function(projectId){
+    if(_projects[projectId].author.email === userEmail){
+      projects[projectId] =  _projects[projectId];
+    }
+  });
+  return projects;
 };
 
 SearchStore.find = function(id){
