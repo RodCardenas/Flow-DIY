@@ -2,6 +2,7 @@ var React = require('react');
 var CloudinaryImage = require('./cloudinary_image');
 var UserStore = require('../stores/user_store');
 var UserUtil = require('../util/user_api_util');
+var ProjectIndexFavorites = require('./project_index_favorites');
 
 var UserDetail = React.createClass({
   getInitialState: function(){
@@ -42,7 +43,9 @@ var UserDetail = React.createClass({
             className="user-detail-image"
             imageUrl={user.picture.picture_url}
             format={{height: 250, crop: "scale"}} />
+          <ProjectIndexFavorites />
         </div>
+
       );
     }
 

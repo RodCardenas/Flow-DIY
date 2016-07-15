@@ -4,7 +4,7 @@ var SearchStore = require('../stores/search_store');
 var ProjectUtil = require('../util/project_api_util');
 var ProjectIndexItem = require('./project_index_item');
 
-var ProjectIndex = React.createClass({
+var ProjectIndexFavorites = React.createClass({
 
   getInitialState: function(){
     return ({ projects: ProjectStore.all() });
@@ -12,6 +12,7 @@ var ProjectIndex = React.createClass({
 
   componentDidMount: function(){
     ProjectUtil.fetchProjects();
+    // TODO: Change to favorites store
     this.listenerProjectStore = ProjectStore.addListener(this.onChange);
     this.listenerSearchStore = SearchStore.addListener(this.searchReady);
   },
@@ -22,11 +23,14 @@ var ProjectIndex = React.createClass({
   },
 
   onChange: function(){
-    this.setState({ projects:ProjectStore.all() });
+    if (typeof this.props.params !== 'undefined') {
+      this.userEmail = this.props.params.userEmail;
+    }
+    this.setState({ projects:ProjectStore.all(this.userEmail) });
   },
 
   searchReady: function(){
-    this.setState({ projects:SearchStore.all() });
+    this.setState({ projects:SearchStore.all(this.userEmail) });
   },
 
   render: function(){
@@ -40,26 +44,21 @@ var ProjectIndex = React.createClass({
           <ProjectIndexItem
             project={projectsObj[key]}
             key={projectsObj[key].id}
-          />
+            />
         );
       });
     } else {
-      if (SearchStore.getSearch() === ""){
-        projects = <div className="try-searching-projects">Loading...</div>;
-        } else {
-          projects = <div className="try-searching-projects">Sorry, we couldn't find anything that matched your search. Try searching for something else! </div>;
-          }
-
-        }
-
-        return (
-          <div className="project-index-container">
-            <ul className="project-index">
-              {projects}
-            </ul>
-          </div>
-        );
+      projects = <div className="try-searching-projects">Your favorite projects will be shown here!</div>;
       }
-    });
 
-    module.exports = ProjectIndex;
+      return (
+        <div className="project-index-container">
+          <ul className="project-index">
+            {projects}
+          </ul>
+        </div>
+      );
+    }
+  });
+
+  module.exports = ProjectIndexFavorites;

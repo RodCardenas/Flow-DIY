@@ -7,11 +7,8 @@ var ProjectIndexItem = require('./project_index_item');
 var ProjectIndexMyFlow = React.createClass({
 
   getInitialState: function(){
-    if (typeof this.props.params !== 'undefined') {
-      this.userEmail = this.props.params.userEmail;
-      return ({ projects: ProjectStore.all(this.userEmail) });
-    }
-    return ({ projects: ProjectStore.all() });
+    this.userEmail = this.props.params.userEmail;
+    return ({ projects: ProjectStore.allForUser(this.userEmail) });
   },
 
   componentDidMount: function(){
@@ -26,14 +23,11 @@ var ProjectIndexMyFlow = React.createClass({
   },
 
   onChange: function(){
-    if (typeof this.props.params !== 'undefined') {
-      this.userEmail = this.props.params.userEmail;
-    }
-    this.setState({ projects:ProjectStore.all(this.userEmail) });
+    this.setState({ projects:ProjectStore.allForUser(this.userEmail) });
   },
 
   searchReady: function(){
-    this.setState({ projects:SearchStore.all(this.userEmail) });
+    this.setState({ projects:SearchStore.allForUser(this.userEmail) });
   },
 
   render: function(){
@@ -51,17 +45,8 @@ var ProjectIndexMyFlow = React.createClass({
         );
       });
     } else {
-      if(window.location.href.includes("/explore/")){
-        if (SearchStore.getSearch() === ""){
-          projects = <div className="try-searching-projects">Try searching for something! </div>;
-        } else {
-          projects = <div className="try-searching-projects">Sorry, we couldn't find anything that matched your search. Try searching for something else! </div>;
-        }
-
-      } else {
         projects = <div className="try-searching-projects">Sorry, we couldn't find a project you've created with that name.</div>;
       }
-    }
 
     return (
       <div className="project-index-container">
