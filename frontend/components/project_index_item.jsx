@@ -1,6 +1,4 @@
 var React = require('react');
-// var FavoriteStore = require('../stores/favorite_store');
-// var FavoriteUtil = require('../util/favorite_api_util');
 var CloudinaryImage = require('./cloudinary_image');
 var Favorite = require('./favorite');
 
@@ -62,9 +60,9 @@ var ProjectIndexItem = React.createClass({
                </a>
           </span>
         </div>
+        <Favorite project={project} key={project.id + "fav"}/>
       </li>
     );
-    // <Favorite project={project}/>
   }
 });
 

@@ -9,15 +9,5 @@
 #  updated_at :datetime         not null
 #
 
-class Api::Favorite < ActiveRecord::Base
-  validates :author_id, :project_id, presence: true
-  validates :author_id, uniqueness: { scope: :project_id }
-
-  belongs_to :author,
-    foreign_key: :author_id,
-    primary_key: :id,
-    class_name: :User
-
-  belongs_to :project
-
+module Api::FavoritesHelper
 end

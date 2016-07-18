@@ -9,15 +9,10 @@
 #  updated_at :datetime         not null
 #
 
-class Api::Favorite < ActiveRecord::Base
-  validates :author_id, :project_id, presence: true
-  validates :author_id, uniqueness: { scope: :project_id }
+require 'test_helper'
 
-  belongs_to :author,
-    foreign_key: :author_id,
-    primary_key: :id,
-    class_name: :User
-
-  belongs_to :project
-
+class Api::FavoritesControllerTest < ActionController::TestCase
+  # test "the truth" do
+  #   assert true
+  # end
 end
