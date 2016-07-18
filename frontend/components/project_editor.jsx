@@ -50,7 +50,6 @@ var ProjectEditor = React.createClass({
 
     keys.forEach(function(key){
       var step = steps[key];
-      console.log(step);
       StepUtil.updateStep(project.id, step.id, step);
     });
   },

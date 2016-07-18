@@ -15,6 +15,20 @@ module.exports =  {
     });
   },
 
+  removeFavorite: function(favorite){
+    $.ajax({
+      method: 'DELETE',
+      url: '/api/favorites/' + favorite.id,
+      data: {favorite: favorite},
+      success: function(fav){
+        FavoriteActions.deleteFavorite(fav);
+      },
+      error: function(error){
+        FavoriteActions.handleError(error);
+      }
+    });
+  },
+
   fetchFavorites: function(projectId){
     $.ajax({
       method: 'GET',

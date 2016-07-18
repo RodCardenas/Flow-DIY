@@ -39,18 +39,18 @@ var Favorite = React.createClass({
   },
 
   getInitialState: function(){
-    return { currentUser: UserStore.currentUser(),favorite: null, modalIsOpen: false };
+    return { currentUser: UserStore.currentUser(), favorite: null, modalIsOpen: false };
   },
 
   componentDidMount: function(){
     FavoriteUtil.fetchFavorites(this.props.project.id);
     this.listenerFavoriteStore = FavoriteStore.addListener(this.onChange);
-    this.listenerToken = UserStore.addListener(this.updateUser);
+    this.listenerUserStore = UserStore.addListener(this.updateUser);
   },
 
   componentWillUnmount: function(){
     this.listenerFavoriteStore.remove();
-    this.listenerToken.remove();
+    this.listenerUserStore.remove();
   },
 
   updateUser: function(){
@@ -58,9 +58,7 @@ var Favorite = React.createClass({
   },
 
   onChange: function(){
-    if(typeof this.state.currentUser !== 'undefined'){
       this.setState({ favorite:FavoriteStore.findFavoriteByAuthorIdAndProjectId(this.state.currentUser.id, this.props.project.id)});
-    }
   },
 
   openModal: function() {
@@ -79,7 +77,8 @@ var Favorite = React.createClass({
 
   removeFavorite: function(e){
     e.preventDefault();
-    alert("remove favorite");
+
+    FavoriteUtil.removeFavorite(this.state.favorite);
   },
 
   render: function(){

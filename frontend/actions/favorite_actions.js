@@ -15,6 +15,13 @@ module.exports = {
     });
   },
 
+  deleteFavorite: function(favorite){
+    AppDispatcher.dispatch({
+      actionType: "FAVORITE_DELETED",
+      favorite: favorite
+    });
+  },
+
   handleError: function(error) {
     AppDispatcher.dispatch({
       actionType: "FAVORITE_ERROR",

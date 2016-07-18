@@ -46,7 +46,7 @@ class Api::FavoritesController < ApplicationController
   # DELETE /api/favorites/1.json
   def destroy
     @api_favorite.destroy
-    format.json { head :no_content } #TODO
+    render json: @api_favorite
   end
 
   private

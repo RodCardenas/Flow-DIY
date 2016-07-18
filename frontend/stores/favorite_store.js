@@ -49,6 +49,10 @@ var addFavorite = function(favorite){
   _favorites[favorite.id] = favorite;
 };
 
+var removeFavorite = function(favorite){
+  delete _favorites[favorite.id];
+};
+
 var addFavorites = function(favorites){
   if(favorites === null){
     return;
@@ -76,6 +80,11 @@ FavoriteStore.__onDispatch = function (payload) {
 
     case FavoriteConstants.FAVORITES_RECEIVED :
       addFavorites(payload.favorites);
+      FavoriteStore.__emitChange();
+      break;
+
+    case FavoriteConstants.FAVORITE_DELETED :
+      removeFavorite(payload.favorite);
       FavoriteStore.__emitChange();
       break;
 
