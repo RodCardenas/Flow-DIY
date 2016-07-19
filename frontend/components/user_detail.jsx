@@ -47,8 +47,7 @@ var UserDetail = React.createClass({
                 imageUrl={user.picture.picture_url}
                 format={{height: 250, crop: "scale"}} />
           </div>
-          <ProjectIndexFavorites
-            />
+          <ProjectIndexFavorites user={user} />
         </div>
       );
     }

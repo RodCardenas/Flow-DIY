@@ -43,7 +43,7 @@ var Favorite = React.createClass({
   },
 
   componentDidMount: function(){
-    FavoriteUtil.fetchFavorites(this.props.project.id);
+    FavoriteUtil.fetchFavorites(null,this.props.project.id);
     this.listenerFavoriteStore = FavoriteStore.addListener(this.onChange);
     this.listenerUserStore = UserStore.addListener(this.updateUser);
   },

@@ -14,7 +14,19 @@ class Api::FavoritesController < ApplicationController
 
   # GET /api/favorites.json
   def index
-    @api_favorites = Api::Favorite.where(project_id: params[:favorite][:project_id])
+    auth = params[:favorite][:author_id]
+    proj = params[:favorite][:project_id]
+
+    if auth.empty? && proj.empty?
+      @api_favorites = Api::Favorite
+    elsif proj.empty? && !auth.empty?
+      @api_favorites = Api::Favorite.where(author_id: auth)
+    elsif !proj.empty? && auth.empty?
+      puts "HERERERER!"
+      @api_favorites = Api::Favorite.where(project_id: proj)
+    else
+      @api_favorites = Api::Favorite.where(project_id: proj).where(author_id: auth)
+    end
   end
 
   # GET /api/favorites/1.json

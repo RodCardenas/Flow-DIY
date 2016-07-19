@@ -1,14 +1,42 @@
 var React = require('react');
 var ProjectStore = require('../stores/project_store');
 var SearchStore = require('../stores/search_store');
+var FavoriteStore = require('../stores/favorite_store');
 var ProjectUtil = require('../util/project_api_util');
+var FavoriteStoreUtil = require('../util/favorite_api_util');
 var ProjectIndexItem = require('./project_index_item');
 
 var ProjectIndexFavorites = React.createClass({
 
   getInitialState: function(){
-    this.userEmail = this.props.email;
-    return ({ projects: ProjectStore.allForUser(this.userEmail) });
+    return ({ projects: this.getFavoriteProjects() });
+  },
+
+  getFavoriteProjects: function(){
+    var projectsObj = ProjectStore.all();
+    var favorites = FavoriteStore.allForUser(this.props.user.id);
+    var favoriteProjects = {};
+    var favoritesKeys = Object.keys(favorites);
+    var projectKeys = Object.keys(projectsObj);
+    var projectIds = [];
+    var projects = [];
+
+    projectKeys.forEach(function(key){
+      projectIds.push(projectsObj[key].id);
+      projects.push(projectsObj[key]);
+    });
+
+    favoritesKeys.forEach(function(favoriteKey){
+      var favorite = favorites[favoriteKey];
+      var projId = favorite.project_id;
+      var index = projectIds.indexOf(projId);
+
+      if (index !== -1) {
+        favoriteProjects[projId] = projects[index];
+      }
+    });
+
+    return favoriteProjects;
   },
 
   componentDidMount: function(){
@@ -23,7 +51,7 @@ var ProjectIndexFavorites = React.createClass({
   },
 
   onChange: function(){
-    this.setState({ projects:ProjectStore.allForUser(this.userEmail) });
+    this.setState({ projects:this.getFavoriteProjects() });
   },
 
   searchReady: function(){
@@ -49,9 +77,9 @@ var ProjectIndexFavorites = React.createClass({
       }
 
       return (
-        <div className="project-index-container">
+        <div className="project-index-container-favs">
           <h1 className="title">Favorites</h1>
-          <ul className="project-index">
+          <ul className="project-index-favs">
             {projects}
           </ul>
         </div>

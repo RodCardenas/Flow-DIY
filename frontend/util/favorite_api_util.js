@@ -29,11 +29,11 @@ module.exports =  {
     });
   },
 
-  fetchFavorites: function(projectId){
+  fetchFavorites: function(authorId, projectId){
     $.ajax({
       method: 'GET',
       url: '/api/favorites',
-      data: {favorite: {project_id: projectId}},
+      data: {favorite: {project_id: projectId, author_id: authorId}},
       success: function(favorites){
         FavoriteActions.receiveFavorites(favorites);
       },
