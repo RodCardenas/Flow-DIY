@@ -18,13 +18,13 @@ const customStyles = {
     left              : 0,
     right             : 0,
     bottom            : 0,
-    backgroundColor   : 'rgba(102, 102, 102, 0.85)',
+    backgroundColor   : 'rgba(102, 102, 102, 0.9)',
     minWidth          : 700
   },
 
   content : {
-    width             : '40%',
-    height            : '30%',
+    width             : '300px',
+    height            : '150px',
     top               : '40%',
     left              : '50%',
     right             : 'auto',

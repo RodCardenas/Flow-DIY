@@ -5,6 +5,7 @@
 }
 
 .carousel-overlay{
+  min-width: 1053px;
   position: absolute;
   color: white;
   width: 100%;
