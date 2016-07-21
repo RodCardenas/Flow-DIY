@@ -81,7 +81,7 @@
   top: 33%;
   width: 324px;
   height: 90px;
-  background-color:rgba(0,0,0,0.8);
+  background-color:rgba(0,0,0,0.6);
   color: #ddd;
   font-size: 14px;
   display: none;
@@ -94,9 +94,10 @@
 }
 
 .project-title-text{
-  background-color:rgba(0,0,0,0);
   position: absolute;
   top: 50%;
+  width: 100%;
+  text-align: center;
   transform: translateY(-50%);
 }
 
