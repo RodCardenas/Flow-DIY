@@ -1,10 +1,10 @@
 Rails.application.configure do
 
   # Add the fonts path
-  config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
+  # config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
 
   # Precompile additional assets
-  config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
+  # config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
 
   # Settings specified here will take precedence over those in config/application.rb.
 
