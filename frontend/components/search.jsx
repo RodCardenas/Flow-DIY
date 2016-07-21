@@ -1,6 +1,7 @@
 var React = require('react');
 var SearchStore = require('../stores/search_store');
 var SearchApiUtil = require('../util/search_api_util');
+var ProjectUtil = require('../util/project_api_util');
 var ProjectActions = require('../actions/project_actions');
 
 var Search = React.createClass({
@@ -30,9 +31,9 @@ var Search = React.createClass({
   },
 
   selectResult: function(project){
+    ProjectUtil.fetchProject(project.id);
     this.context.router.push("/projects/" + project.id);
     this.setState({search: ""});
-    window.location.reload();
   },
 
   render: function(){

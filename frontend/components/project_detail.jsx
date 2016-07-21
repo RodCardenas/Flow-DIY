@@ -33,12 +33,12 @@ var ProjectDetail = React.createClass({
     if(typeof pictures !== 'undefined'){
       var picturesHTML = pictures.map(function(picture){
         return (
-          <div className="project-picture" key={picture.id}>
+          <div className="project-picture" key={"project" + picture.id}>
             <CloudinaryImage
               imageUrl={picture.picture_url}
               format={{height: 300, width: 300, crop: "fit"}}
             />
-            <h6 className="picture-caption">
+          <h6 className="picture-caption">
               {picture.caption}
             </h6>
           </div>

@@ -41,8 +41,7 @@ var SteptIndex = React.createClass({
 
   render: function(){
     this.steps = this.state.steps.map(function(step, idx){
-      var theRef = "step" + (idx + 1);
-      return React.cloneElement(step, {ref:theRef});
+      return React.cloneElement(step, {ref:step.id});
     });
 
     return (
