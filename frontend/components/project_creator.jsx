@@ -24,7 +24,8 @@ var ProjectCreator = React.createClass({
       steps:[],
       errors:ProjectStore.getErrors(),
       pictures: [],
-      picture_urls: []
+      picture_urls: [],
+      stepIndex: null
      });
   },
 
@@ -38,15 +39,13 @@ var ProjectCreator = React.createClass({
   },
 
   findProject: function(){
-    if(this.state.currentUser !== 'undefined'){
-      this.setState({
-         project: ProjectStore.findProjectByAuthorAndTitle(
-           this.state.currentUser.id,
-           this.state.projectName
-         ),
-         errors: ProjectStore.getErrors()
-      });
-    }
+    this.setState({
+       project: ProjectStore.findProjectByAuthorAndTitle(
+         this.state.currentUser.id,
+         this.state.projectName
+       ),
+       errors: ProjectStore.getErrors()
+    });
   },
 
   createProject: function(e) {
@@ -67,17 +66,14 @@ var ProjectCreator = React.createClass({
   updateProject: function(e){
     e.preventDefault();
 
-    var steps = this.refs.stepIndex.parseSteps();
+    console.log(this.state.stepIndex);
+    var steps = this.state.stepIndex.parseSteps();
     var keys = Object.keys(steps);
-
-    var project = ProjectStore.findProjectByAuthorAndTitle(
-      this.state.currentUser.id,
-      this.state.projectName
-    );
+    var self = this;
 
     this.state.picture_urls.forEach(function(url){
       var pic = {
-        imageable_id: project.id,
+        imageable_id: self.state.project.id,
         imageable_type: "Api::Project",
         picture_url: url
       };
@@ -87,12 +83,12 @@ var ProjectCreator = React.createClass({
 
     keys.forEach(function(key){
       var step = steps[key];
-      step["project_id"] = project.id;
-      StepUtil.createStep(project.id, step);
+      step["project_id"] = self.state.project.id;
+      StepUtil.createStep(self.state.project.id, step);
     });
 
     this.context.router.push("/projects/" + this.state.project.id);
-    window.location.reload();
+    // window.location.reload();
   },
 
   projectNameChange: function(event) {
@@ -151,6 +147,7 @@ var ProjectCreator = React.createClass({
   },
 
   render: function(){
+    var self = this;
     if (this.state.projectName === "" || this.state.errors.length !== 0){
         var content = (
           <div className="project-creator">
@@ -196,7 +193,7 @@ var ProjectCreator = React.createClass({
                   <StepIndex
                     steps={[]}
                     projectId={this.state.project.id}
-                    ref="stepIndex"/>
+                    ref={function(c){self.state.stepIndex = c;}}/>
                 </div>
 
                 <button onClick={this.updateProject}>Update & View Project</button>
