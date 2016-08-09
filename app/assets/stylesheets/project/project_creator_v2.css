@@ -1,4 +1,4 @@
-.project-creator-container{
+.project-creator{
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -7,12 +7,7 @@
   background-color: #eeeeee;
   font-size: 14px;
   text-align: center;
-  min-height: 925px;
-}
-
-.project-creator{
   min-height: 100vh;
-  display: inline-block;
 }
 
 .project-pictures{
@@ -67,26 +62,4 @@
   text-transform: uppercase;
   transition: all 200ms;
   padding: 2px 6px;
-}
-
-.step-index-container{
-  margin-top: 10px;
-  width: 100%;
-}
-
-.step-index{
-  margin-top: 10px;
-  width: 100%;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.step-index-item{
-  margin-top: 10px;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-  justify-content: space-around;
 }
