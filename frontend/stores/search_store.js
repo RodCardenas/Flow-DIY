@@ -2,7 +2,7 @@ var Store = require('flux/utils').Store;
 var AppDispatcher = require('../dispatcher/dispatcher');
 var SearchConstants = require('../constants/search_constants');
 
-var _projects = {};
+var _projects = [];
 var _errors = {};
 var _search = "";
 var SearchStore = new Store(AppDispatcher);
@@ -12,11 +12,10 @@ SearchStore.all = function () {
 };
 
 SearchStore.allForUser = function (userEmail) {
-  var keys = Object.keys(_projects);
   var projects = {};
-  keys.forEach(function(projectId){
-    if(_projects[projectId].author.email === userEmail){
-      projects[projectId] =  _projects[projectId];
+  _projects.forEach(function(project){
+    if(project.author.email === userEmail){
+      projects[project.id] =  project;
     }
   });
   return projects;
@@ -30,7 +29,7 @@ SearchStore.getSearch = function(){
   return _search.repeat(1);
 };
 
-var resetProjects= function(projects){
+var resetProjects = function(projects){
   _projects = projects;
 };
 

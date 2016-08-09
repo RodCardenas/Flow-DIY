@@ -39,6 +39,33 @@ var ProjectIndexFavorites = React.createClass({
     return favoriteProjects;
   },
 
+  getFavoriteProjectsSearch: function(){
+    var projectsObj = ProjectStore.all();
+    var favorites = FavoriteStore.searchFavorites();
+    var favoriteProjects = {};
+    var favoritesKeys = Object.keys(favorites);
+    var projectKeys = Object.keys(projectsObj);
+    var projectIds = [];
+    var projects = [];
+
+    projectKeys.forEach(function(key){
+      projectIds.push(projectsObj[key].id);
+      projects.push(projectsObj[key]);
+    });
+
+    favoritesKeys.forEach(function(favoriteKey){
+      var favorite = favorites[favoriteKey];
+      var projId = favorite.project_id;
+      var index = projectIds.indexOf(projId);
+
+      if (index !== -1) {
+        favoriteProjects[projId] = projects[index];
+      }
+    });
+
+    return favoriteProjects;
+  },
+
   componentDidMount: function(){
     ProjectUtil.fetchProjects();
     this.listenerProjectStore = ProjectStore.addListener(this.onChange);
@@ -55,7 +82,7 @@ var ProjectIndexFavorites = React.createClass({
   },
 
   searchReady: function(){
-    this.setState({ projects:SearchStore.allForUser(this.userEmail) });
+    this.setState({ projects:this.getFavoriteProjectsSearch() });
   },
 
   render: function(){

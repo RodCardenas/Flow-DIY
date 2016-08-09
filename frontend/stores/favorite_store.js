@@ -1,6 +1,8 @@
 var Store = require('flux/utils').Store;
 var AppDispatcher = require('../dispatcher/dispatcher');
 var FavoriteConstants = require('../constants/favorite_constants');
+var SearchStore = require('./search_store');
+var ProjectStore = require('./project_store');
 
 var _favorites = {};
 var _errors = [];
@@ -18,6 +20,7 @@ FavoriteStore.allForUser = function (authorId) {
       favorites[favoriteId] =  _favorites[favoriteId];
     }
   });
+
   return favorites;
 };
 
@@ -32,13 +35,28 @@ FavoriteStore.findFavoriteByAuthorIdAndProjectId = function(authorId, projectId)
   keys.forEach(function(key){
     var favorite = _favorites[key];
 
-
     if(favorite.author_id === authorId && favorite.project_id === projectId){
       theFavoriteBeingLookedFor =  favorite;
     }
   });
 
   return theFavoriteBeingLookedFor;
+};
+
+FavoriteStore.searchFavorites = function(){
+  var search = SearchStore.getSearch();
+  var projects = ProjectStore.all();
+
+  var keys = Object.keys(_favorites);
+  var favorites = {};
+
+  keys.forEach(function(favoriteId){
+    var projectTitle = projects[_favorites[favoriteId].project_id - 1].title.toLowerCase();
+    if(projectTitle.indexOf(search.toLowerCase()) !== -1){
+      favorites[favoriteId] =  _favorites[favoriteId];
+    }
+  });
+  return favorites;
 };
 
 FavoriteStore.getErrors = function(){
