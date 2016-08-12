@@ -60,7 +60,7 @@ var NavBar = React.createClass({
 
   showButtons: function(){
     return (
-      <div id="user-interations">
+      <div id="user-interactions">
         <button onClick={this.openModal}>login/signup</button>
         <Modal className="modal"
           isOpen={this.state.modalIsOpen}

@@ -88,17 +88,21 @@ var ProjectIndexFavorites = React.createClass({
   render: function(){
     var projectsObj = this.state.projects;
 
-    if(typeof projectsObj !== 'undefined' && Object.keys(projectsObj).length !== 0){
-      var keys = Object.keys(projectsObj);
+    if(typeof projectsObj !== 'undefined'){
+      if(Object.keys(projectsObj).length === 0){
+        projects = <div className="try-searching-projects">You have not added any favorite projects that match the search!</div>;
+      } else{
+        var keys = Object.keys(projectsObj);
 
-      var projects = keys.map(function(key){
-        return (
-          <ProjectIndexItem
-            project={projectsObj[key]}
-            key={projectsObj[key].id}
-            />
-        );
-      });
+        var projects = keys.map(function(key){
+          return (
+            <ProjectIndexItem
+              project={projectsObj[key]}
+              key={projectsObj[key].id}
+              />
+          );
+        });
+      }
     } else {
       projects = <div className="try-searching-projects">Your favorite projects will be shown here!</div>;
       }

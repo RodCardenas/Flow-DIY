@@ -7,7 +7,7 @@
   align-items: center;
   justify-content: space-around;
   height: 50px;
-  width: 100%;
+  width: 100vw;
   font-size: 12px;
   letter-spacing: 1px;
   min-width: 1053px;
@@ -26,6 +26,9 @@
   height: 50px;
   text-decoration: none;
 }
+.nav-bar #logo:hover {
+  cursor: pointer;
+}
 
 .nav-bar .catch-phrase {
   position: absolute;
@@ -37,7 +40,7 @@
   height: 50px;
 }
 
-.nav-bar #user-interations {
+.nav-bar #user-interactions {
   margin-left: auto;
   width: 115px;
 }
@@ -85,6 +88,10 @@
   margin-right: auto;
 }
 
+.nav-bar .search input:focus{
+  background-color: rgb(150, 150, 150);
+}
+
 .nav-bar .search-results{
   width: 17.5%;
   position: absolute;
@@ -111,7 +118,7 @@
 }
 
 .nav-bar input:focus + .search-results{
-  max-height: 1000px;
+  max-height: 40vh;
   -webkit-transform: perspective(600) rotate3d(0, 0, 0, 0) translateX(60px);
 }
 
@@ -128,7 +135,7 @@
 
 .nav-bar #user-menu-container:hover .user-menu-options-container {
   max-height: 140px;
-  -webkit-transform: translateX(-26px) perspective(600) rotate3d(0, 0, 0, 0) translateY(-5px);
+  -webkit-transform: perspective(600) rotate3d(0, 0, 0, 0) translateY(-5px) translatex(-38px);
 }
 
 .nav-bar #user-menu-container .user-menu-options-container {
@@ -139,7 +146,7 @@
   z-index: 1;
   position: absolute;
   max-height: 0px;
-  -webkit-transform: perspective(600) rotate3d(1, 0, 0, -90deg) translateX(-26px);
+  -webkit-transform: perspective(600) rotate3d(1, 0, 0, -90deg) translatex(-38px);
   -webkit-transform-origin: 50% 0;
   -webkit-transition: 350ms;
   -moz-transition: 350ms;
