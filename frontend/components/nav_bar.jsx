@@ -19,19 +19,18 @@ const customStyles = {
     right             : 0,
     bottom            : 0,
     backgroundColor   : 'rgba(102, 102, 102, 0.9)',
-    minWidth          : 700
+    minWidth          : "100vw",
+    minHeight          : "100vh",
   },
 
   content : {
+    position          : 'relative',
     width             : '400px',
     height            : '180px',
-    top               : '40%',
-    left              : '50%',
-    right             : 'auto',
-    bottom            : 'auto',
-    marginRight       : '-50%',
-    transform         : 'translate(-50%, -50%)',
-    backgroundColor   : 'rgba(246, 246, 246, 0.75)'
+    top               : '30vh',
+    left              : '37vw',
+    backgroundColor   : 'rgba(246, 246, 246, 0.75)',
+    padding           : '1vh 1vw 1vh 1vw'
   },
 };
 
@@ -63,7 +62,7 @@ var NavBar = React.createClass({
     return (
       <div id="user-interations">
         <button onClick={this.openModal}>login/signup</button>
-        <Modal id="modal"
+        <Modal className="modal"
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal}
           style={customStyles}>

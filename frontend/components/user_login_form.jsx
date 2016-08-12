@@ -1,11 +1,8 @@
 var React = require('react');
 var UserStore = require('../stores/user_store');
 var UserApiUtil = require('../util/user_api_util');
-var CurrentUserStateMixin = require('../mixins/current_user_state');
 
 var UserLoginForm = React.createClass({
-  mixins: [CurrentUserStateMixin],
-
   contextTypes: {
     router: React.PropTypes.object.isRequired
   },
