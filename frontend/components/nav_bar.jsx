@@ -23,8 +23,8 @@ const customStyles = {
   },
 
   content : {
-    width             : '300px',
-    height            : '150px',
+    width             : '400px',
+    height            : '180px',
     top               : '40%',
     left              : '50%',
     right             : 'auto',

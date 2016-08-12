@@ -26,15 +26,14 @@
   color: white;
   text-align: center;
   transition: all 0.3s;
-  width: 70%;
-  margin-left: 15%;
+  width: 340px;
+  margin-left: 30px;
 }
 
 .ReactModalPortal label input:focus {
   color: black;
-  max-width: 100%;
-  width: 80%;
-  margin-left: 10%;
+  width: 380px;
+  margin-left: 10px;
 }
 
 .ReactModalPortal .buttons {

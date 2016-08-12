@@ -25,6 +25,7 @@
 #project-options{
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 1vh;
 }
 
 .project-picture{
@@ -55,6 +56,37 @@
   padding: 2px 6px;
   margin-top: 1vh;
   margin-bottom: 1vh;
+}
+
+.step-detail{
+  display: flex;
+  flex-direction: column;
+  margin-top: 2vh;
+  margin-left: auto;
+  margin-right: auto;
+  width: 78vw;
+  border: 2px outset rgb(215, 215, 215);
+  border-radius: 5px;
+  position: relative;
+  background-color: white;
+}
+
+.step-title{
+  padding: 1vh;
+}
+
+.step-body{
+  padding: 1vh;
+  margin-bottom: 2vh;
+  resize: vertical;
+  max-width: 68vw;
+}
+
+.step-pictures-container{
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .project-detail-edit-mode button {

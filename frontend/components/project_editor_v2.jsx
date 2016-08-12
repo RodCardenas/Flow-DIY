@@ -79,12 +79,12 @@ var ProjectDetail = React.createClass({
       }
       var stepsHTML = steps.map(function(step){
         return (
-          <div className="step-container" key={"stepContainer" + step.id + step.order} step={step} >
-            <div className="step-order-options">
+          <div className="editable-step-container" key={"stepContainer" + step.id + step.order} step={step} >
+            <div className="editable-step-order-options">
               <button className="order-change" onClick={self.decreaseOrder.bind(self,step)}>△</button>
               <button className="order-change" onClick={self.increaseOrder.bind(self,step)}>▽</button>
             </div>
-            <EditableStep className="step" step={step} />
+            <EditableStep className="editable-step" step={step} />
             <button className="delete-step"  onClick={self.removeStep.bind(self,step)}>-</button>
           </div>
         );
@@ -154,8 +154,8 @@ var ProjectDetail = React.createClass({
         <ul className="project-pictures-container">
           {pictures}
         </ul>
-        <button onClick={this.addProjectPicture}>Add Picture</button>
-        <ul className="steps-container">
+        <button onClick={this.addProjectPicture}>Add Project Picture</button>
+        <ul className="editable-steps-container">
           {steps}
         </ul>
         <button onClick={this.addStep}>Add Step</button>

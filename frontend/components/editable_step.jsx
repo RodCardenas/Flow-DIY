@@ -1,6 +1,7 @@
 var React = require('react');
 var CloudinaryImage = require('./cloudinary_image');
 var StepUtil = require('../util/step_api_util');
+var PictureUtil = require('../util/picture_api_util');
 
 var EditableStep = React.createClass({
 
@@ -29,7 +30,7 @@ var EditableStep = React.createClass({
     if(typeof pictures !== 'undefined' && pictures.length > 0){
       var picturesHTML = pictures.map(function(picture){
         return (
-          <div className="step-picture" key={"step" + stepId + "-" + picture.id}>
+          <div className="editable-step-picture" key={"step" + stepId + "-" + picture.id}>
             <CloudinaryImage
               imageUrl={picture.picture_url}
               format={{height: 300, width: 300, crop: "fit"}}
@@ -46,18 +47,48 @@ var EditableStep = React.createClass({
     return picturesHTML;
   },
 
+  addPicture: function(event){
+    event.preventDefault();
+    var self = this;
+
+    window.cloudinary.openUploadWidget({
+      cloud_name: 'flow-diy',
+      upload_preset: 'flchasab',
+      theme: 'minimal'},
+      function(error, result){
+        if(error !== null){
+          this.setState({error: error });
+          return;
+        }
+
+        var pictures;
+
+        result.forEach(function(picture){
+          PictureUtil.createPicture({
+            imageable_id: self.state.project_id,
+            imageable_type: "Api::Step",
+            picture_url: picture.url
+          });
+        });
+      }
+    );
+  },
+
   render: function(){
     var pictures = this.accessPicture(this.state.pictures, this.state.id);
 
     return (
-      <div className="step-detail">
-        <h3 className="step-title">
-          <div className="step-order">Step {this.state.order}:</div> <input type="text" value={this.state.title} onChange={this.onTitleChange} />
+      <div className="editable-step-detail">
+        <h3 className="editable-step-title">
+          <div className="editable-step-order">Step {this.state.order}:</div> <input type="text" value={this.state.title} onChange={this.onTitleChange} />
         </h3>
-        <ul className="step-pictures-container">
-          {pictures}
-        </ul>
-        <input type="textbox" className="step-body" value={this.state.body} onChange={this.onBodyChange} />
+        <input type="textbox" className="editable-step-body" value={this.state.body} onChange={this.onBodyChange} />
+        <div className="editable-step-pictures-container">
+          <ul className="editable-step-pictures">
+            {pictures}
+          </ul>
+          <button className="add-pic" onClick={this.addPicture}>Add Picture</button>
+        </div>
       </div>
     );
   }

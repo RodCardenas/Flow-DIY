@@ -1,4 +1,4 @@
-.step-container{
+.editable-step-container{
   display: -webkit-box;
   margin-top: 2vh;
   margin-left: auto;
@@ -10,15 +10,18 @@
   background-color: white;
 }
 
-.step-order{
+.editable-step-order{
   width: 7vw;
-  background-color: rgb(230, 230, 230);
 }
 
-.step-order-options{
+.editable-step-detail input:hover{
+  background-color: rgb(240, 240, 240);
+}
+
+.editable-step-order-options{
   display: flex;
   flex-direction: column;
-  padding-top: 3vh;
+  padding-top: .5vh;
   padding-left: 1vw;
   padding-right: 1vw;
 }
@@ -29,34 +32,49 @@
   right: 1vw;
 }
 
-.step-detail input{
-  width: 76vw;
+.editable-step-detail input{
+  width: 69vw;
   margin-left: auto;
   margin-right: auto;
 }
 
-.step-title{
-  width: 66vw;
+.editable-step-title{
   padding: 1vh;
 }
 
 /*Find a way to display textbox resize option*/
-.step-body{
+.editable-step-body{
   padding: 1vh;
   margin-bottom: 2vh;
   resize: vertical;
-  max-width: 66vw;
+  max-width: 68vw;
 }
 
-.step-pictures-container{
+.editable-step-pictures-container{
+  display: flex;
+  flex-direction: column;
   margin-left: auto;
   margin-right: auto;
+}
+
+.editable-step-pictures{
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
-.step-picture img{
+.editable-step-picture{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.editable-step-picture img{
   margin: 10px 10px;
   width: 18vw;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.add-pic{
+
 }

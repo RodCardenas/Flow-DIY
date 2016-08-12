@@ -86,13 +86,9 @@ var removeStep = function(step){
 };
 
 var updateSteps = function(steps){
-  console.log(_steps);
-  console.log(steps);
   steps.forEach(function(step){
     _steps[step.id] = step;
   });
-
-  console.log(_steps);
 };
 
 var resetErrors = function(errors){
