@@ -94,7 +94,7 @@ var StepIndexItem = React.createClass({
           {this.state.pictures}
         </div>
         {this.state.error}
-        <br/ >
+        <br/>
         <button onClick={this.addPicture}>Add Picture</button>
         <hr/>
       </div>

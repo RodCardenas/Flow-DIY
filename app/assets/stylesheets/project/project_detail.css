@@ -1,33 +1,50 @@
 .project-detail{
   display: flex;
-  flex-direction: column;;
-  width: 80%;
+  flex-direction: column;
+  width: 90%;
   margin-left: auto;
   margin-right: auto;
-  min-height: 855px;
+  min-height: 100vh;
+}
+
+.project-detail-edit-mode{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 100vh;
+  background: rgb(210, 210, 210);
+}
+
+.project-detail-title{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#project-options{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.project-picture{
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .project-pictures-container{
-  width:1000px;
-}
-
-.step-pictures-container{
+  width:90vw;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
 }
-
-.step-picture{
-  margin: 10px 10px;
-}
-
 
 .picture-caption{
   text-align: left;
 }
 
 .project-detail button {
-  margin-bottom: 10px;
   background-color: #333333;
   border: 1px solid white;
   border-radius: 27px;
@@ -36,4 +53,37 @@
   text-transform: uppercase;
   transition: all 200ms;
   padding: 2px 6px;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+}
+
+.project-detail-edit-mode button {
+  background-color: #333333;
+  border: 1px solid white;
+  border-radius: 27px;
+  color: white;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 200ms;
+  padding: 2px 6px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+}
+
+.project-detail button:hover, button:active {
+  background-color: white;
+  color: #333333;
+  outline: 0;
+}
+
+.project-detail-edit-mode button:hover, button:active {
+  background-color: white;
+  color: #333333;
+  outline: 0;
+}
+
+.space-taker{
+  height: 10vh;
 }

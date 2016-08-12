@@ -1,8 +1,10 @@
 var React = require('react');
 var CloudinaryImage = require('./cloudinary_image');
-var Step = require('./step');
+var EditableStep = require('./editable_step');
 var ProjectStore = require('../stores/project_store');
+var StepStore = require('../stores/step_store');
 var ProjectUtil = require('../util/project_api_util');
+var StepUtil = require('../util/step_api_util');
 var CurrentUserStateMixin = require('../mixins/current_user_state');
 
 var ProjectDetail = React.createClass({
@@ -19,14 +21,20 @@ var ProjectDetail = React.createClass({
   componentDidMount: function(){
     ProjectUtil.fetchProject(this.props.params.projectId);
     this.listenerToken = ProjectStore.addListener(this.onChange);
+    this.listenerTokenSteps = StepStore.addListener(this.onStepChange);
   },
 
   componentWillUnmount: function(){
     this.listenerToken.remove();
+    this.listenerTokenSteps.remove();
   },
 
   onChange: function(){
     this.setState({ project:ProjectStore.find(this.props.params.projectId) });
+  },
+
+  onStepChange: function(){
+    ProjectUtil.fetchProject(this.props.params.projectId);
   },
 
   accessPicture: function(pictures){
@@ -51,7 +59,8 @@ var ProjectDetail = React.createClass({
   },
 
   accessSteps: function(steps){
-    if(typeof steps !== 'undefined'){
+    var self = this;
+    if(typeof steps !== 'undefined' && steps.length > 0){
       var sorted = false;
 
       while(sorted === false){
@@ -68,10 +77,16 @@ var ProjectDetail = React.createClass({
           i++;
         }
       }
-
       var stepsHTML = steps.map(function(step){
         return (
-          <Step className="step" key={"step" + step.id} step={step}/>
+          <div className="step-container" key={"stepContainer" + step.id + step.order} step={step} >
+            <div className="step-order-options">
+              <button className="order-change" onClick={self.decreaseOrder.bind(self,step)}>△</button>
+              <button className="order-change" onClick={self.increaseOrder.bind(self,step)}>▽</button>
+            </div>
+            <EditableStep className="step" step={step} />
+            <button className="delete-step"  onClick={self.removeStep.bind(self,step)}>-</button>
+          </div>
         );
       });
     } else {
@@ -80,13 +95,39 @@ var ProjectDetail = React.createClass({
     return stepsHTML;
   },
 
-  deleteProject: function(){
-    ProjectUtil.deleteProject(this.props.params.projectId);
-    this.context.router.push("/myFlow/" + this.state.currentUser.email);
+  decreaseOrder:function(step){
+    if (step.order !== 1){
+      step.order--;
+      StepUtil.updateStepOrder(this.state.project.id, step.id, step);
+    }
   },
 
-  updateProject: function(){
-    this.context.router.push("/edit/" + this.state.project.id);
+  increaseOrder:function(step){
+    if (step.order !== this.state.project.steps.length){
+      step.order++;
+      StepUtil.updateStepOrder(this.state.project.id, step.id, step);
+    }
+  },
+
+  viewProject: function(){
+    this.context.router.push("/projects/" + this.state.project.id);
+  },
+
+  addStep: function(event){
+    event.preventDefault();
+
+    var order = this.state.project.steps.length + 1;
+
+    StepUtil.createStep(
+      this.state.project.id, {
+        title: "Title goes here",
+        body: "Body goes here",
+        order: order
+      });
+  },
+
+  removeStep: function(step){
+    StepUtil.deleteStep(this.state.project.id, step.id);
   },
 
   render: function(){
@@ -95,19 +136,17 @@ var ProjectDetail = React.createClass({
     var steps = this.accessSteps(project.steps);
 
     if(Object.keys(project).length !== 0){
-      if(typeof this.state.currentUser !== 'undefined')
       if(this.state.currentUser.id === project.author.id){
         var projectOptions = (
           <div id="project-options">
-            <button onClick={this.deleteProject}>Delete Project</button>
-            <button onClick={this.updateProject}>Update Project</button>
+            <button onClick={this.viewProject}>View Project</button>
           </div>
         );
       }
     }
 
     return (
-      <div className="project-detail">
+      <div className="project-detail-edit-mode">
         <h2 className="project-detail-title">
           {project.title}
         </h2>
@@ -115,9 +154,11 @@ var ProjectDetail = React.createClass({
         <ul className="project-pictures-container">
           {pictures}
         </ul>
+        <button onClick={this.addProjectPicture}>Add Picture</button>
         <ul className="steps-container">
           {steps}
         </ul>
+        <button onClick={this.addStep}>Add Step</button>
         <div className="space-taker" />
       </div>
     );

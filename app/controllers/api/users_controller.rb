@@ -11,7 +11,7 @@
 #
 
 class Api::UsersController < ApplicationController
-  before_action :set_api_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_api_user, only: [:show, :update, :destroy]
 
   # GET /api/users/1
   def show
@@ -20,11 +20,6 @@ class Api::UsersController < ApplicationController
   # GET /api/users/new
   def new
     @api_user = Api::User.new
-  end
-
-  # GET /api/users/1/edit
-  def edit
-    #TODO
   end
 
   # POST /api/users

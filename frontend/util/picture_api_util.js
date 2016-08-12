@@ -16,4 +16,17 @@ module.exports =  {
     });
   },
 
+  deletePicture: function(id){
+    $.ajax({
+      method: 'DELETE',
+      url: '/api/pictures/' + id,
+      success: function(picture){
+        PictureActions.removePicture(picture);
+      },
+      error: function(error){
+        PictureActions.handleError(error);
+      }
+    });
+  },
+
 };

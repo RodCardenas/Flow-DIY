@@ -8,6 +8,13 @@ module.exports = {
     });
   },
 
+  removePicture: function(picture){
+    AppDispatcher.dispatch({
+      actionType: "PICTURE_DELETED",
+      picture: picture
+    });
+  },
+
   handleError: function(error) {
     AppDispatcher.dispatch({
       actionType: "PIC_ERROR",

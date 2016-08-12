@@ -1,0 +1,62 @@
+.step-container{
+  display: -webkit-box;
+  margin-top: 2vh;
+  margin-left: auto;
+  margin-right: auto;
+  width: 78vw;
+  border: 2px outset rgb(215, 215, 215);
+  border-radius: 5px;
+  position: relative;
+  background-color: white;
+}
+
+.step-order{
+  width: 7vw;
+  background-color: rgb(230, 230, 230);
+}
+
+.step-order-options{
+  display: flex;
+  flex-direction: column;
+  padding-top: 3vh;
+  padding-left: 1vw;
+  padding-right: 1vw;
+}
+
+.delete-step{
+  position: absolute;
+  top: 0;
+  right: 1vw;
+}
+
+.step-detail input{
+  width: 76vw;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.step-title{
+  width: 66vw;
+  padding: 1vh;
+}
+
+/*Find a way to display textbox resize option*/
+.step-body{
+  padding: 1vh;
+  margin-bottom: 2vh;
+  resize: vertical;
+  max-width: 66vw;
+}
+
+.step-pictures-container{
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.step-picture img{
+  margin: 10px 10px;
+  width: 18vw;
+}

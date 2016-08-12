@@ -30,6 +30,13 @@ module.exports = {
     });
   },
 
+  updatedSteps: function(steps){
+    AppDispatcher.dispatch({
+      actionType: StepConstants.STEPS_UPDATED,
+      steps: steps
+    });
+  },
+
   handleError: function(error) {
     AppDispatcher.dispatch({
       actionType: StepConstants.ERROR,

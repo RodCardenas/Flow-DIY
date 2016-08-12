@@ -38,7 +38,7 @@ class Api::StepsController < ApplicationController
       order: params[:api_step][:order],
       title: params[:api_step][:title],
       body: params[:api_step][:body],
-      project_id: params[:api_step][:project_id]
+      project_id: params[:project_id]
     )
 
     if @api_step.save
@@ -58,7 +58,27 @@ class Api::StepsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /api/steps/1.json
+  def changeOrder
+    steps = []
+    @api_step = Api::Step.find(params[:id])
+    newOrder = params[:api_step][:order].to_i
+    oldOrder = @api_step.order.to_i
+
+    @api_steps = Api::Step.where("project_id = ?", params[:api_step][:project_id].to_i)
+
+    @api_steps.each do |step|
+      if step.order == newOrder
+        step.update_attributes(order: oldOrder)
+        steps << step
+        break
+      end
+    end
+
+    @api_step.update_attributes(order: newOrder)
+    steps << @api_step
+    render json: steps
+  end
+
   def update
     @api_step = Api::Step.find(params[:id])
 
@@ -66,22 +86,29 @@ class Api::StepsController < ApplicationController
         order: params[:api_step][:order],
         title: params[:api_step][:title],
         body: params[:api_step][:body],
-        project_id: params[:project_id]
+        project_id: params[:api_step][:project_id]
       )
 
-      if @api_step.pictures
+      picturesInfo = params[:api_step][:pictures]
+
+      # TODO: Test picture creation procedure
+
+      if @api_step.pictures && picturesInfo
         @api_step.pictures.each do |picture|
-          puts picture
-          picture.destroy
+          if picturesInfo.include? (picture.picture_url)
+            picturesInfo.delete(picture.picture_url)
+          end
         end
       end
 
-      params[:api_step][:pictures].each do |picture|
-        Api::Picture.create!(
-          imageable_type: "Api::Step",
-          imageable_id: @api_step.id,
-          picture_url: picture
-        )
+      if picturesInfo && picturesInfo.length > 0
+        picturesInfo.each do |picture|
+          Api::Picture.create!(
+            imageable_type: "Api::Step",
+            imageable_id: @api_step.id,
+            picture_url: picture
+          )
+        end
       end
 
       render "api/steps/show"
@@ -93,8 +120,26 @@ class Api::StepsController < ApplicationController
 
   # DELETE /api/steps/1.json
   def destroy
+    target_order = @api_step.order
     @api_step.destroy
-    render @api_step.title + " has been deleted."
+
+    project_steps = Api::Step.where(project_id: @api_step.project_id).sort_by{|step| step.order}
+
+    if target_order == 1
+      project_steps.each do |step|
+        step.update_attributes(order: step.order - 1)
+      end
+    elsif project_steps.length == 1
+      project_steps.first.update_attributes(order: 1)
+    else
+      project_steps.each do |step|
+        if target_order < step.order
+          step.update_attributes(order: step.order - 1)
+        end
+      end
+    end
+
+    render json: @api_step
   end
 
   private

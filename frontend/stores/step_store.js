@@ -40,6 +40,21 @@ StepStore.findStepByProjectAndTitle = function(projectId, title){
   return theStepBeingLookedFor;
 };
 
+StepStore.findStepByProjectAndTitle = function(projectId, order){
+  var keys = Object.keys(_steps);
+  var theStepBeingLookedFor = null;
+
+  keys.forEach(function(key){
+    var step = _steps[key];
+
+    if(step.project_id === projectId && step.order === order){
+      theStepBeingLookedFor =  step;
+    }
+  });
+
+  return theStepBeingLookedFor;
+};
+
 StepStore.findStepsByProjectId = function(projectId){
   var keys = Object.keys(_steps);
   var theStepBeingLookedFor = null;
@@ -70,6 +85,16 @@ var removeStep = function(step){
   delete _steps[step.id];
 };
 
+var updateSteps = function(steps){
+  console.log(_steps);
+  console.log(steps);
+  steps.forEach(function(step){
+    _steps[step.id] = step;
+  });
+
+  console.log(_steps);
+};
+
 var resetErrors = function(errors){
   _errors = errors;
 };
@@ -94,6 +119,11 @@ StepStore.__onDispatch = function (payload) {
 
     case StepConstants.STEP_DESTROYED:
       removeStep(payload.step);
+      StepStore.__emitChange();
+      break;
+
+    case StepConstants.STEPS_UPDATED:
+      updateSteps(payload.steps);
       StepStore.__emitChange();
       break;
 

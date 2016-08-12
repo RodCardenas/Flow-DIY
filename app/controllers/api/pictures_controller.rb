@@ -58,7 +58,7 @@ class Api::PicturesController < ApplicationController
   # DELETE /api/pictures/1.json
   def destroy
     @api_picture.destroy
-    format.json { head :no_content } #TODO
+    render "api/pictures/show"
   end
 
   private

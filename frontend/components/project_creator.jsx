@@ -66,7 +66,6 @@ var ProjectCreator = React.createClass({
   updateProject: function(e){
     e.preventDefault();
 
-    console.log(this.state.stepIndex);
     var steps = this.state.stepIndex.parseSteps();
     var keys = Object.keys(steps);
     var self = this;
@@ -88,7 +87,6 @@ var ProjectCreator = React.createClass({
     });
 
     this.context.router.push("/projects/" + this.state.project.id);
-    // window.location.reload();
   },
 
   projectNameChange: function(event) {
@@ -169,38 +167,38 @@ var ProjectCreator = React.createClass({
         content = (
           <div className="project-creator">
             <form id="project-form">
-                <label>
-                  <div className="label-text">Project</div>
-                  <input
-                    type="text"
-                    id="project-name"
-                    onChange={this.projectNameChange}
-                    value={this.state.projectName} />
-                </label>
+              <label>
+                <div className="label-text"><h1>Project</h1></div>
+                <input
+                  type="text"
+                  id="project-name"
+                  onChange={this.projectNameChange}
+                  value={this.state.projectName} />
+              </label>
 
-                <div className="project-pictures">
-                  {this.state.pictures}
-                </div>
+              <div className="project-pictures">
+                {this.state.pictures}
+              </div>
 
-                <br/ >
-                <button onClick={this.addPicture}>Add Picture</button>
+              <br/>
+              <button onClick={this.addPicture}>Add Picture</button>
 
-                <div className="step-index-container">
-                  <hr/>
-                  <h2>
-                    Steps
-                  </h2>
-                  <StepIndex
-                    steps={[]}
-                    projectId={this.state.project.id}
-                    ref={function(c){self.state.stepIndex = c;}}/>
-                </div>
+              <div className="step-index-container">
+                <hr/>
+                <h2>
+                  Steps
+                </h2>
+                <StepIndex
+                  steps={[]}
+                  projectId={this.state.project.id}
+                  ref={function(c){self.state.stepIndex = c;}}/>
+              </div>
 
-                <button onClick={this.updateProject}>Update & View Project</button>
+              <button onClick={this.updateProject}>Update & View Project</button>
             </form>
           </div>
         );
-    }
+      }
 
     if (typeof this.state.currentUser === 'undefined'){
       content = <div className="no-user">Please login/signup to use this feature :)</div>;
