@@ -37,8 +37,16 @@ class Api::PicturesController < ApplicationController
     @api_picture = Api::Picture.new(api_picture_params)
 
     if @api_picture.save
-      Api::Project.find(params[:picture][:imageable_id]).delete_default_project_picture
-      render "api/pictures/show"
+      if params[:picture][:imageable_type] == "Api::Project"
+        Api::Project.find(params[:picture][:imageable_id]).delete_default_project_picture
+        puts "Looking for project !!!!!!!!"
+        @api_project = Api::Project.find(params[:picture][:imageable_id])
+      else
+        puts "Looking for step !!!!!!!!"
+        @api_project = Api::Step.find(params[:picture][:imageable_id]).project
+      end
+
+      render "api/projects/show"
     else
       @errors = @api_picture.errors.full_messages
       render "api/shared/error", status: :unprocessable_entity

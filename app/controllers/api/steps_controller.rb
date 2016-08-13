@@ -91,8 +91,6 @@ class Api::StepsController < ApplicationController
 
       picturesInfo = params[:api_step][:pictures]
 
-      # TODO: Test picture creation procedure
-
       if @api_step.pictures && picturesInfo
         @api_step.pictures.each do |picture|
           if picturesInfo.include? (picture.picture_url)

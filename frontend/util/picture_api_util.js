@@ -1,4 +1,5 @@
 var PictureActions = require ('../actions/picture_actions');
+var ProjectActions = require ('../actions/project_actions');
 
 module.exports =  {
 
@@ -7,8 +8,8 @@ module.exports =  {
       method: 'POST',
       url: '/api/pictures',
       data: {picture: details},
-      success: function(picture){
-        PictureActions.receivePicture(picture);
+      success: function(project){
+        ProjectActions.receiveProject(project);
       },
       error: function(error){
         PictureActions.handleError(error);

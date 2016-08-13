@@ -26,7 +26,7 @@ var EditableStep = React.createClass({
     this.setState({body: event.target.value});
   },
 
-  accessPicture: function(pictures, stepId){
+  accessPictures: function(pictures, stepId){
     if(typeof pictures !== 'undefined' && pictures.length > 0){
       var picturesHTML = pictures.map(function(picture){
         return (
@@ -65,7 +65,7 @@ var EditableStep = React.createClass({
 
         result.forEach(function(picture){
           PictureUtil.createPicture({
-            imageable_id: self.state.project_id,
+            imageable_id: self.state.id,
             imageable_type: "Api::Step",
             picture_url: picture.url
           });
@@ -75,7 +75,7 @@ var EditableStep = React.createClass({
   },
 
   render: function(){
-    var pictures = this.accessPicture(this.state.pictures, this.state.id);
+    var pictures = this.accessPictures(this.props.step.pictures, this.state.id);
 
     return (
       <div className="editable-step-detail">

@@ -55,11 +55,13 @@
   flex-direction: column;
   margin-left: auto;
   margin-right: auto;
+  width: 68vw;
 }
 
 .editable-step-pictures{
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
 }
 

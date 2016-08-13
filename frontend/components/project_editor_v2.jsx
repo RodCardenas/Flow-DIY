@@ -6,6 +6,7 @@ var StepStore = require('../stores/step_store');
 var ProjectUtil = require('../util/project_api_util');
 var StepUtil = require('../util/step_api_util');
 var CurrentUserStateMixin = require('../mixins/current_user_state');
+var PictureUtil = require('../util/picture_api_util');
 
 var ProjectDetail = React.createClass({
   contextTypes: {
@@ -128,6 +129,33 @@ var ProjectDetail = React.createClass({
 
   removeStep: function(step){
     StepUtil.deleteStep(this.state.project.id, step.id);
+  },
+
+  addProjectPicture: function(event){
+    event.preventDefault();
+    var self = this;
+
+    window.cloudinary.openUploadWidget({
+      cloud_name: 'flow-diy',
+      upload_preset: 'flchasab',
+      theme: 'minimal'},
+      function(error, result){
+        if(error !== null){
+          this.setState({error: error });
+          return;
+        }
+
+        var pictures;
+
+        result.forEach(function(picture){
+          PictureUtil.createPicture({
+            imageable_id: self.state.project.id,
+            imageable_type: "Api::Project",
+            picture_url: picture.url
+          });
+        });
+      }
+    );
   },
 
   render: function(){
