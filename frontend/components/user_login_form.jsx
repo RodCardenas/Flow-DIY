@@ -8,21 +8,37 @@ var UserLoginForm = React.createClass({
   },
 
   getInitialState: function(){
-    return ({email: "", password: "" });
+    return ({email: "", password: "" , authErrors: ""});
   },
 
-  login: function(e) {
+  componentDidMount: function(){
+    this.listenerToken = UserStore.addListener(this.onChange);
+  },
+
+  componentWillUnmount: function(){
+    this.listenerToken.remove();
+  },
+
+  onChange: function(){
+    var user = UserStore.currentUser();
+    if(typeof user !== 'undefined'){
+      this.setState({authErrors:"", email: user.email});
+      this.context.router.push("/myFlow/" + this.state.email);
+    } else{
+      this.setState({authErrors:UserStore.authErrors()});
+    }
+  },
+
+  login: function(e){
     e.preventDefault();
 
     UserApiUtil.loginUser({
       email: this.state.email,
       password: this.state.password,
     });
-
-    this.context.router.push("/myFlow/" + this.state.email);
   },
 
-  loginGuest: function(e) {
+  loginGuest: function(e){
     e.preventDefault();
 
     var email = "guest@flow-diy.com".split("");
@@ -36,7 +52,7 @@ var UserLoginForm = React.createClass({
       password: ''
     });
 
-    email.forEach(function (char) {
+    email.forEach(function (char){
       time += 50;
 
       document.getElementById("email").focus();
@@ -47,10 +63,10 @@ var UserLoginForm = React.createClass({
 
     time += 500;
 
-    password.forEach(function (char) {
+    password.forEach(function (char){
       time += 50;
 
-      setTimeout(function () {
+      setTimeout(function (){
         document.getElementById("password").focus();
         self.setState({password: self.state.password + char});
       }, time);
@@ -68,14 +84,14 @@ var UserLoginForm = React.createClass({
 
   },
 
-  signUp: function(e) {
+  signUp: function(e){
     e.preventDefault();
 
     UserApiUtil.createUser({
       email: this.state.email,
       password: this.state.password,
     });
-    this.context.router.push("/myFlow/" + this.state.email);
+    // this.context.router.push("/myFlow/" + this.state.email);
   },
 
   emailInputChange: function(event) {

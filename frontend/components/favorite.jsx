@@ -52,8 +52,9 @@ var Favorite = React.createClass({
   },
 
   updateUser: function(){
-    if (typeof UserStore.currentUser() !== "undefined") {
-      this.setState({currentUser: UserStore.currentUser()});
+    var user = UserStore.currentUser();
+    if(typeof user !== 'undefined'){
+      this.setState({currentUser: user});
     }
   },
 

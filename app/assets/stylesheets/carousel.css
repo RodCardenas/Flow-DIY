@@ -1,14 +1,15 @@
 .carousel-container{
   height: 650px;
-  width: 100%;
+  width: 100vw;
   overflow: hidden;
+  min-width: 1053px;
 }
 
 .carousel-overlay{
   min-width: 1053px;
   position: absolute;
   color: white;
-  width: 100%;
+  width: 100vw;
   height: 650px;
   text-align: center;
   background-color: rgba(0, 0, 0, 0.5);
@@ -38,7 +39,8 @@
 }
 
 .carousel .image{
-  width: 100%;
+  width: 100vw;
+  min-width: 1053px;
   display: none;
 }
 

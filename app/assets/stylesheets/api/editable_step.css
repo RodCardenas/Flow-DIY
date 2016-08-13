@@ -44,10 +44,11 @@
 
 /*Find a way to display textbox resize option*/
 .editable-step-body{
+  width: 68vw;
   padding: 1vh;
   margin-bottom: 2vh;
   resize: vertical;
-  max-width: 68vw;
+  overflow: scroll;
 }
 
 .editable-step-pictures-container{
@@ -68,6 +69,7 @@
 .editable-step-picture{
   margin-left: auto;
   margin-right: auto;
+  position: relative;
 }
 
 .editable-step-picture img{
@@ -77,6 +79,27 @@
   margin-right: auto;
 }
 
-.add-pic{
+.delete-picture{
+  position: absolute;
+  color: rgb(255, 63, 34);
+  top: 1vh;
+  right: 1vw;
+  font-size: 3em;
+  z-index: 1;
+}
 
+.delete-picture:hover{
+  cursor: pointer;
+}
+
+.delete-picture:hover + .cloudinaryImg{
+  -webkit-filter: grayscale(75%); /* Chrome, Safari, Opera */
+  filter: grayscale(75%);
+  -webkit-transition: ease-in 0.3s;
+  transition: ease-in 0.3s;
+}
+
+.cloudinaryImg{
+  -webkit-transition: ease-in 0.3s;
+  transition: ease-in 0.3s;
 }

@@ -21,8 +21,8 @@ module.exports =  {
     $.ajax({
       method: 'DELETE',
       url: '/api/pictures/' + id,
-      success: function(picture){
-        PictureActions.removePicture(picture);
+      success: function(project){
+        ProjectActions.receiveProject(project);
       },
       error: function(error){
         PictureActions.handleError(error);

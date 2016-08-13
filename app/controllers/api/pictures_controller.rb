@@ -39,10 +39,8 @@ class Api::PicturesController < ApplicationController
     if @api_picture.save
       if params[:picture][:imageable_type] == "Api::Project"
         Api::Project.find(params[:picture][:imageable_id]).delete_default_project_picture
-        puts "Looking for project !!!!!!!!"
         @api_project = Api::Project.find(params[:picture][:imageable_id])
       else
-        puts "Looking for step !!!!!!!!"
         @api_project = Api::Step.find(params[:picture][:imageable_id]).project
       end
 
@@ -66,7 +64,14 @@ class Api::PicturesController < ApplicationController
   # DELETE /api/pictures/1.json
   def destroy
     @api_picture.destroy
-    render "api/pictures/show"
+
+    if @api_picture.imageable_type == "Api::Project"
+      @api_project = Api::Project.find(@api_picture.imageable_id)
+    else
+      @api_project = Api::Step.find(@api_picture.imageable_id).project
+    end
+
+    render "api/projects/show"
   end
 
   private

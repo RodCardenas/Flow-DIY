@@ -27,10 +27,12 @@ var EditableStep = React.createClass({
   },
 
   accessPictures: function(pictures, stepId){
+    var self = this;
     if(typeof pictures !== 'undefined' && pictures.length > 0){
       var picturesHTML = pictures.map(function(picture){
         return (
           <div className="editable-step-picture" key={"step" + stepId + "-" + picture.id}>
+            <div className="delete-picture" onClick={self.deletePicture.bind(self, picture.id)}>✗</div>
             <CloudinaryImage
               imageUrl={picture.picture_url}
               format={{height: 300, width: 300, crop: "fit"}}
@@ -74,6 +76,10 @@ var EditableStep = React.createClass({
     );
   },
 
+  deletePicture: function(pictureId){
+    PictureUtil.deletePicture(pictureId);
+  },
+
   render: function(){
     var pictures = this.accessPictures(this.props.step.pictures, this.state.id);
 
@@ -82,7 +88,7 @@ var EditableStep = React.createClass({
         <h3 className="editable-step-title">
           <div className="editable-step-order">Step {this.state.order}:</div> <input type="text" value={this.state.title} onChange={this.onTitleChange} />
         </h3>
-        <input type="textbox" className="editable-step-body" value={this.state.body} onChange={this.onBodyChange} />
+        <textarea className="editable-step-body" value={this.state.body} onChange={this.onBodyChange} />
         <div className="editable-step-pictures-container">
           <ul className="editable-step-pictures">
             {pictures}
