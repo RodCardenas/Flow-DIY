@@ -7,7 +7,7 @@ var ProjectIndexItem = require('./project_index_item');
 var ProjectIndex = React.createClass({
 
   getInitialState: function(){
-    return ({ projects: ProjectStore.all() });
+    return ({ projects: {} });
   },
 
   componentDidMount: function(){

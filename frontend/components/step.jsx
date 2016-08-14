@@ -37,9 +37,11 @@ var Step = React.createClass({
         <h3 className="step-title">
           Step {step.order}: {step.title}
         </h3>
-        <ul className="step-pictures-container">
-          {pictures}
-        </ul>
+        <div className="step-pictures-container">
+          <ul className="step-pictures">
+            {pictures}
+          </ul>
+        </div>
         <p className="step-title">
           {step.body}
         </p>

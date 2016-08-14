@@ -22,7 +22,6 @@ class Api::FavoritesController < ApplicationController
     elsif proj.empty? && !auth.empty?
       @api_favorites = Api::Favorite.where(author_id: auth)
     elsif !proj.empty? && auth.empty?
-      puts "HERERERER!"
       @api_favorites = Api::Favorite.where(project_id: proj)
     else
       @api_favorites = Api::Favorite.where(project_id: proj).where(author_id: auth)

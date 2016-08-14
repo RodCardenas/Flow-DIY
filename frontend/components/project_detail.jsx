@@ -13,7 +13,7 @@ var ProjectDetail = React.createClass({
   mixins: [CurrentUserStateMixin],
 
   getInitialState: function(){
-    return ({project: ProjectStore.find(this.props.params.projectId)});
+    return ({project: {}});
   },
 
   componentDidMount: function(){
@@ -26,7 +26,10 @@ var ProjectDetail = React.createClass({
   },
 
   onChange: function(){
-    this.setState({ project:ProjectStore.find(this.props.params.projectId) });
+    var proj = ProjectStore.find(this.props.params.projectId);
+    if(proj !== this.state.project){
+      this.setState({ project: proj });
+    }
   },
 
   accessPicture: function(pictures){
@@ -107,7 +110,7 @@ var ProjectDetail = React.createClass({
     }
 
     return (
-      <div className="project-detail">
+      <div className="project-detail" key={project.id}>
         <h2 className="project-detail-title">
           {project.title}
         </h2>
