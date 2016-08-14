@@ -42,7 +42,7 @@ var Step = React.createClass({
             {pictures}
           </ul>
         </div>
-        <p className="step-title">
+        <p className="step-body">
           {step.body}
         </p>
       </div>

@@ -111,13 +111,15 @@ var ProjectDetail = React.createClass({
 
     return (
       <div className="project-detail" key={project.id}>
-        <h2 className="project-detail-title">
-          {project.title}
-        </h2>
-        {projectOptions}
-        <ul className="project-pictures-container">
-          {pictures}
-        </ul>
+        <div className="project-information">
+          <h2 className="project-detail-title">
+            {project.title}
+          </h2>
+          {projectOptions}
+          <ul className="project-pictures-container">
+            {pictures}
+          </ul>
+        </div>
         <ul className="steps-container">
           {steps}
         </ul>

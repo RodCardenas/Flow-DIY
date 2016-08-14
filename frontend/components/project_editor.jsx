@@ -1,15 +1,14 @@
 var React = require('react');
-var ReactDOM = require('react-dom');
-
 var CloudinaryImage = require('./cloudinary_image');
+var EditableStep = require('./editable_step');
+var ProjectStore = require('../stores/project_store');
+var StepStore = require('../stores/step_store');
 var ProjectUtil = require('../util/project_api_util');
 var StepUtil = require('../util/step_api_util');
-var StepIndex = require('./step_index');
-var StepIndexItem = require('./step_index_item');
 var CurrentUserStateMixin = require('../mixins/current_user_state');
-var ProjectStore = require('../stores/project_store');
+var PictureUtil = require('../util/picture_api_util');
 
-var ProjectEditor = React.createClass({
+var ProjectDetail = React.createClass({
   contextTypes: {
     router: React.PropTypes.object.isRequired
   },
@@ -17,156 +16,181 @@ var ProjectEditor = React.createClass({
   mixins: [CurrentUserStateMixin],
 
   getInitialState: function(){
-    var targetProject = ProjectStore.find(this.props.params.projectId);
-    return ({
-      projectTitle: targetProject.title,
-      project: targetProject,
-      errors:ProjectStore.getErrors() });
+    return ({project: ProjectStore.find(this.props.params.projectId)});
   },
 
-  updateProject: function(e) {
-    e.preventDefault();
-
-    ProjectUtil.updateProject(this.props.params.projectId,{
-      title: this.state.projectTitle,
-      author_id: this.state.currentUser.id
-    });
-
-    this.updateSteps();
-
-    this.context.router.push("/projects/" + this.props.params.projectId);
-    window.location.reload();
+  componentDidMount: function(){
+    ProjectUtil.fetchProject(this.props.params.projectId);
+    this.listenerToken = ProjectStore.addListener(this.onChange);
+    this.listenerTokenSteps = StepStore.addListener(this.onStepChange);
   },
 
-  projectTitleChange: function(event) {
-    this.setState({projectTitle: event.target.value});
+  componentWillUnmount: function(){
+    this.listenerToken.remove();
+    this.listenerTokenSteps.remove();
   },
 
-  updateSteps: function(){
-    var steps = this.refs.stepIndex.parseSteps();
-    var keys = Object.keys(steps);
-    var self = this;
-    var project = this.state.project;
-
-    keys.forEach(function(key){
-      var step = steps[key];
-      StepUtil.updateStep(project.id, step.id, step);
-    });
+  onChange: function(){
+    this.setState({ project:ProjectStore.find(this.props.params.projectId) });
   },
 
-  getSteps: function(){
-    var stepCnt = this.state.project.steps.length;
-    var self = this;
-    var oldSteps = [];
+  onStepChange: function(){
+    ProjectUtil.fetchProject(this.props.params.projectId);
+  },
 
-    this.state.project.steps.forEach(function(step){
-      var pictureUrls = [];
-      var pictures = [];
-
-      step.pictures.forEach(function(picture){
-        pictureUrls.push(picture.picture_url);
-        pictures.push(
-          <CloudinaryImage
-            key={picture.id}
-            imageUrl={picture.picture_url}
-            format={{height: 100, width: 100, crop: "fit"}} />
+  accessPicture: function(pictures){
+    if(typeof pictures !== 'undefined'){
+      var picturesHTML = pictures.map(function(picture){
+        return (
+          <div className="project-picture" key={"project" + picture.id}>
+            <CloudinaryImage
+              imageUrl={picture.picture_url}
+              format={{height: 300, width: 300, crop: "fit"}}
+            />
+          <h6 className="picture-caption">
+              {picture.caption}
+            </h6>
+          </div>
         );
       });
-
-      oldSteps.push(
-        <StepIndexItem
-          stepId={step.id}
-          title={step.title}
-          body={step.body}
-          projectId={self.props.projectId}
-          pictures={pictures}
-          pictureUrls={pictureUrls}
-          key={step.id}
-          order={step.order} />
-      );
-    });
-
-    return oldSteps;
+    } else {
+      picturesHTML = null;
+    }
+    return picturesHTML;
   },
 
-  getErrors: function() {
-    if (Object.keys(this.state.errors).length !== 0){
-      return(
-        <div id="errors">
-          {this.state.errors}
-        </div>
-      );
+  accessSteps: function(steps){
+    var self = this;
+    if(typeof steps !== 'undefined' && steps.length > 0){
+      var sorted = false;
+
+      while(sorted === false){
+        sorted = true;
+        var i = 0;
+        var stepHolder = null;
+        while(i < steps.length - 1){
+          if(steps[i].order > steps[i + 1].order){
+            stepHolder = steps[i];
+            steps[i] = steps[i + 1];
+            steps[i + 1] = stepHolder;
+            sorted = false;
+          }
+          i++;
+        }
+      }
+      var stepsHTML = steps.map(function(step){
+        return (
+          <div className="editable-step-container" key={"stepContainer" + step.id + step.order} step={step} >
+            <div className="editable-step-order-options">
+              <button className="order-change" onClick={self.decreaseOrder.bind(self,step)}>△</button>
+              <button className="order-change" onClick={self.increaseOrder.bind(self,step)}>▽</button>
+            </div>
+            <EditableStep className="editable-step" step={step} />
+            <button className="delete-step"  onClick={self.removeStep.bind(self,step)}>-</button>
+          </div>
+        );
+      });
     } else {
-      return (
-        <div id="errors">
-        </div>
-      );
+      stepsHTML = null;
+    }
+    return stepsHTML;
+  },
+
+  decreaseOrder:function(step){
+    if (step.order !== 1){
+      step.order--;
+      StepUtil.updateStepOrder(this.state.project.id, step.id, step);
     }
   },
 
+  increaseOrder:function(step){
+    if (step.order !== this.state.project.steps.length){
+      step.order++;
+      StepUtil.updateStepOrder(this.state.project.id, step.id, step);
+    }
+  },
+
+  viewProject: function(){
+    this.context.router.push("/projects/" + this.state.project.id);
+  },
+
+  addStep: function(event){
+    event.preventDefault();
+
+    var order = this.state.project.steps.length + 1;
+
+    StepUtil.createStep(
+      this.state.project.id, {
+        title: "Title goes here",
+        body: "Body goes here",
+        order: order
+      });
+  },
+
+  removeStep: function(step){
+    StepUtil.deleteStep(this.state.project.id, step.id);
+  },
+
+  addProjectPicture: function(event){
+    event.preventDefault();
+    var self = this;
+
+    window.cloudinary.openUploadWidget({
+      cloud_name: 'flow-diy',
+      upload_preset: 'flchasab',
+      theme: 'minimal'},
+      function(error, result){
+        if(error !== null){
+          this.setState({error: error });
+          return;
+        }
+
+        var pictures;
+
+        result.forEach(function(picture){
+          PictureUtil.createPicture({
+            imageable_id: self.state.project.id,
+            imageable_type: "Api::Project",
+            picture_url: picture.url
+          });
+        });
+      }
+    );
+  },
+
   render: function(){
-    if (typeof this.state.currentUser === 'undefined'){
-      var content = <div className="no-user">Please login/signup to use this feature :)</div>;
-    } else {
-        content = (
-          <div className="project-editor">
-            <form id="project-form">
-                <label>
-                  <div className="label-text"><h1>Project</h1></div>
-                  <input
-                    type="text"
-                    id="project-title"
-                    onChange={this.projectTitleChange}
-                    value={this.state.projectTitle} />
-                </label>
+    var project = this.state.project;
+    var pictures = this.accessPicture(project.pictures);
+    var steps = this.accessSteps(project.steps);
 
-                <div className="step-index-container">
-                  <hr/>
-                  <h2>
-                    Steps
-                  </h2>
-                  <StepIndex
-                    steps={this.getSteps()}
-                    projectId={this.state.project.id}
-                    ref="stepIndex"/>
-                </div>
-
-                <button onClick={this.updateProject}>Update Project</button>
-            </form>
+    if(Object.keys(project).length !== 0){
+      if(this.state.currentUser.id === project.author.id){
+        var projectOptions = (
+          <div id="project-options">
+            <button className="view-project" onClick={this.viewProject}>View Project</button>
           </div>
         );
       }
+    }
 
     return (
-      <div className="project-editor-container">
-        {this.getErrors()}
-        {content}
+      <div className="project-detail-edit-mode">
+        <h2 className="edit-project-detail-title">
+          {project.title}
+        </h2>
+        {projectOptions}
+        <ul className="project-pictures-container">
+          {pictures}
+        </ul>
+        <button className="add-project-picture-button" onClick={this.addProjectPicture}>Add Project Picture</button>
+        <ul className="editable-steps-container">
+          {steps}
+        </ul>
+        <button className="add-step" onClick={this.addStep}>Add Step</button>
+        <div className="space-taker" />
       </div>
     );
   }
 });
 
-module.exports = ProjectEditor;
-
-
-function aliquotSequence(base,n){
-
-    var sequence = [base];
-
-    for(var i = 0 ; i < n ;i++){
-        var factors = [];
-        var sumOfFactors =0;
-
-        for(var j =1; j < sequence[i]; j++){
-            if(sequence[i] % j===0){
-                factors.push(j);
-            }
-        }
-
-        sumOfFactors = factors.reduce(function(result,currValue){
-            return result+currValue;
-        }, 0);
-        sequence.push(sumOfFactors);
-     }
-     return sequence;
- }
+module.exports = ProjectDetail;

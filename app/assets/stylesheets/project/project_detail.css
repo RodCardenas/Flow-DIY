@@ -1,26 +1,32 @@
 .project-detail{
   display: flex;
   flex-direction: column;
-  width: 90%;
+  width: 100vw;
   margin-left: auto;
   margin-right: auto;
   min-height: 100vh;
+  text-align: center;
 }
 
 .project-detail-edit-mode{
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 100vw;
   margin-left: auto;
   margin-right: auto;
   min-height: 100vh;
   background: rgb(210, 210, 210);
+  text-align: center;
 }
 
 .project-detail-title{
+  width: 100vw;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+}
+
+.edit-project-detail-title{
+  width: 100vw;
+  display: block;
 }
 
 #project-options{
@@ -62,7 +68,7 @@
 .step-detail{
   display: flex;
   flex-direction: column;
-  margin-top: 2vh;
+  margin-top: 4vh;
   margin-left: auto;
   margin-right: auto;
   width: 78vw;
@@ -78,9 +84,8 @@
 
 .step-body{
   padding: 1vh;
-  margin-bottom: 2vh;
-  resize: vertical;
-  max-width: 68vw;
+  margin-bottom: 1vh;
+  text-align: justify;
 }
 
 .step-pictures-container{

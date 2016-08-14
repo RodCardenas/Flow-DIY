@@ -46,9 +46,9 @@
 .editable-step-body{
   width: 68vw;
   padding: 1vh;
-  margin-bottom: 2vh;
   resize: vertical;
   overflow: scroll;
+  text-align: justify;
 }
 
 .editable-step-pictures-container{
@@ -102,4 +102,8 @@
 .cloudinaryImg{
   -webkit-transition: ease-in 0.3s;
   transition: ease-in 0.3s;
+}
+
+.add-pic{
+  width: 97px;
 }

@@ -3,11 +3,8 @@ var ReactDOM = require('react-dom');
 
 var CloudinaryImage = require('./cloudinary_image');
 var ProjectUtil = require('../util/project_api_util');
-var StepUtil = require('../util/step_api_util');
-var PictureUtil = require('../util/picture_api_util');
-var StepIndex = require('./step_index');
-var CurrentUserStateMixin = require('../mixins/current_user_state');
 var ProjectStore = require('../stores/project_store');
+var CurrentUserStateMixin = require('../mixins/current_user_state');
 
 var ProjectCreator = React.createClass({
   contextTypes: {
@@ -17,200 +14,55 @@ var ProjectCreator = React.createClass({
   mixins: [CurrentUserStateMixin],
 
   getInitialState: function(){
-    return ({
-      projectTitle: "",
-      projectName: "",
-      project: null,
-      steps:[],
-      errors:ProjectStore.getErrors(),
-      pictures: [],
-      picture_urls: [],
-      stepIndex: null
-     });
+    return ({ projectName: "" });
   },
 
   componentDidMount: function(){
-    ProjectUtil.fetchProjects();
-    this.projectStoreListener = ProjectStore.addListener(this.findProject);
+    this.projectStoreListener = ProjectStore.addListener(this.onChange);
   },
 
   componentWillUnmount: function(){
     this.projectStoreListener.remove();
   },
 
-  findProject: function(){
-    this.setState({
-       project: ProjectStore.findProjectByAuthorAndTitle(
-         this.state.currentUser.id,
-         this.state.projectName
-       ),
-       errors: ProjectStore.getErrors()
-    });
-  },
-
-  createProject: function(e) {
-    e.preventDefault();
-
-    ProjectUtil.createProject({
-      title: this.state.projectTitle,
-      author_id: this.state.currentUser.id
-    });
-
-    this.setState({projectName: this.state.projectTitle});
-  },
-
-  projectTitleChange: function(event) {
-    this.setState({projectTitle: event.target.value});
-  },
-
-  updateProject: function(e){
-    e.preventDefault();
-
-    var steps = this.state.stepIndex.parseSteps();
-    var keys = Object.keys(steps);
-    var self = this;
-
-    this.state.picture_urls.forEach(function(url){
-      var pic = {
-        imageable_id: self.state.project.id,
-        imageable_type: "Api::Project",
-        picture_url: url
-      };
-
-      PictureUtil.createPicture(pic);
-    });
-
-    keys.forEach(function(key){
-      var step = steps[key];
-      step["project_id"] = self.state.project.id;
-      StepUtil.createStep(self.state.project.id, step);
-    });
-
-    this.context.router.push("/projects/" + this.state.project.id);
-  },
-
   projectNameChange: function(event) {
     this.setState({projectName: event.target.value});
   },
 
-  addPicture: function(e){
-    e.preventDefault();
-    var self = this;
+  createProject: function(event) {
+    event.preventDefault();
 
-    window.cloudinary.openUploadWidget({
-      cloud_name: 'flow-diy',
-      upload_preset: 'flchasab',
-      theme: 'minimal'},
-      self.showPictures
-    );
-  },
-
-  showPictures: function(error, result){
-    if(error !== null){
-      this.setState({error: error });
-      return;
-    }
-
-    var pictureCnt = this.state.pictures.length;
-    var modPictures = this.state.pictures.slice(0);
-    var modURLs = this.state.picture_urls.slice(0);
-
-    result.forEach(function(picture){
-      modURLs.push(picture.url);
-      modPictures.push(
-        <CloudinaryImage
-          key={picture.public_id}
-          imageUrl={picture.url}
-          format={{height: 100, width: 100, crop: "fit"}} />
-      );
+    ProjectUtil.createProject({
+      title: this.state.projectName,
+      author_id: this.state.currentUser.id
     });
-
-    this.setState({pictures: modPictures, picture_urls: modURLs});
   },
 
-
-  getErrors: function() {
-    if (Object.keys(this.state.errors).length !== 0){
-      return(
-        <div id="errors">
-          {this.state.errors}
-        </div>
-      );
-    } else {
-      return (
-        <div id="errors">
-        </div>
-      );
-    }
+  onChange: function(){
+    var project = ProjectStore.findProjectByAuthorAndTitle(this.state.currentUser.id, this.state.projectName);
+    this.context.router.push("/projects/" + project.id);
   },
 
   render: function(){
-    var self = this;
-    if (this.state.projectName === "" || this.state.errors.length !== 0){
-        var content = (
-          <div className="project-creator">
-            <label>
-              <div className="label-text">My project is called:</div>
-              <input
-                type="text"
-                id="project-title"
-                onChange={this.projectTitleChange}
-                value={this.state.projectTitle} />
-            </label>
-
-            <div className="buttons">
-              <button onClick={this.createProject}>Create Project Flow!</button>
-            </div>
-          </div>
-        );
-    } else {
-        content = (
-          <div className="project-creator">
-            <form id="project-form">
-              <label>
-                <div className="label-text"><h1>Project</h1></div>
-                <input
-                  type="text"
-                  id="project-name"
-                  onChange={this.projectNameChange}
-                  value={this.state.projectName} />
-              </label>
-
-              <div className="project-pictures">
-                {this.state.pictures}
-              </div>
-
-              <br/>
-              <button onClick={this.addPicture}>Add Picture</button>
-
-              <div className="step-index-container">
-                <hr/>
-                <h2>
-                  Steps
-                </h2>
-                <StepIndex
-                  steps={[]}
-                  projectId={this.state.project.id}
-                  ref={function(c){self.state.stepIndex = c;}}/>
-              </div>
-
-              <button onClick={this.updateProject}>Update & View Project</button>
-            </form>
-          </div>
-        );
-      }
-
-    if (typeof this.state.currentUser === 'undefined'){
-      content = <div className="no-user">Please login/signup to use this feature :)</div>;
-    }
-
     return (
-      <div className="project-creator-container">
-        {this.getErrors()}
-        {content}
+      <div className="project-creator">
+        <form id="project-form">
+          <label>
+            <div className="label-text"><h1>Project Name</h1></div>
+            <br/>
+            <input
+              type="text"
+              id="project-name"
+              onChange={this.projectNameChange}
+              value={this.state.projectName} />
+          </label>
+          <br/>
+          <button onClick={this.createProject}>Create Project</button>
+        </form>
       </div>
     );
   }
+
 });
 
 module.exports = ProjectCreator;

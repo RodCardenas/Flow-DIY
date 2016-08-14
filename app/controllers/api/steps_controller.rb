@@ -47,7 +47,8 @@ class Api::StepsController < ApplicationController
           Api::Picture.create!(
             imageable_type: "Api::Step",
             imageable_id: @api_step.id,
-            picture_url: picture
+            picture_url: picture.url,
+            caption: picture.caption
           )
         end
       end
@@ -88,26 +89,6 @@ class Api::StepsController < ApplicationController
         body: params[:api_step][:body],
         project_id: params[:api_step][:project_id]
       )
-
-      picturesInfo = params[:api_step][:pictures]
-
-      if @api_step.pictures && picturesInfo
-        @api_step.pictures.each do |picture|
-          if picturesInfo.include? (picture.picture_url)
-            picturesInfo.delete(picture.picture_url)
-          end
-        end
-      end
-
-      if picturesInfo && picturesInfo.length > 0
-        picturesInfo.each do |picture|
-          Api::Picture.create!(
-            imageable_type: "Api::Step",
-            imageable_id: @api_step.id,
-            picture_url: picture
-          )
-        end
-      end
 
       render "api/steps/show"
     else
