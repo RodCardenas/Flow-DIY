@@ -8,6 +8,7 @@ gem 'pry-rails'
 gem 'annotate'
 gem 'paperclip'
 gem 'cloudinary'
+gem 'rollbar'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
